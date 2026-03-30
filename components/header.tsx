@@ -47,12 +47,12 @@ export function Header() {
               <span className="text-lg font-semibold text-primary-foreground">P</span>
             </div>
             <div className="hidden sm:block">
-              <span className="text-base font-semibold tracking-tight text-foreground">
+              <span className="text-base font-medium tracking-tight text-foreground">
                 Parenting & Technology Institute
               </span>
-              <span className="ml-1.5 text-sm text-muted-foreground">(PATI)</span>
+              <span className="ml-1.5 text-sm font-medium text-muted-foreground">(PATI)</span>
             </div>
-            <span className="text-lg font-semibold tracking-tight text-foreground sm:hidden">
+            <span className="text-lg font-medium tracking-tight text-foreground sm:hidden">
               PATI
             </span>
           </div>
@@ -70,12 +70,12 @@ export function Header() {
             <span className="text-lg font-semibold text-primary-foreground">P</span>
           </div>
           <div className="hidden sm:block">
-            <span className="text-base font-semibold tracking-tight text-foreground">
+            <span className="text-base font-medium tracking-tight text-foreground">
               Parenting & Technology Institute
             </span>
-            <span className="ml-1.5 text-sm text-muted-foreground">(PATI)</span>
+            <span className="ml-1.5 text-sm font-medium text-muted-foreground">(PATI)</span>
           </div>
-          <span className="text-lg font-semibold tracking-tight text-foreground sm:hidden">
+          <span className="text-lg font-medium tracking-tight text-foreground sm:hidden">
             PATI
           </span>
         </Link>
