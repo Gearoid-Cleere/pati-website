@@ -31,11 +31,16 @@ export function Footer() {
         <div className="grid gap-8 lg:grid-cols-5">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <Link href="/" className="group">
-              <h3 className="text-lg font-semibold tracking-tight text-foreground">
-                Parenting & Technology Institute
-              </h3>
-              <span className="text-sm font-medium text-muted-foreground">(PATI)</span>
+            <Link href="/" className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded bg-primary">
+                <span className="text-lg font-semibold text-primary-foreground">P</span>
+              </div>
+              <div>
+                <h3 className="text-base font-semibold tracking-tight text-foreground">
+                  Parenting & Technology Institute
+                </h3>
+                <span className="text-sm text-muted-foreground">(PATI)</span>
+              </div>
             </Link>
             <p className="mt-4 max-w-xs text-[15px] leading-relaxed text-muted-foreground">
               Supporting families, schools and organisations to navigate childhood in a digital world.
