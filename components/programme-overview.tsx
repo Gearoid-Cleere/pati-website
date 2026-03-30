@@ -2,10 +2,10 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import {
   Clock,
-  Shield,
+  ShieldCheck,
   Gamepad2,
-  AlertTriangle,
-  MessageSquare,
+  EyeOff,
+  UserX,
   Smartphone,
   Laptop,
   Heart,
@@ -14,10 +14,10 @@ import {
 
 const modules = [
   { icon: Clock, title: "Age of Technology", description: "Understanding the digital landscape" },
-  { icon: Shield, title: "Boundaries", description: "Setting healthy limits" },
+  { icon: ShieldCheck, title: "Boundaries", description: "Setting healthy limits" },
   { icon: Gamepad2, title: "Gaming", description: "Managing gaming habits" },
-  { icon: AlertTriangle, title: "Pornography", description: "Protection and conversations" },
-  { icon: MessageSquare, title: "Bullying", description: "Prevention and response" },
+  { icon: EyeOff, title: "Pornography", description: "Protection and conversations" },
+  { icon: UserX, title: "Bullying", description: "Prevention and response" },
   { icon: Smartphone, title: "Social Media & Anxiety", description: "Mental health impacts" },
   { icon: Laptop, title: "Technology & Devices", description: "Practical device management" },
   { icon: Heart, title: "Thriving as a Family", description: "Building healthy relationships" },
