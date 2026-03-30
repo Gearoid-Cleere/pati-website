@@ -1,18 +1,18 @@
 const steps = [
   {
     number: "01",
-    title: "Join",
-    description: "Register through your school, organisation, or directly as a parent.",
+    title: "Join the Programme",
+    description: "Register through your school, organisation, or as an individual parent.",
   },
   {
     number: "02",
-    title: "Attend",
-    description: "Attend live expert-led sessions or access recordings at your convenience.",
+    title: "Engage Each Week",
+    description: "Access live sessions, recordings, and practical weekly guidance designed for busy families.",
   },
   {
     number: "03",
-    title: "Apply",
-    description: "Apply practical tools and strategies at home to see real results.",
+    title: "Apply at Home",
+    description: "Use tools, strategies, and resources to build healthier family approaches to technology.",
   },
 ]
 
@@ -23,10 +23,10 @@ export function HowItWorks() {
         {/* Section header */}
         <div className="mx-auto mb-20 max-w-2xl text-center lg:mb-24">
           <h2 className="font-serif text-[2rem] font-normal tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem]">
-            How It Works
+            How the PATI Programme Works
           </h2>
-          <p className="mt-5 text-lg text-muted-foreground">
-            A straightforward process designed for busy families
+          <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+            A structured, practical programme designed to support families week by week.
           </p>
         </div>
         
@@ -35,7 +35,7 @@ export function HowItWorks() {
             <div key={step.number} className="text-center">
               {/* Number */}
               <div className="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full border border-border bg-background">
-                <span className="text-xl font-semibold text-primary">
+                <span className="font-serif text-xl font-medium text-primary">
                   {step.number}
                 </span>
               </div>
