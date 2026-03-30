@@ -2,9 +2,11 @@ import { Metadata } from "next"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { SchoolsHero } from "@/components/schools/schools-hero"
-import { SchoolsBenefits } from "@/components/schools/schools-benefits"
-import { SchoolsHowItWorks } from "@/components/schools/schools-how-it-works"
+import { SchoolsWholeSchool } from "@/components/schools/schools-whole-school"
 import { SchoolsProgrammeOverview } from "@/components/schools/schools-programme-overview"
+import { SchoolsHowItWorks } from "@/components/schools/schools-how-it-works"
+import { SchoolsResponsibilities } from "@/components/schools/schools-responsibilities"
+import { SchoolsPricing } from "@/components/schools/schools-pricing"
 import { SchoolsTestimonials } from "@/components/schools/schools-testimonials"
 import { SchoolsFaq } from "@/components/schools/schools-faq"
 import { SchoolsCta } from "@/components/schools/schools-cta"
@@ -20,9 +22,11 @@ export default function SchoolsPage() {
       <Header />
       <main className="flex-1">
         <SchoolsHero />
-        <SchoolsBenefits />
-        <SchoolsHowItWorks />
+        <SchoolsWholeSchool />
         <SchoolsProgrammeOverview />
+        <SchoolsHowItWorks />
+        <SchoolsResponsibilities />
+        <SchoolsPricing />
         <SchoolsTestimonials />
         <SchoolsFaq />
         <SchoolsCta />
