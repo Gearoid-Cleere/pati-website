@@ -32,12 +32,17 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-3">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded bg-primary">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded bg-primary">
                 <span className="text-lg font-semibold text-primary-foreground">P</span>
               </div>
-              <h3 className="text-base font-semibold tracking-tight text-foreground">
-                Parenting & Technology Institute (PATI)
-              </h3>
+              <div className="flex flex-col justify-center">
+                <span className="text-[15px] font-medium leading-tight tracking-tight text-foreground">
+                  Parenting and Technology
+                </span>
+                <span className="text-[15px] font-medium leading-tight tracking-tight text-foreground">
+                  Institute <span className="text-muted-foreground">(PATI)</span>
+                </span>
+              </div>
             </Link>
             <p className="mt-4 max-w-xs text-[15px] leading-relaxed text-muted-foreground">
               Supporting families, schools and organisations to navigate childhood in a digital world.

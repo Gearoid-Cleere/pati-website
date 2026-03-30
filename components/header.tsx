@@ -46,11 +46,13 @@ export function Header() {
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded bg-primary">
               <span className="text-lg font-semibold text-primary-foreground">P</span>
             </div>
-            <div className="hidden sm:block">
-              <span className="text-base font-medium tracking-tight text-foreground">
-                Parenting & Technology Institute
+            <div className="hidden sm:flex sm:flex-col sm:justify-center">
+              <span className="text-[15px] font-medium leading-tight tracking-tight text-foreground">
+                Parenting and Technology
               </span>
-              <span className="ml-1.5 text-sm font-medium text-muted-foreground">(PATI)</span>
+              <span className="text-[15px] font-medium leading-tight tracking-tight text-foreground">
+                Institute <span className="text-muted-foreground">(PATI)</span>
+              </span>
             </div>
             <span className="text-lg font-medium tracking-tight text-foreground sm:hidden">
               PATI
@@ -69,11 +71,13 @@ export function Header() {
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded bg-primary">
             <span className="text-lg font-semibold text-primary-foreground">P</span>
           </div>
-          <div className="hidden sm:block">
-            <span className="text-base font-medium tracking-tight text-foreground">
-              Parenting & Technology Institute
+          <div className="hidden sm:flex sm:flex-col sm:justify-center">
+            <span className="text-[15px] font-medium leading-tight tracking-tight text-foreground">
+              Parenting and Technology
             </span>
-            <span className="ml-1.5 text-sm font-medium text-muted-foreground">(PATI)</span>
+            <span className="text-[15px] font-medium leading-tight tracking-tight text-foreground">
+              Institute <span className="text-muted-foreground">(PATI)</span>
+            </span>
           </div>
           <span className="text-lg font-medium tracking-tight text-foreground sm:hidden">
             PATI
