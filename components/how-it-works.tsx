@@ -8,7 +8,6 @@ const steps = [
     number: "02",
     title: "Engage Each Week",
     description: "Access live sessions, recordings, and practical weekly guidance designed for busy families.",
-    microLine: "Live sessions, recordings, and weekly guidance delivered throughout the programme",
   },
   {
     number: "03",
@@ -48,11 +47,6 @@ export function HowItWorks() {
               <p className="mx-auto max-w-xs text-[15px] leading-relaxed text-muted-foreground">
                 {step.description}
               </p>
-              {step.microLine && (
-                <p className="mx-auto mt-3 max-w-xs text-[13px] leading-relaxed text-muted-foreground/70">
-                  {step.microLine}
-                </p>
-              )}
             </div>
           ))}
         </div>

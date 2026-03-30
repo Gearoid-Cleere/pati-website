@@ -19,8 +19,13 @@ const mainNavLinks = [
 ]
 
 export function Header() {
+  const [mounted, setMounted] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [whoWeHelpMobileOpen, setWhoWeHelpMobileOpen] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     if (mobileOpen) {
@@ -32,6 +37,23 @@ export function Header() {
       document.body.style.overflow = ""
     }
   }, [mobileOpen])
+
+  if (!mounted) {
+    return (
+      <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur-sm">
+        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded bg-primary">
+              <span className="text-lg font-semibold text-primary-foreground">P</span>
+            </div>
+            <span className="text-lg font-semibold tracking-tight text-foreground">
+              PATI
+            </span>
+          </div>
+        </div>
+      </header>
+    )
+  }
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur-sm">
