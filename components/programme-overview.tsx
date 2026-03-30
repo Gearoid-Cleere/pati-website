@@ -2,25 +2,25 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import {
   Clock,
-  ShieldCheck,
+  Shield,
   Gamepad2,
-  EyeOff,
-  UserX,
-  Brain,
-  Monitor,
-  Users,
+  AlertTriangle,
+  MessageSquare,
+  Smartphone,
+  Laptop,
+  Heart,
   ArrowRight,
 } from "lucide-react"
 
 const modules = [
   { icon: Clock, title: "Age of Technology", description: "Understanding the digital landscape" },
-  { icon: ShieldCheck, title: "Boundaries", description: "Setting healthy limits" },
+  { icon: Shield, title: "Boundaries", description: "Setting healthy limits" },
   { icon: Gamepad2, title: "Gaming", description: "Managing gaming habits" },
-  { icon: EyeOff, title: "Pornography", description: "Protection and conversations" },
-  { icon: UserX, title: "Bullying", description: "Prevention and response" },
-  { icon: Brain, title: "Social Media & Anxiety", description: "Mental health impacts" },
-  { icon: Monitor, title: "Technology & Devices", description: "Practical device management" },
-  { icon: Users, title: "Thriving as a Family", description: "Building healthy relationships" },
+  { icon: AlertTriangle, title: "Pornography", description: "Protection and conversations" },
+  { icon: MessageSquare, title: "Bullying", description: "Prevention and response" },
+  { icon: Smartphone, title: "Social Media & Anxiety", description: "Mental health impacts" },
+  { icon: Laptop, title: "Technology & Devices", description: "Practical device management" },
+  { icon: Heart, title: "Thriving as a Family", description: "Building healthy relationships" },
 ]
 
 export function ProgrammeOverview() {
