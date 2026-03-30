@@ -3,22 +3,18 @@ import { Linkedin, Facebook, Instagram } from "lucide-react"
 
 const footerLinks = {
   programme: [
-    { label: "For Parents", href: "/parents" },
-    { label: "For Schools", href: "/schools" },
-    { label: "Corporate Wellbeing", href: "/corporate" },
-    { label: "Full Programme", href: "/programme" },
+    { label: "Programme Overview", href: "/programme" },
+    { label: "Modules", href: "/programme/modules" },
+    { label: "How It Works", href: "/programme/how-it-works" },
   ],
   resources: [
-    { label: "Articles", href: "/resources/articles" },
-    { label: "Guides", href: "/resources/guides" },
-    { label: "Webinars", href: "/resources/webinars" },
-    { label: "FAQs", href: "/faqs" },
+    { label: "Resources", href: "/resources" },
+    { label: "Parent Guide", href: "/resources/parent-guide" },
+    { label: "School Information Pack", href: "/resources/school-pack" },
   ],
   company: [
-    { label: "About PATI", href: "/about" },
-    { label: "Our Team", href: "/about/team" },
+    { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" },
-    { label: "Careers", href: "/careers" },
   ],
 }
 
@@ -35,18 +31,14 @@ export function Footer() {
         <div className="grid gap-8 lg:grid-cols-5">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
-                <span className="text-lg font-bold text-primary-foreground">
-                  P
-                </span>
-              </div>
-              <span className="text-xl font-semibold tracking-tight text-foreground">
-                PATI
-              </span>
+            <Link href="/" className="group">
+              <h3 className="text-lg font-semibold tracking-tight text-foreground">
+                Parenting & Technology Institute
+              </h3>
+              <span className="text-sm font-medium text-muted-foreground">(PATI)</span>
             </Link>
-            <p className="mt-4 max-w-xs text-sm text-muted-foreground">
-              Parenting & Technology Institute. Helping families, schools and organisations navigate technology with confidence.
+            <p className="mt-4 max-w-xs text-[15px] leading-relaxed text-muted-foreground">
+              Supporting families, schools and organisations to navigate childhood in a digital world.
             </p>
             <div className="mt-6 flex gap-4">
               {socialLinks.map((social) => (
@@ -121,7 +113,7 @@ export function Footer() {
         {/* Bottom */}
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 sm:flex-row">
           <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} Parenting & Technology Institute. All rights reserved.
+            &copy; Parenting & Technology Institute (PATI). All rights reserved.
           </p>
           <div className="flex gap-6">
             <Link
