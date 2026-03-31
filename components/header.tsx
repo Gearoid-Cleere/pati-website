@@ -127,7 +127,7 @@ export function Header() {
             Login
           </Link>
           <Button asChild className="h-11 px-6 text-[15px]">
-            <Link href="/register">Register</Link>
+            <Link href="/parents">Register</Link>
           </Button>
         </div>
 
