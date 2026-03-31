@@ -12,7 +12,7 @@ export function FinalCta() {
         </h2>
         <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row lg:mt-14">
           <Button size="lg" asChild className="h-13 px-8 text-[15px]">
-            <Link href="/register-school">Register Your School</Link>
+            <Link href="/schools">Register Your School</Link>
           </Button>
           <Button
             size="lg"
@@ -20,7 +20,7 @@ export function FinalCta() {
             asChild
             className="h-13 px-8 text-[15px]"
           >
-            <Link href="/join-parent">Join as a Parent</Link>
+            <Link href="/parents">Join as a Parent</Link>
           </Button>
           <Button
             size="lg"
@@ -28,7 +28,7 @@ export function FinalCta() {
             asChild
             className="h-13 px-8 text-[15px] text-muted-foreground hover:text-foreground"
           >
-            <Link href="/corporate">Corporate Enquiry</Link>
+            <Link href="/organisations">Corporate Enquiry</Link>
           </Button>
         </div>
       </div>
