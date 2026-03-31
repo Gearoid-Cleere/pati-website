@@ -34,4 +34,4 @@ export default function PATISchoolsLandingPage() {
     </div>
   )
 }
-Add Schools page (/schools)
+
