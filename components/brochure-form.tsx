@@ -50,7 +50,7 @@ export function BrochureForm() {
                   Thank you for your interest
                 </p>
                 <p className="mt-2 text-[15px] text-muted-foreground">
-                  Check your email for the download link.
+                  Thanks — we’ll send you the programme overview shortly.
                 </p>
               </div>
             ) : (
@@ -77,11 +77,23 @@ export function BrochureForm() {
                     className="h-12"
                   />
                 </div>
-                <Button asChild className="h-13 w-full text-[15px]">
-  <Link href="/contact">Download Overview</Link>
+             <Button
+  type="submit"
+  size="lg"
+  className="h-13 w-full text-[15px]"
+  disabled={isLoading}
+>
+  {isLoading ? (
+    <>
+      <Spinner className="mr-2" />
+      Sending...
+    </>
+  ) : (
+    "Request Programme Overview"
+  )}
 </Button>
                 <p className="pt-2 text-center text-xs text-muted-foreground/70">
-                  No spam. We respect your privacy.
+                  We'll email you the programme overview. No spam.
                 </p>
               </form>
             )}
