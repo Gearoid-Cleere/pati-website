@@ -24,7 +24,7 @@ export function CorporateFeature() {
             asChild
             className="h-13 min-w-[220px] px-8 text-[15px] font-medium"
           >
-            <Link href="/corporate">
+            <Link href="/organisations">
               Explore Corporate Wellbeing
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
