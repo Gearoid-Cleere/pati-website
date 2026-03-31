@@ -207,7 +207,7 @@ export function Header() {
 
           <div className="pt-8">
             <Button className="w-full h-12 text-[15px]" asChild>
-              <Link href="/register" onClick={() => setMobileOpen(false)}>
+              <Link href="/parents" onClick={() => setMobileOpen(false)}>
                 Register
               </Link>
             </Button>
