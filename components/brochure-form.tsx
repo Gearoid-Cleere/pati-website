@@ -77,21 +77,9 @@ export function BrochureForm() {
                     className="h-12"
                   />
                 </div>
-                <Button
-                  type="submit"
-                  size="lg"
-                  className="h-13 w-full text-[15px]"
-                  disabled={isLoading}
-                >
-                  {isLoading ? (
-                    <>
-                      <Spinner className="mr-2" />
-                      Sending...
-                    </>
-                  ) : (
-                    "Download Overview"
-                  )}
-                </Button>
+                <Button asChild className="h-13 w-full text-[15px]">
+  <Link href="/contact">Download Overview</Link>
+</Button>
                 <p className="pt-2 text-center text-xs text-muted-foreground/70">
                   No spam. We respect your privacy.
                 </p>
