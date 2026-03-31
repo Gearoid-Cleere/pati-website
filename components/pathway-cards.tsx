@@ -23,7 +23,7 @@ const pathways = [
     title: "For Organisations",
     description:
       "Support working parents through expert-led corporate wellbeing sessions. Tailored programmes for your workforce.",
-    href: "/corporate",
+    href: "/organisations",
     cta: "Explore Corporate Wellbeing",
   },
 ]
