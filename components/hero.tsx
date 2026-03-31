@@ -35,7 +35,7 @@ export function Hero() {
               asChild 
               className="h-14 min-w-[200px] px-8 text-[15px] font-medium"
             >
-              <Link href="/register-school">
+              <Link href="/schools">
                 Register Your School
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
@@ -46,7 +46,7 @@ export function Hero() {
               asChild 
               className="h-14 min-w-[200px] border px-8 text-[15px] font-medium"
             >
-              <Link href="/join-parent">Join as a Parent</Link>
+              <Link href="/parents">Join as a Parent</Link>
             </Button>
           </div>
           
