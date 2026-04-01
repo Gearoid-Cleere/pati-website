@@ -1,3 +1,4 @@
+import { HowItWorksSection } from "@/components/how-it-works-section"
 import { SolutionSection } from "@/components/solution-section"
 import { ProblemSection } from "@/components/problem-section"
 import { HeroSection } from "@/components/hero-section"
@@ -21,18 +22,7 @@ export default function SchoolsPage() {
 <SolutionSection />
 
         {/* HOW IT WORKS */}
-        <section className="py-16">
-          <h2 className="text-2xl font-semibold text-center mb-10">
-            How it works
-          </h2>
-
-          <div className="grid md:grid-cols-4 gap-6 text-sm">
-            <div className="rounded-xl border p-6">1. Register your school</div>
-            <div className="rounded-xl border p-6">2. We prepare everything</div>
-            <div className="rounded-xl border p-6">3. Expert sessions delivered</div>
-            <div className="rounded-xl border p-6">4. Follow-up handled</div>
-          </div>
-        </section>
+<HowItWorksSection />
 
         {/* PROGRAMME */}
         <section className="py-16">
