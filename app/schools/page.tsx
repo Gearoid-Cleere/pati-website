@@ -1,3 +1,4 @@
+import { SolutionSection } from "@/components/solution-section"
 import { ProblemSection } from "@/components/problem-section"
 import { HeroSection } from "@/components/hero-section"
 import { Header } from "@/components/header"
@@ -17,18 +18,7 @@ export default function SchoolsPage() {
 <ProblemSection />
 
         {/* WHY PATI */}
-        <section className="py-16">
-          <h2 className="text-2xl font-semibold text-center mb-10">
-            High impact, low effort
-          </h2>
-
-          <div className="grid md:grid-cols-2 gap-6 text-sm">
-            <div className="rounded-xl border p-6">Minimal staff time required</div>
-            <div className="rounded-xl border p-6">Strong parent engagement</div>
-            <div className="rounded-xl border p-6">Expert-led sessions</div>
-            <div className="rounded-xl border p-6">Aligned with school wellbeing priorities</div>
-          </div>
-        </section>
+<SolutionSection />
 
         {/* HOW IT WORKS */}
         <section className="py-16">
