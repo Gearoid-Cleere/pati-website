@@ -1,3 +1,4 @@
+import { WorkshopsSection } from "@/components/workshops-section"
 import { HowItWorksSection } from "@/components/how-it-works-section"
 import { SolutionSection } from "@/components/solution-section"
 import { ProblemSection } from "@/components/problem-section"
@@ -25,22 +26,7 @@ export default function SchoolsPage() {
 <HowItWorksSection />
 
         {/* PROGRAMME */}
-        <section className="py-16">
-          <h2 className="text-2xl font-semibold text-center mb-6">
-            Programme overview
-          </h2>
-
-          <div className="grid md:grid-cols-2 gap-4 text-sm">
-            <p>✔ The age of technology</p>
-            <p>✔ Boundaries</p>
-            <p>✔ Gaming</p>
-            <p>✔ Pornography</p>
-            <p>✔ Bullying</p>
-            <p>✔ Social media and anxiety</p>
-            <p>✔ Devices and routines</p>
-            <p>✔ Thriving as a family</p>
-          </div>
-        </section>
+<WorkshopsSection />
 
         {/* PRICING */}
         <section className="py-16 text-center">
