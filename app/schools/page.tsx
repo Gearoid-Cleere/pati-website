@@ -1,3 +1,4 @@
+import { ProblemSection } from "@/components/problem-section"
 import { HeroSection } from "@/components/hero-section"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
@@ -12,24 +13,8 @@ export default function SchoolsPage() {
         {/* HERO */}
 <HeroSection />
 
-        {/* CHALLENGE */}
-        <section className="py-16">
-          <h2 className="text-2xl font-semibold text-center mb-6">
-            Schools need support to help parents
-          </h2>
-
-          <p className="text-center text-muted-foreground mb-10 max-w-2xl mx-auto">
-            Parents are struggling with technology challenges at home. Schools are increasingly expected to help — 
-            but most lack the time, expertise, or resources to do so effectively.
-          </p>
-
-          <div className="grid md:grid-cols-2 gap-6 text-sm">
-            <div className="rounded-xl border p-6">Parents are actively asking schools for guidance</div>
-            <div className="rounded-xl border p-6">Staff do not have time to run additional programmes</div>
-            <div className="rounded-xl border p-6">Generic advice does not work for families</div>
-            <div className="rounded-xl border p-6">Student wellbeing is increasingly impacted by technology</div>
-          </div>
-        </section>
+      {/* CHALLENGE */}
+<ProblemSection />
 
         {/* WHY PATI */}
         <section className="py-16">
