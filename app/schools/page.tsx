@@ -1,3 +1,4 @@
+import { HeroSection } from "@/components/hero-section"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 
@@ -9,69 +10,7 @@ export default function SchoolsPage() {
       <main className="mx-auto max-w-6xl px-6 py-16">
 
         {/* HERO */}
-       <section className="py-20 lg:py-28 grid md:grid-cols-2 gap-10 items-center">
-  <div>
-    <p className="mb-4 text-sm uppercase tracking-wide text-muted-foreground">
-      For Schools
-    </p>
-
-    <h1 className="text-4xl md:text-6xl font-semibold mb-6 leading-tight">
-      Bring expert parent education to your school — without adding to staff workload
-    </h1>
-
-    <p className="text-lg text-muted-foreground mb-6 max-w-xl">
-      PATI delivers practical, expert-led sessions on technology and family wellbeing directly to your school community.
-      We support parents at home while providing classroom-ready guidance for teachers and students.
-      We handle the delivery — your staff simply share the invitation.
-    </p>
-
-    <div className="space-y-2 text-sm mb-8">
-      <p>✔ Live online sessions with expert facilitators</p>
-      <p>✔ Recordings available for parents who cannot attend</p>
-      <p>✔ All communications and materials provided</p>
-    </div>
-
-    <div className="flex flex-col sm:flex-row gap-4">
-      <a
-        href="/contact"
-        className="inline-flex items-center justify-center gap-2 rounded-lg bg-slate-900 px-6 py-3 text-white"
-      >
-        Register Your School →
-      </a>
-
-      <a
-        href="/contact"
-        className="inline-flex items-center justify-center rounded-lg border px-6 py-3"
-      >
-        Request School Information Pack
-      </a>
-    </div>
-  </div>
-
-  <div className="rounded-2xl bg-slate-900 text-white p-8">
-    <p className="text-sm uppercase tracking-wide text-white/70 mb-6">
-      Trusted by schools across Ireland
-    </p>
-
-    <div className="grid grid-cols-2 gap-6 mb-6">
-      <div>
-        <p className="text-3xl font-bold">80+</p>
-        <p className="text-sm text-white/70">Schools engaged</p>
-      </div>
-      <div>
-        <p className="text-3xl font-bold">10,000+</p>
-        <p className="text-sm text-white/70">Parents reached</p>
-      </div>
-    </div>
-
-    <p className="text-sm italic text-white/90">
-      “Finally, a parent programme that delivers real value without adding to our workload.”
-    </p>
-    <p className="text-sm mt-2 text-white/70">
-      — Deputy Principal, Dublin primary school
-    </p>
-  </div>
-</section>
+<HeroSection />
 
         {/* CHALLENGE */}
         <section className="py-16">
