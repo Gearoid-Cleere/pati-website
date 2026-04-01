@@ -1,4 +1,4 @@
-import { Video, BookOpen, PlayCircle, Wrench, CheckCircle } from "lucide-react"
+import { Video, BookOpen, PlayCircle, Wrench, CheckCircle } from "lucide-react" 
 
 const benefits = [
   {
