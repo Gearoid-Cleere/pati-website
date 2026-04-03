@@ -9,7 +9,9 @@ import { TopicsSection } from "@/components/corporate/topics-section"
 import { HowItWorksSection } from "@/components/corporate/how-it-works-section"
 import { DownloadSection } from "@/components/corporate/download-section"
 import { TestimonialsSection } from "@/components/corporate/testimonials-section"
-import { FinalCtaSection } from "@/components/corporate/final-cta-section"
+import { OptionsSection } from "@/components/corporate-v2/options-section"
+import { AboutSection } from "@/components/corporate-v2/about-section"
+import { FinalCtaSection as CorporateV2FinalCtaSection } from "@/components/corporate-v2/final-cta-section"
 
 export default function OrganisationsPage() {
   return (
@@ -21,10 +23,12 @@ export default function OrganisationsPage() {
         <ImpactSection />
         <WhatWeDeliverSection />
         <TopicsSection />
-        <HowItWorksSection />
+       <HowItWorksSection />
+        <OptionsSection />
+        <AboutSection />
         <DownloadSection />
         <TestimonialsSection />
-        <FinalCtaSection />
+        <CorporateV2FinalCtaSection />
       </main>
       <Footer />
     </div>
