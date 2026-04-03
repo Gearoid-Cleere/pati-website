@@ -1,72 +1,57 @@
-import { Video, Calendar, PlayCircle, Settings } from "lucide-react"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Video, PlayCircle, Calendar } from "lucide-react"
+import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 
-const services = [
+const delivery = [
   {
     icon: Video,
-    title: "Live Expert-Led Webinars",
-    description: "Interactive sessions with real-time Q&A. Employees leave with practical strategies they can use immediately.",
-    features: ["60-90 minutes", "Live Q&A", "Actionable takeaways"],
-  },
-  {
-    icon: Calendar,
-    title: "Multi-Session Programme",
-    description: "A structured curriculum that builds knowledge over several weeks, reinforcing learning and behaviour change.",
-    features: ["4-8 weeks", "Progressive content", "Group discussion"],
+    title: "Live expert-led sessions",
+    description:
+      "Delivered quarterly across the year, each session focuses on key challenges facing families in the digital age.",
   },
   {
     icon: PlayCircle,
-    title: "On-Demand Access",
-    description: "Employees watch at their own pace. Perfect for global teams and flexible scheduling.",
-    features: ["24/7 access", "Self-paced", "Full library"],
+    title: "On-demand access",
+    description:
+      "All sessions are recorded and available to employees, allowing flexible access at any time.",
   },
   {
-    icon: Settings,
-    title: "Custom Programmes",
-    description: "Tailored content designed specifically for your workforce demographics and company culture.",
-    features: ["Bespoke content", "Branded delivery", "Flexible format"],
+    icon: Calendar,
+    title: "Structured across the year",
+    description:
+      "The programme runs on a simple, consistent cadence — ensuring ongoing support rather than a one-off initiative.",
   },
 ]
 
 export function WhatWeDeliverSection() {
   return (
     <section className="py-20 md:py-28">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="mb-16 text-center">
+      <div className="mx-auto max-w-5xl px-6">
+        <div className="mb-14 text-center">
           <h2 className="font-serif text-3xl font-medium tracking-tight text-foreground md:text-4xl">
-            Simple to Deliver. Easy to Roll Out.
+            How the programme is delivered
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-            Flexible formats designed to fit seamlessly into your existing wellbeing programme — with minimal setup required.
+            A simple, structured approach that fits easily into your organisation and requires minimal internal effort.
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2">
-          {services.map((service) => (
-            <Card key={service.title} className="group border-border/60 transition-all hover:border-primary/30 hover:shadow-md">
-              <CardHeader className="pb-4">
+        <div className="grid gap-6 md:grid-cols-3">
+          {delivery.map((item) => (
+            <Card
+              key={item.title}
+              className="border-border/60 transition-all hover:shadow-md"
+            >
+              <CardHeader>
                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
-                  <service.icon className="h-6 w-6 text-primary" />
+                  <item.icon className="h-6 w-6 text-primary" />
                 </div>
-                <CardTitle className="font-serif text-xl font-medium">
-                  {service.title}
+                <CardTitle className="font-serif text-lg">
+                  {item.title}
                 </CardTitle>
                 <CardDescription className="text-base">
-                  {service.description}
+                  {item.description}
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <ul className="flex flex-wrap gap-2">
-                  {service.features.map((feature) => (
-                    <li
-                      key={feature}
-                      className="rounded-full bg-secondary px-3 py-1 text-xs font-medium text-muted-foreground"
-                    >
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
             </Card>
           ))}
         </div>
