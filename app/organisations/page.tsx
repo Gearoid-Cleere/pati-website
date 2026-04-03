@@ -25,9 +25,8 @@ export default function OrganisationsPage() {
         <TopicsSection />
        <HowItWorksSection />
         <OptionsSection />
-        <AboutSection />
         <DownloadSection />
-        <TestimonialsSection />
+        <AboutSection />
         <CorporateV2FinalCtaSection />
       </main>
       <Footer />
