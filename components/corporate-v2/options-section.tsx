@@ -4,21 +4,38 @@ const options = [
   {
     icon: Layers,
     title: "Foundation Programme",
-    description: "A focused starting point for organisations that want to introduce support in this area.",
-    features: ["Introductory live session", "Access to core resources", "Internal comms support"],
+    description:
+      "A focused starting point for organisations that want to introduce support for employees navigating family and technology challenges.",
+    features: [
+      "Introductory live session",
+      "Access to core resources",
+      "Internal communications support",
+    ],
   },
   {
     icon: Target,
     title: "Core Programme",
-    description: "A structured quarterly programme delivered across the year, designed to create meaningful and sustained impact.",
-    features: ["Quarterly live sessions", "Full on-demand library", "Practical parent resources", "Ongoing engagement support"],
+    description:
+      "A structured quarterly programme delivered across the year, designed to create meaningful and sustained impact for employees.",
+    features: [
+      "Quarterly live sessions",
+      "Full on-demand access",
+      "Practical parent resources",
+      "Ongoing engagement support",
+    ],
     highlighted: true,
   },
   {
     icon: Building2,
     title: "Strategic Partnership",
-    description: "A broader organisation-wide initiative with expanded delivery, deeper engagement, and leadership integration.",
-    features: ["Customised programme design", "Leadership briefings", "Extended resource access", "Dedicated account support"],
+    description:
+      "A broader organisation-wide initiative with expanded delivery, deeper engagement, and integration into your overall wellbeing strategy.",
+    features: [
+      "Expanded programme delivery",
+      "Leadership briefings",
+      "Extended resource access",
+      "Strategic support",
+    ],
   },
 ]
 
@@ -48,7 +65,7 @@ export function OptionsSection() {
               {option.highlighted && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                   <span className="rounded-full bg-primary px-4 py-1 text-xs font-semibold text-primary-foreground">
-                    Most Popular
+                    Most organisations choose this
                   </span>
                 </div>
               )}
