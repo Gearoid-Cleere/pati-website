@@ -5,37 +5,21 @@ const options = [
     icon: Layers,
     title: "Foundation Programme",
     description:
-      "A focused starting point for organisations that want to introduce support for employees navigating family and technology challenges.",
-    features: [
-      "Introductory live session",
-      "Access to core resources",
-      "Internal communications support",
-    ],
+      "A focused starting point for organisations introducing support for employees navigating family and technology challenges.",
   },
   {
     icon: Target,
     title: "Core Programme",
     description:
       "A structured quarterly programme delivered across the year, designed to create meaningful and sustained impact for employees.",
-    features: [
-      "Quarterly live sessions",
-      "Full on-demand access",
-      "Practical parent resources",
-      "Ongoing engagement support",
-    ],
     highlighted: true,
+    badge: "Most chosen",
   },
   {
     icon: Building2,
     title: "Strategic Partnership",
     description:
       "A broader organisation-wide initiative with expanded delivery, deeper engagement, and integration into your overall wellbeing strategy.",
-    features: [
-      "Expanded programme delivery",
-      "Leadership briefings",
-      "Extended resource access",
-      "Strategic support",
-    ],
   },
 ]
 
@@ -62,32 +46,25 @@ export function OptionsSection() {
                   : "border border-border bg-card hover:shadow-md"
               }`}
             >
-              {option.highlighted && (
+              {option.badge && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  <span className="rounded-full bg-primary px-4 py-1 text-xs font-semibold text-primary-foreground">
-                    Most organisations choose this
+                  <span className="rounded-full bg-primary px-3 py-1 text-[11px] font-semibold text-primary-foreground whitespace-nowrap">
+                    {option.badge}
                   </span>
                 </div>
               )}
+
               <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10">
                 <option.icon className="h-7 w-7 text-primary" />
               </div>
-              <h3 className="mb-2 font-serif text-xl font-medium text-foreground">
+
+              <h3 className="mb-3 font-serif text-xl font-medium text-foreground">
                 {option.title}
               </h3>
-              <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
+
+              <p className="text-sm leading-relaxed text-muted-foreground">
                 {option.description}
               </p>
-              <ul className="space-y-3">
-                {option.features.map((feature) => (
-                  <li key={feature} className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <svg className="h-4 w-4 shrink-0 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
             </div>
           ))}
         </div>
