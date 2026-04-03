@@ -3,23 +3,27 @@ import { Heart, Target, Shield, Users } from "lucide-react"
 const impacts = [
   {
     icon: Heart,
-    title: "Measurably Lower Stress",
-    description: "Employees gain clear, practical strategies — reducing anxiety and the mental load that affects their workday.",
+    title: "Improved employee wellbeing",
+    description:
+      "Employees gain practical strategies to reduce family-related stress and feel more supported in managing challenges at home.",
   },
   {
     icon: Target,
-    title: "Sharper Focus at Work",
-    description: "When home concerns are addressed, employees concentrate better and deliver higher-quality work.",
+    title: "Better focus and performance",
+    description:
+      "When home pressures are reduced, employees are better able to concentrate, contribute, and perform consistently at work.",
   },
   {
     icon: Shield,
-    title: "Stronger Engagement",
-    description: "Employees feel genuinely supported, leading to higher morale and lower turnover.",
+    title: "Stronger support for working parents",
+    description:
+      "The programme gives organisations a visible and credible way to support employees with children in the digital age.",
   },
   {
     icon: Users,
-    title: "Differentiated Wellbeing Programme",
-    description: "Stand out with a unique offering that addresses a challenge other programmes overlook.",
+    title: "Greater engagement and retention",
+    description:
+      "A more relevant wellbeing offering can strengthen employee engagement and contribute positively to culture and retention.",
   },
 ]
 
@@ -29,10 +33,10 @@ export function ImpactSection() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="mb-16 text-center">
           <h2 className="font-serif text-3xl font-medium tracking-tight text-foreground md:text-4xl">
-            Real Impact for Your Organisation
+            What organisations can expect
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-            Tangible outcomes that improve employee performance and strengthen your wellbeing strategy.
+            A more visible, practical, and credible approach to supporting working parents across your organisation.
           </p>
         </div>
 
