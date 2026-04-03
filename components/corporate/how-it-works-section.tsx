@@ -17,7 +17,7 @@ const steps = [
     icon: Users,
     title: "Minimal internal effort",
     description:
-      "We provide ready-to-use communications and structure, so the programme runs smoothly without adding to your workload.",
+      "We provide ready-to-use communications and structure, so the programme runs smoothly without adding to workloads.",
   },
 ]
 
