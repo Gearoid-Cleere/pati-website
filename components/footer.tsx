@@ -44,12 +44,14 @@ export function Footer() {
                 </span>
               </div>
             </Link>
-            <p className="mt-4 max-w-xs text-[15px] leading-relaxed text-muted-foreground">
-              23 Fitzwilliam Street Upper
-              Dublin
-              D02 DF74
+
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
+              23 Fitzwilliam Street Upper<br />
+              Dublin<br />
+              D02 DF74<br />
               Ireland
             </p>
+
             <div className="mt-6 flex gap-4">
               {socialLinks.map((social) => (
                 <Link
@@ -123,9 +125,9 @@ export function Footer() {
         {/* Bottom */}
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 sm:flex-row">
           <p className="text-sm text-muted-foreground">
-            &copy; Parenting & Technology Institute (PATI). All rights reserved.
+            &copy; Parenting and Technology Institute (PATI). All rights reserved.
           </p>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap gap-6">
             <Link
               href="/privacy"
               className="text-sm text-muted-foreground transition-colors hover:text-foreground"
