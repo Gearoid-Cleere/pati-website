@@ -45,7 +45,10 @@ export function Footer() {
               </div>
             </Link>
             <p className="mt-4 max-w-xs text-[15px] leading-relaxed text-muted-foreground">
-              Supporting families, schools and organisations to navigate childhood in a digital world.
+              23 Fitzwilliam Street Upper
+              Dublin
+              D02 DF74
+              Ireland
             </p>
             <div className="mt-6 flex gap-4">
               {socialLinks.map((social) => (
