@@ -42,7 +42,7 @@ export function HeroSection() {
               </div>
             </div>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              Programme structure has been updated for 2026 – full details below.
+              Programme branding has been updated for 2026 – see our new look below.
             </p>
           </div>
         </div>
