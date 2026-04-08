@@ -1,4 +1,3 @@
-import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 
@@ -26,15 +25,25 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* Image */}
-          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl lg:aspect-square">
-            <Image
-              src="/images/hero-family.jpg"
-              alt="Parent and child using technology together"
-              fill
-              className="object-cover"
-              priority
-            />
+          {/* Video */}
+          <div className="w-full">
+            <p className="mb-3 text-sm font-medium text-muted-foreground">
+              A message for parents
+            </p>
+            <div className="overflow-hidden rounded-2xl shadow-md">
+              <div className="aspect-video w-full">
+                <iframe
+                  src="https://www.youtube.com/embed/psmd2WOLVSA"
+                  title="Parenting and Technology Institute video"
+                  className="h-full w-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              Programme structure has been updated for 2026 – full details below.
+            </p>
           </div>
         </div>
       </div>
