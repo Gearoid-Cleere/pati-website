@@ -51,11 +51,11 @@ export function HeroSection() {
               <p className="text-sm font-semibold tracking-wider uppercase text-primary-foreground/70 mb-6">Trusted by schools across Ireland</p>
               <div className="grid grid-cols-2 gap-6">
                 <div>
-                  <p className="text-4xl font-bold">50+</p>
+                  <p className="text-4xl font-bold">80+</p>
                   <p className="text-sm text-primary-foreground/80">Schools partnered</p>
                 </div>
                 <div>
-                  <p className="text-4xl font-bold">5,000+</p>
+                  <p className="text-4xl font-bold">15,000+</p>
                   <p className="text-sm text-primary-foreground/80">Parents reached</p>
                 </div>
                 <div>
