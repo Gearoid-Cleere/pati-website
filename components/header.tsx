@@ -42,14 +42,14 @@ export function Header() {
   if (!mounted) {
     return (
       <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur-sm">
-        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
+        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link href="/" className="flex items-center">
             <Image
               src="/pati-logo.svg"
               alt="Parenting and Technology Institute"
               width={320}
               height={90}
-              className="h-16 w-auto"
+              className="h-12 w-auto lg:h-16"
               priority
             />
           </Link>
@@ -60,7 +60,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur-sm">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center">
           <Image
@@ -68,7 +68,7 @@ export function Header() {
             alt="Parenting and Technology Institute"
             width={320}
             height={90}
-            className="h-16 w-auto"
+            className="h-12 w-auto lg:h-16"
             priority
           />
         </Link>
@@ -133,14 +133,14 @@ export function Header() {
       {/* Mobile Menu Overlay */}
       {mobileOpen && (
         <div
-          className="fixed inset-0 top-[81px] z-40 bg-foreground/10 backdrop-blur-sm lg:hidden"
+          className="fixed inset-0 top-20 z-40 bg-foreground/10 backdrop-blur-sm lg:hidden"
           onClick={() => setMobileOpen(false)}
         />
       )}
 
       {/* Mobile Menu Panel */}
       <div
-        className={`fixed right-0 top-[81px] z-50 h-[calc(100vh-81px)] w-[300px] transform bg-background shadow-2xl transition-transform duration-300 ease-in-out lg:hidden ${
+        className={`fixed right-0 top-20 z-50 h-[calc(100vh-5rem)] w-[300px] transform bg-background shadow-2xl transition-transform duration-300 ease-in-out lg:hidden ${
           mobileOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
