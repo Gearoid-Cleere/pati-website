@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import { Linkedin, Facebook, Instagram } from "lucide-react"
 
@@ -31,18 +32,15 @@ export function Footer() {
         <div className="grid gap-8 lg:grid-cols-5">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center gap-3">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded bg-primary">
-                <span className="text-lg font-semibold text-primary-foreground">P</span>
-              </div>
-              <div className="flex flex-col justify-center">
-                <span className="text-[15px] font-medium leading-tight tracking-tight text-foreground">
-                  Parenting and Technology
-                </span>
-                <span className="text-[15px] font-medium leading-tight tracking-tight text-foreground">
-                  Institute <span className="text-muted-foreground">(PATI)</span>
-                </span>
-              </div>
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/pati-logo.svg"
+                alt="Parenting and Technology Institute"
+                width={260}
+                height={80}
+                className="h-16 w-auto"
+                priority
+              />
             </Link>
 
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
