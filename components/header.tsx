@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Menu, X, ChevronDown, ChevronRight } from "lucide-react"
@@ -42,22 +43,16 @@ export function Header() {
     return (
       <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur-sm">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded bg-primary">
-              <span className="text-lg font-semibold text-primary-foreground">P</span>
-            </div>
-            <div className="hidden sm:flex sm:flex-col sm:justify-center">
-              <span className="text-[15px] font-medium leading-tight tracking-tight text-foreground">
-                Parenting and Technology
-              </span>
-              <span className="text-[15px] font-medium leading-tight tracking-tight text-foreground">
-                Institute <span className="text-muted-foreground">(PATI)</span>
-              </span>
-            </div>
-            <span className="text-lg font-medium tracking-tight text-foreground sm:hidden">
-              PATI
-            </span>
-          </div>
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/pati-logo.svg"
+              alt="Parenting and Technology Institute"
+              width={220}
+              height={60}
+              className="h-10 w-auto sm:h-11"
+              priority
+            />
+          </Link>
         </div>
       </header>
     )
@@ -67,21 +62,15 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur-sm">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded bg-primary">
-            <span className="text-lg font-semibold text-primary-foreground">P</span>
-          </div>
-          <div className="hidden sm:flex sm:flex-col sm:justify-center">
-            <span className="text-[15px] font-medium leading-tight tracking-tight text-foreground">
-              Parenting and Technology
-            </span>
-            <span className="text-[15px] font-medium leading-tight tracking-tight text-foreground">
-              Institute <span className="text-muted-foreground">(PATI)</span>
-            </span>
-          </div>
-          <span className="text-lg font-medium tracking-tight text-foreground sm:hidden">
-            PATI
-          </span>
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/pati-logo.svg"
+            alt="Parenting and Technology Institute"
+            width={220}
+            height={60}
+            className="h-10 w-auto sm:h-11"
+            priority
+          />
         </Link>
 
         {/* Desktop Navigation */}
@@ -206,7 +195,7 @@ export function Header() {
           </Link>
 
           <div className="pt-8">
-            <Button className="w-full h-12 text-[15px]" asChild>
+            <Button className="h-12 w-full text-[15px]" asChild>
               <Link href="/parents" onClick={() => setMobileOpen(false)}>
                 Register
               </Link>
