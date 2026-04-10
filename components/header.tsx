@@ -34,6 +34,7 @@ export function Header() {
     } else {
       document.body.style.overflow = ""
     }
+
     return () => {
       document.body.style.overflow = ""
     }
@@ -53,94 +54,97 @@ export function Header() {
               priority
             />
           </Link>
+          <div className="h-10 w-10 lg:hidden" />
         </div>
       </header>
     )
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur-sm">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        {/* Logo */}
-        <Link href="/" className="flex items-center">
-          <Image
-            src="/pati-logo.svg"
-            alt="Parenting and Technology Institute"
-            width={320}
-            height={90}
-            className="h-12 w-auto lg:h-16"
-            priority
-          />
-        </Link>
+    <>
+      <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur-sm">
+        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+          {/* Logo */}
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/pati-logo.svg"
+              alt="Parenting and Technology Institute"
+              width={320}
+              height={90}
+              className="h-12 w-auto lg:h-16"
+              priority
+            />
+          </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden items-center lg:flex">
-          <div className="group relative">
-            <button className="flex items-center gap-1.5 px-5 py-2 text-[15px] text-muted-foreground transition-colors hover:text-foreground">
-              Who We Help
-              <ChevronDown className="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180" />
-            </button>
-            <div className="invisible absolute left-0 top-full pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100">
-              <div className="min-w-[200px] rounded-lg border border-border/60 bg-background p-2 shadow-xl shadow-foreground/5">
-                {whoWeHelpLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className="block rounded-md px-4 py-2.5 text-[15px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
+          {/* Desktop Navigation */}
+          <nav className="hidden items-center lg:flex">
+            <div className="group relative">
+              <button className="flex items-center gap-1.5 px-5 py-2 text-[15px] text-muted-foreground transition-colors hover:text-foreground">
+                Who We Help
+                <ChevronDown className="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180" />
+              </button>
+              <div className="invisible absolute left-0 top-full pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100">
+                <div className="min-w-[200px] rounded-lg border border-border/60 bg-background p-2 shadow-xl shadow-foreground/5">
+                  {whoWeHelpLinks.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className="block rounded-md px-4 py-2.5 text-[15px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
+
+            {mainNavLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="px-5 py-2 text-[15px] text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Desktop CTAs */}
+          <div className="hidden items-center gap-6 lg:flex">
+            <Link
+              href="/login"
+              className="text-[15px] text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Login
+            </Link>
+            <Button asChild className="h-11 px-6 text-[15px]">
+              <Link href="/parents">Register</Link>
+            </Button>
           </div>
 
-          {mainNavLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="px-5 py-2 text-[15px] text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-
-        {/* Desktop CTAs */}
-        <div className="hidden items-center gap-6 lg:flex">
-          <Link
-            href="/login"
-            className="text-[15px] text-muted-foreground transition-colors hover:text-foreground"
+          {/* Mobile Menu Toggle */}
+          <button
+            type="button"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="flex h-10 w-10 items-center justify-center rounded text-foreground lg:hidden"
+            aria-label="Toggle menu"
           >
-            Login
-          </Link>
-          <Button asChild className="h-11 px-6 text-[15px]">
-            <Link href="/parents">Register</Link>
-          </Button>
+            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </div>
+      </header>
 
-        {/* Mobile Menu Toggle */}
-        <button
-          type="button"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="flex h-10 w-10 items-center justify-center rounded text-foreground lg:hidden"
-          aria-label="Toggle menu"
-        >
-          {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
-      </div>
-
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Overlay */}
       {mobileOpen && (
         <div
-          className="fixed inset-0 top-20 z-40 bg-foreground/10 backdrop-blur-sm lg:hidden"
+          className="fixed inset-0 z-40 bg-black/20 lg:hidden"
           onClick={() => setMobileOpen(false)}
         />
       )}
 
       {/* Mobile Menu Panel */}
       <div
-        className={`fixed right-0 top-20 z-50 h-[calc(100vh-5rem)] w-[300px] transform bg-background shadow-2xl transition-transform duration-300 ease-in-out lg:hidden ${
+        className={`fixed right-0 top-20 z-50 h-[calc(100dvh-5rem)] w-full max-w-[320px] bg-background shadow-2xl transition-transform duration-300 ease-in-out lg:hidden ${
           mobileOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -157,6 +161,7 @@ export function Header() {
                 }`}
               />
             </button>
+
             {whoWeHelpMobileOpen && (
               <div className="pb-4 pl-4">
                 {whoWeHelpLinks.map((link) => (
@@ -201,6 +206,6 @@ export function Header() {
           </div>
         </nav>
       </div>
-    </header>
+    </>
   )
 }
