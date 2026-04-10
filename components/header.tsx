@@ -47,9 +47,9 @@ export function Header() {
             <Image
               src="/pati-logo.svg"
               alt="Parenting and Technology Institute"
-              width={220}
-              height={60}
-              className="h-10 w-auto sm:h-11"
+              width={300}
+              height={80}
+              className="h-14 w-auto"
               priority
             />
           </Link>
@@ -61,21 +61,21 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur-sm">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
+        
         {/* Logo */}
         <Link href="/" className="flex items-center">
           <Image
             src="/pati-logo.svg"
             alt="Parenting and Technology Institute"
-            width={220}
-            height={60}
-            className="h-10 w-auto sm:h-11"
+            width={300}
+            height={80}
+            className="h-14 w-auto"
             priority
           />
         </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden items-center lg:flex">
-          {/* Who We Help Dropdown */}
           <div className="group relative">
             <button className="flex items-center gap-1.5 px-5 py-2 text-[15px] text-muted-foreground transition-colors hover:text-foreground">
               Who We Help
@@ -146,7 +146,7 @@ export function Header() {
         }`}
       >
         <nav className="flex flex-col px-6 pt-8">
-          {/* Who We Help Accordion */}
+
           <div className="border-b border-border/40">
             <button
               onClick={() => setWhoWeHelpMobileOpen(!whoWeHelpMobileOpen)}
@@ -201,6 +201,7 @@ export function Header() {
               </Link>
             </Button>
           </div>
+
         </nav>
       </div>
     </header>
