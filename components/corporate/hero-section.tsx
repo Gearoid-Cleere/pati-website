@@ -16,14 +16,9 @@ export function HeroSection() {
               Corporate Wellbeing Programme
             </p>
 
-            <h1 className="mt-5 font-serif text-4xl font-medium leading-tight tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-              <span className="text-balance">
-                Supporting working parents
-                <br className="hidden sm:block" />
-                in the digital age
-              </span>
-            </h1>
-
+<h1 className="mt-5 font-serif text-4xl font-medium leading-tight tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+  Supporting working parents today
+</h1>
             <p className="mt-5 text-lg leading-relaxed text-muted-foreground sm:text-xl">
               A structured, year-round programme designed to reduce family-related stress, strengthen employee wellbeing, and improve engagement across your organisation.
             </p>
