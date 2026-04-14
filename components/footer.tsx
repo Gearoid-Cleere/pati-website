@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 
 export function Footer() {
@@ -9,10 +10,17 @@ export function Footer() {
 
           {/* Brand */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-              Parenting and Technology Institute
-            </h3>
-            <p className="text-sm leading-relaxed text-muted-foreground">
+            <Link href="/" className="inline-flex items-center">
+              <Image
+                src="/pati-logo.svg"
+                alt="Parenting and Technology Institute"
+                width={280}
+                height={80}
+                className="h-12 w-auto"
+              />
+            </Link>
+
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
               Supporting families, schools and organisations to navigate childhood in a digital world with confidence.
             </p>
           </div>
