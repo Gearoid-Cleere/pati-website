@@ -5,7 +5,9 @@ export function Footer() {
   return (
     <footer className="border-t border-border bg-background">
       <div className="mx-auto max-w-7xl px-6 py-16 sm:px-8 lg:px-12">
+        
         <div className="grid gap-12 md:grid-cols-4">
+
           {/* Brand */}
           <div>
             <Link href="/" className="inline-flex items-center">
@@ -29,21 +31,9 @@ export function Footer() {
               Who We Help
             </h4>
             <ul className="space-y-3 text-sm">
-              <li>
-                <Link href="/schools" className="hover:text-foreground">
-                  For Schools
-                </Link>
-              </li>
-              <li>
-                <Link href="/parents" className="hover:text-foreground">
-                  For Parents
-                </Link>
-              </li>
-              <li>
-                <Link href="/organisations" className="hover:text-foreground">
-                  For Organisations
-                </Link>
-              </li>
+              <li><Link href="/schools">For Schools</Link></li>
+              <li><Link href="/parents">For Parents</Link></li>
+              <li><Link href="/organisations">For Organisations</Link></li>
             </ul>
           </div>
 
@@ -53,16 +43,8 @@ export function Footer() {
               Programme
             </h4>
             <ul className="space-y-3 text-sm">
-              <li>
-                <Link href="/programme" className="hover:text-foreground">
-                  Programme Overview
-                </Link>
-              </li>
-              <li>
-                <Link href="/programme" className="hover:text-foreground">
-                  How It Works
-                </Link>
-              </li>
+              <li><Link href="/programme">Programme Overview</Link></li>
+              <li><Link href="/programme">How It Works</Link></li>
             </ul>
           </div>
 
@@ -72,41 +54,22 @@ export function Footer() {
               Company
             </h4>
             <ul className="space-y-3 text-sm">
-              <li>
-                <Link href="/about" className="hover:text-foreground">
-                  About the Institute
-                </Link>
-              </li>
-              <li>
-                <Link href="/leadership" className="hover:text-foreground">
-                  Leadership
-                </Link>
-              </li>
-              <li>
-                <Link href="/advisory-council" className="hover:text-foreground">
-                  Advisory Council
-                </Link>
-              </li>
-              <li>
-                <Link href="/research" className="hover:text-foreground">
-                  Research &amp; Insights
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:text-foreground">
-                  Contact
-                </Link>
-              </li>
+              <li><Link href="/about">About the Institute</Link></li>
+              <li><Link href="/leadership">Leadership</Link></li>
+              <li><Link href="/advisory-council">Advisory Council</Link></li>
+              <li><Link href="/research">Research & Insights</Link></li>
+              <li><Link href="/contact">Contact</Link></li>
             </ul>
           </div>
+
         </div>
 
-        {/* Bottom bar */}
         <div className="mt-16 border-t border-border pt-6 text-center">
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} Parenting and Technology Institute. All rights reserved.
           </p>
         </div>
+
       </div>
     </footer>
   )
