@@ -12,11 +12,11 @@ const whoWeHelpLinks = [
   { href: "/organisations", label: "For Organisations" },
 ]
 
-const mainNavLinks = [
-  { href: "/programme", label: "Programme" },
-  { href: "/resources", label: "Resources" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+const aboutLinks = [
+  { href: "/about", label: "About the Institute" },
+  { href: "/leadership", label: "Leadership" },
+  { href: "/advisory-council", label: "Advisory Council" },
+  { href: "/research", label: "Research & Insights" },
 ]
 
 export function Header() {
@@ -64,7 +64,6 @@ export function Header() {
     <>
       <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur-sm">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          {/* Logo */}
           <Link href="/" className="flex items-center">
             <Image
               src="/pati-logo.svg"
@@ -76,7 +75,6 @@ export function Header() {
             />
           </Link>
 
-          {/* Desktop Navigation */}
           <nav className="hidden items-center lg:flex">
             <div className="group relative">
               <button className="flex items-center gap-1.5 px-5 py-2 text-[15px] text-muted-foreground transition-colors hover:text-foreground">
@@ -98,18 +96,48 @@ export function Header() {
               </div>
             </div>
 
-            {mainNavLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="px-5 py-2 text-[15px] text-muted-foreground transition-colors hover:text-foreground"
-              >
-                {link.label}
-              </Link>
-            ))}
+            <Link
+              href="/programme"
+              className="px-5 py-2 text-[15px] text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Programme
+            </Link>
+
+            <Link
+              href="/resources"
+              className="px-5 py-2 text-[15px] text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Resources
+            </Link>
+
+            <div className="group relative">
+              <button className="flex items-center gap-1.5 px-5 py-2 text-[15px] text-muted-foreground transition-colors hover:text-foreground">
+                About
+                <ChevronDown className="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180" />
+              </button>
+              <div className="invisible absolute left-0 top-full pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100">
+                <div className="min-w-[220px] rounded-lg border border-border/60 bg-background p-2 shadow-xl shadow-foreground/5">
+                  {aboutLinks.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className="block rounded-md px-4 py-2.5 text-[15px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <Link
+              href="/contact"
+              className="px-5 py-2 text-[15px] text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Contact
+            </Link>
           </nav>
 
-          {/* Desktop CTAs */}
           <div className="hidden items-center gap-6 lg:flex">
             <Link
               href="/login"
@@ -122,7 +150,6 @@ export function Header() {
             </Button>
           </div>
 
-          {/* Mobile Menu Toggle */}
           <button
             type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -134,7 +161,6 @@ export function Header() {
         </div>
       </header>
 
-      {/* Mobile Overlay */}
       {mobileOpen && (
         <div
           className="fixed inset-0 z-40 bg-black/20 lg:hidden"
@@ -142,7 +168,6 @@ export function Header() {
         />
       )}
 
-      {/* Mobile Menu Panel */}
       <div
         className={`fixed right-0 top-20 z-50 h-[calc(100dvh-5rem)] w-full max-w-[320px] bg-background shadow-2xl transition-transform duration-300 ease-in-out lg:hidden ${
           mobileOpen ? "translate-x-0" : "translate-x-full"
@@ -178,16 +203,48 @@ export function Header() {
             )}
           </div>
 
-          {mainNavLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setMobileOpen(false)}
-              className="border-b border-border/40 py-4 text-[15px] font-medium text-foreground transition-colors hover:text-primary"
-            >
-              {link.label}
-            </Link>
-          ))}
+          <Link
+            href="/programme"
+            onClick={() => setMobileOpen(false)}
+            className="border-b border-border/40 py-4 text-[15px] font-medium text-foreground transition-colors hover:text-primary"
+          >
+            Programme
+          </Link>
+
+          <Link
+            href="/resources"
+            onClick={() => setMobileOpen(false)}
+            className="border-b border-border/40 py-4 text-[15px] font-medium text-foreground transition-colors hover:text-primary"
+          >
+            Resources
+          </Link>
+
+          <div className="border-b border-border/40 py-4">
+            <div className="mb-2 text-[15px] font-medium text-foreground">
+              About
+            </div>
+
+            <div className="space-y-2 pl-4">
+              {aboutLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="block text-[15px] text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <Link
+            href="/contact"
+            onClick={() => setMobileOpen(false)}
+            className="border-b border-border/40 py-4 text-[15px] font-medium text-foreground transition-colors hover:text-primary"
+          >
+            Contact
+          </Link>
 
           <Link
             href="/login"
