@@ -43,7 +43,7 @@ export function OptionsSection() {
               className={`relative rounded-2xl p-8 transition-all ${
                 option.highlighted
                   ? "border-2 border-primary bg-card shadow-lg"
-                  : "border border-border/70 bg-card/90 hover:shadow-lg"
+                  : "border border-border/90 bg-muted/30 hover:shadow-lg"
               }`}
             >
               {option.badge && (
