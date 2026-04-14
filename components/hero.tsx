@@ -10,7 +10,7 @@ export function Hero() {
           {/* Institute badge */}
           <div className="mb-10 lg:mb-12">
             <span className="inline-flex items-center border-b border-border pb-2 text-[11px] font-medium uppercase tracking-[0.25em] text-muted-foreground">
-              Parenting & Technology Institute
+              Parenting and Technology Institute
             </span>
           </div>
           
