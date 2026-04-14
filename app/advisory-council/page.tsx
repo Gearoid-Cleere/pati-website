@@ -21,7 +21,7 @@ export default function AdvisoryCouncilPage() {
               </h1>
 
               <p className="text-lg leading-relaxed text-muted-foreground">
-                The Parenting and Technology Institute is supported by an Advisory Council of experts across psychology, education, and digital life—helping to ensure that our programmes remain grounded in real-world experience, trusted insight, and the evolving needs of families and schools.
+                The Parenting and Technology Institute is supported by an experienced Advisory Council of experts across psychology, education, and digital life—helping to ensure that our programmes remain grounded in real-world experience, trusted insight, and the evolving needs of families and schools.
               </p>
             </div>
 
