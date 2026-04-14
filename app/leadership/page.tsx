@@ -8,6 +8,7 @@ export default function LeadershipPage() {
       <Header />
 
       <main className="flex-1">
+
         {/* Hero */}
         <section className="bg-secondary/30 py-20 md:py-28">
           <div className="mx-auto max-w-5xl px-6 text-center">
@@ -29,8 +30,8 @@ export default function LeadershipPage() {
         <section className="py-20">
           <div className="mx-auto max-w-6xl px-6">
             <div className="grid items-start gap-12 lg:grid-cols-[320px_minmax(0,1fr)]">
-              
-              {/* Image */}
+
+              {/* Image LEFT */}
               <div className="mx-auto lg:mx-0">
                 <Image
                   src="/richard-hogan.jpg"
@@ -42,7 +43,7 @@ export default function LeadershipPage() {
                 />
               </div>
 
-              {/* Content */}
+              {/* Text RIGHT */}
               <div>
                 <p className="mb-3 text-sm font-medium uppercase tracking-widest text-accent">
                   Lead Expert
@@ -75,67 +76,71 @@ export default function LeadershipPage() {
           </div>
         </section>
 
-        {/* Institute Leadership */}
-        <section className="bg-secondary/30 py-20">
+        {/* Garry Cleere (mirrored layout) */}
+        <section className="py-20 bg-secondary/20">
           <div className="mx-auto max-w-6xl px-6">
-            <div className="mx-auto mb-14 max-w-3xl text-center">
-              <h2 className="mb-6 font-serif text-3xl font-medium text-primary">
-                Institute Leadership
-              </h2>
+            <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,1fr)_320px]">
 
-              <p className="leading-relaxed text-muted-foreground">
-                Alongside programme expertise, the Institute is supported by leadership focused on growth, partnerships, school engagement, and the continued development of a trusted platform for families, schools, and organisations.
-              </p>
-            </div>
+              {/* Text LEFT */}
+              <div>
+                <p className="mb-3 text-sm font-medium uppercase tracking-widest text-accent">
+                  Programme Leadership
+                </p>
 
-            <div className="grid gap-8 md:grid-cols-2">
-              
-              {/* Garry */}
-              <div className="rounded-2xl border border-border bg-white p-8">
-                <div className="mb-4 h-16 w-16 rounded-full bg-muted" />
-
-                <h3 className="mb-2 text-xl font-medium text-primary">
+                <h2 className="mb-3 font-serif text-3xl font-medium text-primary">
                   Garry Cleere
-                </h3>
+                </h2>
 
-                <p className="mb-4 text-sm text-muted-foreground">
+                <p className="mb-6 text-lg text-muted-foreground">
                   Programme Manager
                 </p>
 
-                <p className="leading-relaxed text-muted-foreground">
-                  Garry Cleere supports the development and delivery of the Parenting and Technology Institute, with a focus on partnerships, school engagement, programme growth, and the wider development of the Institute’s platform, reach, and long-term impact.
-                </p>
+                <div className="space-y-4 leading-relaxed text-muted-foreground">
+                  <p>
+                    Garry Cleere leads the development and delivery of the Parenting and Technology Institute, working closely with schools, organisations, and partners to expand the Institute’s reach and impact.
+                  </p>
+
+                  <p>
+                    His work focuses on building a trusted platform for families—ensuring that programmes are accessible, practical, and scalable across school communities and organisations.
+                  </p>
+
+                  <p>
+                    Alongside programme delivery, he supports the Institute’s longer-term development, including partnerships, research initiatives, and the continued growth of its national presence.
+                  </p>
+                </div>
               </div>
 
-              {/* Future Team */}
-              <div className="rounded-2xl border border-border bg-white p-8">
-                <div className="mb-4 h-16 w-16 rounded-full bg-muted" />
-
-                <h3 className="mb-2 text-xl font-medium text-primary">
-                  Growing Leadership Team
-                </h3>
-
-                <p className="mb-4 text-sm text-muted-foreground">
-                  Future Appointments
-                </p>
-
-                <p className="leading-relaxed text-muted-foreground">
-                  As the Institute continues to grow, additional leadership capacity will support research, partnerships, programme development, and broader engagement with families, schools, and organisations.
-                </p>
+              {/* Image RIGHT (placeholder for now) */}
+              <div className="mx-auto lg:mx-0">
+                <div className="h-64 w-64 rounded-2xl bg-muted" />
               </div>
 
             </div>
           </div>
         </section>
 
-        {/* Closing */}
+        {/* Future Leadership */}
         <section className="py-20">
+          <div className="mx-auto max-w-4xl px-6 text-center">
+            <h2 className="mb-6 font-serif text-3xl font-medium text-primary">
+              Developing the Institute
+            </h2>
+
+            <p className="leading-relaxed text-muted-foreground">
+              As the Institute continues to grow, additional leadership capacity will support research, partnerships, programme development, and broader engagement with families, schools, and organisations.
+            </p>
+          </div>
+        </section>
+
+        {/* Closing */}
+        <section className="pb-20">
           <div className="mx-auto max-w-3xl px-6 text-center">
             <p className="leading-relaxed text-muted-foreground">
               Together, the Institute’s leadership brings clinical expertise, programme development, and a strong commitment to helping families navigate childhood in a digital world with greater clarity and confidence.
             </p>
           </div>
         </section>
+
       </main>
 
       <Footer />
