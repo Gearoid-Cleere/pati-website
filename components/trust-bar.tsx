@@ -39,7 +39,7 @@ export function TrustBar() {
           </div>
           <div className="text-center">
             <p className="font-serif text-3xl font-normal text-foreground lg:text-4xl">50+</p>
-            <p className="mt-1 text-[13px] font-medium uppercase tracking-wide text-muted-foreground/70">Workshops Delivered</p>
+            <p className="mt-1 text-[13px] font-medium uppercase tracking-wide text-muted-foreground/70">Webinars Delivered</p>
           </div>
         </div>
 
