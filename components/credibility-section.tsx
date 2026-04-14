@@ -19,12 +19,12 @@ export function CredibilitySection() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-8 border-y border-border">
             <div>
-              <p className="text-3xl md:text-4xl font-bold text-primary">50+</p>
+              <p className="text-3xl md:text-4xl font-bold text-primary">80+</p>
               <p className="text-sm text-muted-foreground mt-1">Schools partnered</p>
             </div>
 
             <div>
-              <p className="text-3xl md:text-4xl font-bold text-primary">5,000+</p>
+              <p className="text-3xl md:text-4xl font-bold text-primary">15,000+</p>
               <p className="text-sm text-muted-foreground mt-1">Parents reached</p>
             </div>
 
