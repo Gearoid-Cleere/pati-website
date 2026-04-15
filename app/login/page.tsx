@@ -1,6 +1,8 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -15,7 +17,6 @@ export default function LoginPage() {
     e.preventDefault()
     setIsLoading(true)
 
-    // Placeholder for future authentication
     setTimeout(() => {
       setIsLoading(false)
     }, 1500)
@@ -24,12 +25,22 @@ export default function LoginPage() {
   return (
     <main className="min-h-screen flex items-center justify-center px-4 py-12 bg-background">
       <div className="w-full max-w-md">
+
         <Card className="border border-border/50 shadow-lg shadow-primary/5">
           <CardHeader className="text-center pb-2">
-            <div className="flex flex-col items-center mb-4">
-              <span className="text-sm font-medium text-muted-foreground tracking-wide uppercase">
-                Parenting and Technology Institute
-              </span>
+
+            {/* LOGO */}
+            <div className="flex justify-center mb-6">
+              <Link href="/">
+                <Image
+                  src="/pati-logo.svg"
+                  alt="Parenting and Technology Institute"
+                  width={320}
+                  height={90}
+                  className="h-12 w-auto"
+                  priority
+                />
+              </Link>
             </div>
 
             <CardTitle className="text-2xl font-semibold text-foreground text-balance">
@@ -43,6 +54,7 @@ export default function LoginPage() {
 
           <CardContent className="pt-4">
             <form onSubmit={handleSubmit} className="space-y-5">
+
               <div className="space-y-2">
                 <Label htmlFor="email" className="text-foreground font-medium">
                   Email address
