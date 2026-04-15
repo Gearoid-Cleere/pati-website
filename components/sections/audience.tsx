@@ -15,7 +15,7 @@ const audiences = [
       "Practical resources and guides",
     ],
     cta: "Enrol as a Parent",
-    href: "/join",
+    href: "/parents",
     highlight: false,
   },
   {
@@ -45,7 +45,7 @@ const audiences = [
       "Reporting and insights",
     ],
     cta: "Corporate Enquiry",
-    href: "/corporate",
+    href: "/organisations",
     highlight: false,
   },
 ]
@@ -59,7 +59,7 @@ export function AudienceSection() {
             Who the Programme Is For
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-            The PATI Programme is designed to support parents wherever they are reached: directly, through schools, or via their employers.
+            The PATI Programme supports parents wherever they engage—whether directly, through schools, or via their workplace.
           </p>
         </div>
 
@@ -78,22 +78,23 @@ export function AudienceSection() {
                   Popular
                 </div>
               )}
-              
+
               <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-muted">
                 <audience.icon className="h-7 w-7 text-primary" />
               </div>
-              
+
               <p className="text-sm font-medium uppercase tracking-wider text-muted-foreground">
                 {audience.subtitle}
               </p>
+
               <h3 className="mt-1 text-2xl font-semibold text-foreground">
                 {audience.title}
               </h3>
-              
+
               <p className="mt-4 flex-1 leading-relaxed text-muted-foreground">
                 {audience.description}
               </p>
-              
+
               <ul className="mt-6 space-y-2 border-t border-border pt-6">
                 {audience.features.map((feature) => (
                   <li key={feature} className="flex items-center gap-2 text-sm text-foreground">
@@ -102,7 +103,7 @@ export function AudienceSection() {
                   </li>
                 ))}
               </ul>
-              
+
               <Button
                 asChild
                 className="mt-6 w-full"
