@@ -8,7 +8,6 @@ export default function LeadershipPage() {
       <Header />
 
       <main className="flex-1">
-
         {/* Hero */}
         <section className="bg-secondary/30 py-20 md:py-28">
           <div className="mx-auto max-w-5xl px-6 text-center">
@@ -30,7 +29,6 @@ export default function LeadershipPage() {
         <section className="py-20">
           <div className="mx-auto max-w-6xl px-6">
             <div className="grid items-start gap-12 lg:grid-cols-[320px_minmax(0,1fr)]">
-
               {/* Image LEFT */}
               <div className="mx-auto lg:mx-0">
                 <Image
@@ -71,16 +69,14 @@ export default function LeadershipPage() {
                   </p>
                 </div>
               </div>
-
             </div>
           </div>
         </section>
 
         {/* Garry Cleere (mirrored layout) */}
-        <section className="py-20 bg-secondary/20">
+        <section className="bg-secondary/20 py-20">
           <div className="mx-auto max-w-6xl px-6">
             <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,1fr)_320px]">
-
               {/* Text LEFT */}
               <div>
                 <p className="mb-3 text-sm font-medium uppercase tracking-widest text-accent">
@@ -110,11 +106,16 @@ export default function LeadershipPage() {
                 </div>
               </div>
 
-              {/* Image RIGHT (placeholder for now) */}
+              {/* Image RIGHT */}
               <div className="mx-auto lg:mx-0">
-                <div className="h-64 w-64 rounded-2xl bg-muted" />
+                <Image
+                  src="/garry-cleere.jpg"
+                  alt="Garry Cleere"
+                  width={256}
+                  height={256}
+                  className="h-64 w-64 rounded-2xl object-cover"
+                />
               </div>
-
             </div>
           </div>
         </section>
@@ -140,7 +141,6 @@ export default function LeadershipPage() {
             </p>
           </div>
         </section>
-
       </main>
 
       <Footer />
