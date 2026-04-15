@@ -28,8 +28,8 @@ const testimonials = [
 
 const stats = [
   { value: "94%", label: "Parent satisfaction rate" },
-  { value: "50+", label: "Schools partnered" },
-  { value: "5,000+", label: "Parents reached" },
+  { value: "80+", label: "Schools partnered" },
+  { value: "15,000+", label: "Parents reached" },
   { value: "4.9/5", label: "Average session rating" }
 ]
 
