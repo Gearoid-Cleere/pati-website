@@ -8,8 +8,9 @@ export default function LeadershipPage() {
       <Header />
 
       <main className="flex-1">
+
         {/* Hero */}
-        <section className="bg-secondary/30 py-20 md:py-28">
+        <section className="bg-secondary/30 py-20 md:py-24">
           <div className="mx-auto max-w-5xl px-6 text-center">
             <p className="mb-4 text-sm font-medium uppercase tracking-widest text-accent">
               Leadership
@@ -26,9 +27,10 @@ export default function LeadershipPage() {
         </section>
 
         {/* Richard Hogan */}
-        <section className="py-20">
+        <section className="py-16 md:py-20">
           <div className="mx-auto max-w-6xl px-6">
-            <div className="grid items-start gap-12 lg:grid-cols-[320px_minmax(0,1fr)]">
+            <div className="grid items-center gap-12 lg:grid-cols-[320px_minmax(0,1fr)]">
+
               {/* Image LEFT */}
               <div className="mx-auto lg:mx-0">
                 <Image
@@ -36,7 +38,7 @@ export default function LeadershipPage() {
                   alt="Dr. Richard Hogan"
                   width={256}
                   height={256}
-                  className="h-64 w-64 rounded-2xl object-cover"
+                  className="h-64 w-64 rounded-2xl object-cover shadow-sm"
                   priority
                 />
               </div>
@@ -69,14 +71,16 @@ export default function LeadershipPage() {
                   </p>
                 </div>
               </div>
+
             </div>
           </div>
         </section>
 
-        {/* Garry Cleere (mirrored layout) */}
-        <section className="bg-secondary/20 py-20">
+        {/* Garry Cleere */}
+        <section className="bg-secondary/20 py-16 md:py-20">
           <div className="mx-auto max-w-6xl px-6">
-            <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,1fr)_320px]">
+            <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_320px]">
+
               {/* Text LEFT */}
               <div>
                 <p className="mb-3 text-sm font-medium uppercase tracking-widest text-accent">
@@ -113,15 +117,16 @@ export default function LeadershipPage() {
                   alt="Garry Cleere"
                   width={256}
                   height={256}
-                  className="h-64 w-64 rounded-2xl object-cover"
+                  className="h-64 w-64 rounded-2xl object-cover shadow-sm"
                 />
               </div>
+
             </div>
           </div>
         </section>
 
         {/* Future Leadership */}
-        <section className="py-20">
+        <section className="py-16 md:py-20">
           <div className="mx-auto max-w-4xl px-6 text-center">
             <h2 className="mb-6 font-serif text-3xl font-medium text-primary">
               Developing the Institute
@@ -134,13 +139,14 @@ export default function LeadershipPage() {
         </section>
 
         {/* Closing */}
-        <section className="pb-20">
+        <section className="pb-16 md:pb-20">
           <div className="mx-auto max-w-3xl px-6 text-center">
             <p className="leading-relaxed text-muted-foreground">
               Together, the Institute’s leadership brings clinical expertise, programme development, and a strong commitment to helping families navigate childhood in a digital world with greater clarity and confidence.
             </p>
           </div>
         </section>
+
       </main>
 
       <Footer />
