@@ -1,3 +1,6 @@
+"use client"
+
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, CheckCircle2 } from "lucide-react"
 
@@ -6,6 +9,8 @@ export function HeroSection() {
     <section id="hero" className="relative overflow-hidden bg-background py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
+
+          {/* LEFT CONTENT */}
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-1.5 text-sm font-medium text-secondary-foreground mb-6">
               <span className="flex h-2 w-2 rounded-full bg-accent" />
@@ -36,19 +41,42 @@ export function HeroSection() {
             </ul>
             
             <div className="mt-10 flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-6 text-base">
-                Register Your School
-                <ArrowRight className="h-5 w-5" />
+              
+              {/* PRIMARY CTA */}
+              <Button
+                asChild
+                size="lg"
+                className="gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-6 text-base"
+              >
+                <Link href="/schools">
+                  Register Your School
+                  <ArrowRight className="h-5 w-5" />
+                </Link>
               </Button>
-              <Button variant="outline" size="lg" className="gap-2 px-6 py-6 text-base">
-                Download School Information Pack
+
+              {/* SECONDARY CTA */}
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="gap-2 px-6 py-6 text-base"
+              >
+                <Link href="/contact">
+                  Download School Information Pack
+                </Link>
               </Button>
+
             </div>
           </div>
 
+          {/* RIGHT PANEL */}
           <div className="relative lg:pl-8">
             <div className="relative rounded-2xl bg-primary p-8 lg:p-10 text-primary-foreground">
-              <p className="text-sm font-semibold tracking-wider uppercase text-primary-foreground/70 mb-6">Trusted by schools across Ireland</p>
+              
+              <p className="text-sm font-semibold tracking-wider uppercase text-primary-foreground/70 mb-6">
+                Trusted by schools across Ireland
+              </p>
+
               <div className="grid grid-cols-2 gap-6">
                 <div>
                   <p className="text-4xl font-bold">80+</p>
@@ -67,14 +95,19 @@ export function HeroSection() {
                   <p className="text-sm text-primary-foreground/80">Counties supported</p>
                 </div>
               </div>
+
               <div className="mt-8 pt-6 border-t border-primary-foreground/20">
                 <p className="text-sm text-primary-foreground/90 italic">
-                  {'"Finally, a parent programme that requires nothing from us but delivers real value. Parents are feeling confident and supported."'}
+                  {"Finally, a parent programme that requires nothing from us but delivers real value. Parents are feeling confident and supported."}
                 </p>
-                <p className="text-sm font-medium mt-2 text-primary-foreground/70">- Deputy Principal, Dublin Primary School</p>
+                <p className="text-sm font-medium mt-2 text-primary-foreground/70">
+                  - Deputy Principal, Dublin Primary School
+                </p>
               </div>
+
             </div>
           </div>
+
         </div>
       </div>
     </section>
