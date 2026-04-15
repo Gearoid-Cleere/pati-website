@@ -34,8 +34,8 @@ export function CredibilitySection() {
             </div>
 
             <div>
-              <p className="text-3xl md:text-4xl font-bold text-primary">Ireland</p>
-              <p className="text-sm text-muted-foreground mt-1">Parents supported</p>
+              <p className="text-3xl md:text-4xl font-bold text-primary">18+</p>
+              <p className="text-sm text-muted-foreground mt-1">Counties supported</p>
             </div>
           </div>
 
