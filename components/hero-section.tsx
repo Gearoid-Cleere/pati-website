@@ -69,7 +69,7 @@ export function HeroSection() {
               </div>
               <div className="mt-8 pt-6 border-t border-primary-foreground/20">
                 <p className="text-sm text-primary-foreground/90 italic">
-                  {'"Finally, a parent programme that requires nothing from us but delivers real value. Parents left feeling confident and supported."'}
+                  {'"Finally, a parent programme that requires nothing from us but delivers real value. Parents are feeling confident and supported."'}
                 </p>
                 <p className="text-sm font-medium mt-2 text-primary-foreground/70">- Deputy Principal, Dublin Primary School</p>
               </div>
