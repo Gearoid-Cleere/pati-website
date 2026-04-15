@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Download, ArrowRight } from "lucide-react"
@@ -13,12 +15,6 @@ export function HeroSection() {
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl text-center">
-          {/* Institute badge */}
-          <div className="mb-8 inline-flex items-center rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5">
-            <span className="text-sm font-medium text-primary">
-              Parenting &amp; Technology Institute
-            </span>
-          </div>
 
           <h1 className="font-serif text-4xl font-semibold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
             <span className="text-balance">
@@ -41,6 +37,7 @@ export function HeroSection() {
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
+
             <Button asChild variant="outline" size="lg" className="h-12 px-8 text-base w-full sm:w-auto">
               <Link href="#download">
                 <Download className="mr-2 h-4 w-4" />
@@ -64,6 +61,7 @@ export function HeroSection() {
               Practical application
             </span>
           </div>
+
         </div>
       </div>
     </section>
