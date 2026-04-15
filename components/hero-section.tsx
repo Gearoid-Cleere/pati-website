@@ -63,8 +63,8 @@ export function HeroSection() {
                   <p className="text-sm text-primary-foreground/80">Would recommend</p>
                 </div>
                 <div>
-                  <p className="text-4xl font-bold">4.9/5</p>
-                  <p className="text-sm text-primary-foreground/80">Average rating</p>
+                  <p className="text-4xl font-bold">18+</p>
+                  <p className="text-sm text-primary-foreground/80">Counties supported</p>
                 </div>
               </div>
               <div className="mt-8 pt-6 border-t border-primary-foreground/20">
