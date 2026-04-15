@@ -19,7 +19,7 @@ const actions = [
   {
     icon: Building2,
     label: "Organisations",
-    description: "Explore corporate options",
+    description: "Support working parents",
     href: "/organisations",
     cta: "Corporate Enquiry",
   },
