@@ -1,15 +1,15 @@
 "use client"
 
-import { 
-  CheckCircle2, 
-  Clock, 
-  BadgeCheck, 
-  Gamepad2, 
-  EyeOff, 
-  Users, 
-  Smartphone, 
-  Monitor, 
-  Heart 
+import {
+  CheckCircle2,
+  Clock,
+  BadgeCheck,
+  Gamepad2,
+  EyeOff,
+  Users,
+  Smartphone,
+  Monitor,
+  Heart,
 } from "lucide-react"
 
 const modules = [
@@ -29,39 +29,43 @@ const included = [
   "Social media graphics and printable flyers",
   "Parent handouts and take-home guides",
   "Access to session recordings",
-  "Attendance reports and impact summary"
+  "Attendance reports and impact summary",
 ]
 
 export function WorkshopsSection() {
   return (
-    <section className="py-20 lg:py-28 bg-muted/30">
-      <div className="container mx-auto px-6 lg:px-8 max-w-6xl">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <p className="text-accent font-semibold text-sm uppercase tracking-wider mb-3">
-            The Programme
+    <section className="bg-muted/30 py-20 lg:py-28">
+      <div className="container mx-auto max-w-6xl px-6 lg:px-8">
+        <div className="mx-auto mb-16 max-w-3xl text-center">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-accent">
+            What Parents Experience
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6 text-balance">
-            Programme Overview
+
+          <h2 className="mb-6 text-3xl font-bold text-foreground text-balance md:text-4xl">
+            A structured programme covering the topics families care about most
           </h2>
+
           <p className="text-lg text-muted-foreground">
-            Eight comprehensive modules covering essential topics for navigating technology in family life
+            Parents take part in expert-led sessions focused on the real challenges of raising children in a digital world, with practical guidance they can apply at home.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-16">
+        <div className="mb-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {modules.map((module, index) => {
             const IconComponent = module.icon
             return (
-              <div 
+              <div
                 key={index}
-                className="bg-card rounded-xl p-6 border border-border hover:shadow-md transition-all"
+                className="rounded-xl border border-border bg-card p-6 transition-all hover:shadow-md"
               >
-                <div className="w-12 h-12 rounded-lg bg-muted flex items-center justify-center mb-5">
-                  <IconComponent className="w-6 h-6 text-foreground/70" />
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-muted">
+                  <IconComponent className="h-6 w-6 text-foreground/70" />
                 </div>
-                <h3 className="font-semibold text-foreground mb-1">
+
+                <h3 className="mb-1 font-semibold text-foreground">
                   {module.title}
                 </h3>
+
                 <p className="text-sm text-muted-foreground">
                   {module.description}
                 </p>
@@ -70,28 +74,29 @@ export function WorkshopsSection() {
           })}
         </div>
 
-        <div className="text-center mb-12">
-          <p className="text-muted-foreground text-sm">
-            Schools can select individual modules or run the complete programme across multiple sessions.
+        <div className="mb-12 text-center">
+          <p className="text-sm text-muted-foreground">
+            Schools can select individual modules or run the full programme across a series of sessions.
           </p>
         </div>
 
-        {/* What is Included */}
-        <div className="bg-card border border-border rounded-2xl p-8 lg:p-10">
-          <div className="max-w-3xl mx-auto">
-            <h3 className="text-2xl font-bold text-foreground text-center mb-8">
-              What Is Included With Every Session
+        <div className="rounded-2xl border border-border bg-card p-8 lg:p-10">
+          <div className="mx-auto max-w-3xl">
+            <h3 className="mb-8 text-center text-2xl font-bold text-foreground">
+              What Is Included
             </h3>
-            <div className="grid sm:grid-cols-2 gap-4">
+
+            <div className="grid gap-4 sm:grid-cols-2">
               {included.map((item, index) => (
                 <div key={index} className="flex items-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0" />
+                  <CheckCircle2 className="h-5 w-5 flex-shrink-0 text-accent" />
                   <span className="text-foreground">{item}</span>
                 </div>
               ))}
             </div>
-            <p className="text-center text-sm text-muted-foreground mt-8">
-              Everything your school needs to deliver a high-quality parent experience — without adding to staff workload.
+
+            <p className="mt-8 text-center text-sm text-muted-foreground">
+              Everything needed to deliver a high-quality parent experience, with practical support for families and minimal additional workload for your school.
             </p>
           </div>
         </div>
