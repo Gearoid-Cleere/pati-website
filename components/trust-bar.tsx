@@ -1,17 +1,17 @@
 export function TrustBar() {
   const schools = [
-    "St. Patrick's College",
-    "Blackrock College",
-    "Loreto Abbey",
-    "Belvedere College",
+    "Letterkenny ETNS",
+    "Willow Park",
+    "Loreto Beaufort",
+    "Hamilton High School",
     "Alexandra College",
-    "St. Michael's College",
-    "Mount Anville",
-    "Gonzaga College",
-    "Marian College",
-    "Wesley College",
-    "St. Andrew's College",
-    "King's Hospital",
+    "St. Benildus College",
+    "Scoil Mhuire",
+    "Our Lady's Drogheda",
+    "Mountrath Community School",
+    "St Kilians",
+    "Belgrove Senior School",
+    "The Harold School",
   ]
 
   return (
