@@ -11,7 +11,7 @@ const features = [
   {
     icon: PlayCircle,
     title: "Recordings Available",
-    description: "Every session is recorded and shared with registered parents, ensuring those who cannot attend live can still benefit from the content."
+    description: "Every session is recorded and shared with registered parents, ensuring those who cannot attend live can still benefit."
   },
   {
     icon: Mail,
@@ -33,18 +33,23 @@ export function DeliverySection() {
   return (
     <section className="py-20 lg:py-28">
       <div className="container mx-auto px-6">
+        
+        {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-16">
           <p className="text-accent font-semibold text-sm uppercase tracking-wider mb-3">
-            Simple Delivery
+            How It Works for Your School
           </p>
+
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6 text-balance">
-            Live Online. Recordings Included. Zero Hassle.
+            Simple to run. Easy for parents. No extra workload.
           </h2>
+
           <p className="text-lg text-muted-foreground">
-            PATI sessions are delivered entirely online, with recordings available for parents who cannot attend live. Your school simply shares the invitation — we handle the rest.
+            PATI manages the full delivery of the programme—from parent communications and registration to live sessions and follow-up resources—so your school can support families without adding to staff workload.
           </p>
         </div>
-        
+
+        {/* Features */}
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
           {features.map((feature, index) => (
             <div 
@@ -54,9 +59,11 @@ export function DeliverySection() {
               <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
                 <feature.icon className="w-6 h-6 text-primary" />
               </div>
+
               <h3 className="text-lg font-semibold text-foreground mb-2">
                 {feature.title}
               </h3>
+
               <p className="text-muted-foreground">
                 {feature.description}
               </p>
@@ -64,10 +71,12 @@ export function DeliverySection() {
           ))}
         </div>
 
+        {/* Benefits */}
         <div className="bg-secondary/50 rounded-2xl p-8 lg:p-10 max-w-4xl mx-auto">
           <h3 className="text-xl font-bold text-foreground text-center mb-6">
-            Why Online Delivery Works
+            Why This Works for Schools
           </h3>
+
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {benefits.map((benefit, index) => (
               <div key={index} className="flex items-center gap-3">
@@ -77,6 +86,7 @@ export function DeliverySection() {
             ))}
           </div>
         </div>
+
       </div>
     </section>
   )
