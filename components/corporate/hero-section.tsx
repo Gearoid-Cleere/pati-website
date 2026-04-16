@@ -1,3 +1,6 @@
+"use client"
+
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Download } from "lucide-react"
 
@@ -5,36 +8,47 @@ export function HeroSection() {
   return (
     <section className="relative overflow-hidden bg-secondary/30 py-16 sm:py-20 lg:py-24">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.04),transparent_50%)]" />
-      
+
       <div className="mx-auto max-w-6xl px-6">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-          
           {/* Left Content */}
           <div className="max-w-xl">
-            
             <p className="text-sm font-medium uppercase tracking-[0.2em] text-accent">
               Corporate Wellbeing Programme
             </p>
 
-<h1 className="mt-5 font-serif text-4xl font-medium leading-tight tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-  Supporting working parents today
-</h1>
+            <h1 className="mt-5 font-serif text-4xl font-medium leading-tight tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+              Supporting working parents today
+            </h1>
+
             <p className="mt-5 text-lg leading-relaxed text-muted-foreground sm:text-xl">
               A structured, year-round programme designed to reduce family-related stress, strengthen employee wellbeing, and improve engagement across your organisation.
             </p>
 
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              
-              <Button size="lg" className="h-14 gap-2 px-8 text-base font-semibold shadow-lg">
-                Book a Call
-                <ArrowRight className="h-5 w-5" />
+            <div className="mt-8 flex flex-col items-start">
+              <Button asChild size="lg" className="h-14 gap-2 px-8 text-base font-semibold shadow-lg">
+                <Link href="https://us06web.zoom.us/webinar/register/WN_sP_4iBuIS2-4sJzv2P4t5g">
+                  Join Executive Briefing – Thursday 7 May
+                  <ArrowRight className="h-5 w-5" />
+                </Link>
               </Button>
 
-              <Button size="lg" variant="outline" className="h-14 gap-2 px-8 text-base">
-                <Download className="h-5 w-5" />
-                Get Corporate Overview
-              </Button>
+              <p className="mt-3 text-sm text-muted-foreground">
+                12:30 – 13:15 | Live online
+              </p>
 
+              <p className="mt-1 text-xs text-muted-foreground">
+                Free to attend | Limited places
+              </p>
+
+              <div className="mt-5">
+                <Button asChild size="lg" variant="outline" className="h-14 gap-2 px-8 text-base">
+                  <Link href="/contact">
+                    <Download className="h-5 w-5" />
+                    Get Corporate Overview
+                  </Link>
+                </Button>
+              </div>
             </div>
           </div>
 
@@ -42,7 +56,6 @@ export function HeroSection() {
           <div className="relative hidden lg:block">
             <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-secondary">
               <div className="flex h-full items-center justify-center">
-                
                 <div className="text-center">
                   <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-primary/10">
                     <svg
@@ -64,7 +77,6 @@ export function HeroSection() {
                     Supporting working families
                   </p>
                 </div>
-
               </div>
             </div>
           </div>
