@@ -7,10 +7,11 @@ import { ArrowRight, Download } from "lucide-react"
 export function HeroSection() {
   return (
     <section className="relative overflow-hidden bg-secondary/30 py-16 sm:py-20 lg:py-24">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.04),transparent_50%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.04),transparent_50%)]" />
 
-      <div className="mx-auto max-w-6xl px-6">
+      <div className="relative z-10 mx-auto max-w-6xl px-6">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          {/* Left Content */}
           <div className="max-w-xl">
             <p className="text-sm font-medium uppercase tracking-[0.2em] text-accent">
               Corporate Wellbeing Programme
@@ -55,6 +56,7 @@ export function HeroSection() {
             </div>
           </div>
 
+          {/* Right Visual */}
           <div className="relative hidden lg:block">
             <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-secondary">
               <div className="flex h-full items-center justify-center">
