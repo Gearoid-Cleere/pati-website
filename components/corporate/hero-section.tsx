@@ -11,7 +11,6 @@ export function HeroSection() {
 
       <div className="mx-auto max-w-6xl px-6">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-          {/* Left Content */}
           <div className="max-w-xl">
             <p className="text-sm font-medium uppercase tracking-[0.2em] text-accent">
               Corporate Wellbeing Programme
@@ -27,10 +26,14 @@ export function HeroSection() {
 
             <div className="mt-8 flex flex-col items-start">
               <Button asChild size="lg" className="h-14 gap-2 px-8 text-base font-semibold shadow-lg">
-                <Link href="https://us06web.zoom.us/webinar/register/WN_sP_4iBuIS2-4sJzv2P4t5g">
+                <a
+                  href="https://us06web.zoom.us/webinar/register/WN_sP_4iBuIS2-4sJzv2P4t5g"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Join Executive Briefing – Thursday 7 May
                   <ArrowRight className="h-5 w-5" />
-                </Link>
+                </a>
               </Button>
 
               <p className="mt-3 text-sm text-muted-foreground">
@@ -52,7 +55,6 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* Right Visual */}
           <div className="relative hidden lg:block">
             <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-secondary">
               <div className="flex h-full items-center justify-center">
@@ -80,7 +82,6 @@ export function HeroSection() {
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>
