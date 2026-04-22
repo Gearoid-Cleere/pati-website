@@ -19,7 +19,7 @@ const features = [
     icon: Mail,
     title: "School Communications",
     description:
-      "We provide ready-to-send parent communications and promotional materials for the school. Your team simply shares them through existing channels.",
+      "We provide ready-to-send parent communications and promotional materials for the school. You simply share them through existing channels.",
   },
 ]
 
