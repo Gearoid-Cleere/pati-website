@@ -1,30 +1,34 @@
-import { CheckCircle2 } from "lucide-react"
+"use client"
 
 const steps = [
   {
     number: "01",
-    title: "Register Your Interest",
-    description: "Complete a short form or request an information pack. We will respond within one working day to discuss dates and options.",
-    highlight: "2 minutes"
+    title: "Express Interest",
+    highlight: "Quick enquiry",
+    description:
+      "Complete a short enquiry form or request an information pack. We then discuss the best format and timing for your school.",
   },
   {
-    number: "02", 
+    number: "02",
     title: "We Prepare Everything",
-    description: "Our team schedules your sessions, creates branded promotional materials, and provides ready-to-send parent communications. You just forward them on.",
-    highlight: "Materials provided"
+    highlight: "Materials provided",
+    description:
+      "We prepare the delivery plan, provide ready-to-send parent communications, and make the process simple for your staff.",
   },
   {
     number: "03",
-    title: "Expert Delivery",
-    description: "Our trained facilitators deliver engaging, practical sessions to your parent community. Staff are welcome but not required to attend.",
-    highlight: "No facilitation needed"
+    title: "Live Expert Delivery",
+    highlight: "No facilitation needed",
+    description:
+      "Dr Richard Hogan delivers practical live online sessions for your parent community. Staff are welcome to attend, but are not required to do so.",
   },
   {
     number: "04",
-    title: "Follow-Up Handled",
-    description: "Parents receive session recordings and take-home resources. We provide attendance reports and impact feedback for your records.",
-    highlight: "Fully supported"
-  }
+    title: "Resources Shared Afterward",
+    highlight: "Flexible access",
+    description:
+      "Parents receive recordings and follow-up resources after each session, helping more families benefit even if they cannot attend live.",
+  },
 ]
 
 export function HowItWorksSection() {
@@ -39,34 +43,35 @@ export function HowItWorksSection() {
             Four Simple Steps
           </h2>
           <p className="text-lg text-muted-foreground">
-            PATI is designed to be the lowest-effort, highest-value parent programme your school will run. Here is how it works.
+            PATI is designed to be simple for schools to run. We handle the delivery and parent communications, so your team can offer meaningful support with minimal extra work.
           </p>
         </div>
-        
-        <div className="max-w-4xl mx-auto">
-          <div className="space-y-5">
-            {steps.map((step, index) => (
-              <div 
-                key={index}
-                className="bg-card rounded-xl p-6 lg:p-8 border border-border flex flex-col md:flex-row gap-6 items-start"
-              >
-                <div className="flex-shrink-0">
-                  <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center">
-                    <span className="text-primary-foreground font-bold">{step.number}</span>
+
+        <div className="max-w-6xl mx-auto">
+          <div className="relative">
+            <div className="hidden lg:block absolute left-0 right-0 top-10 h-px bg-border" />
+
+            <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+              {steps.map((step) => (
+                <div key={step.number} className="relative">
+                  <div className="relative z-10 mb-6 flex h-20 w-20 items-center justify-center rounded-full border border-border bg-background shadow-sm">
+                    <span className="text-lg font-bold text-primary">{step.number}</span>
                   </div>
+
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+                    {step.highlight}
+                  </p>
+
+                  <h3 className="mb-3 text-xl font-semibold text-foreground">
+                    {step.title}
+                  </h3>
+
+                  <p className="text-muted-foreground leading-relaxed">
+                    {step.description}
+                  </p>
                 </div>
-                <div className="flex-1">
-                  <div className="flex flex-wrap items-center gap-3 mb-2">
-                    <h3 className="text-xl font-semibold text-foreground">{step.title}</h3>
-                    <span className="inline-flex items-center gap-1.5 text-xs font-medium text-accent bg-accent/10 px-2.5 py-1 rounded-full">
-                      <CheckCircle2 className="w-3 h-3" />
-                      {step.highlight}
-                    </span>
-                  </div>
-                  <p className="text-muted-foreground">{step.description}</p>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
