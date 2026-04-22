@@ -42,7 +42,7 @@ export function LeadCaptureSection() {
                 </h3>
 
                 <p className="mt-3 text-muted-foreground">
-                  If you’d like your school to offer the programme, we can help you express interest and start the conversation.
+                  If you’d like your school to offer the programme, we can help you start the conversation.
                 </p>
 
                 <ul className="mt-5 space-y-3 text-sm text-muted-foreground">
