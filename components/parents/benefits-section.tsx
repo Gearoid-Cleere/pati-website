@@ -1,30 +1,37 @@
-import { Video, BookOpen, PlayCircle, Wrench, CheckCircle } from "lucide-react" 
+"use client"
+
+import { ShieldCheck, MessageCircle, Users, Lightbulb, Heart, CheckCircle2 } from "lucide-react"
 
 const benefits = [
   {
-    icon: Video,
-    title: "4 live online sessions",
-    description: "Interactive sessions with expert guidance and Q&A",
+    icon: ShieldCheck,
+    title: "Feel more confident as a parent",
+    description: "Know what’s normal, what matters, and when to step in — without second guessing yourself.",
   },
   {
-    icon: BookOpen,
-    title: "Full programme covering 8 modules",
-    description: "Comprehensive coverage of key technology topics",
+    icon: MessageCircle,
+    title: "Have better conversations at home",
+    description: "Learn how to talk about phones, gaming, and social media in a calm and effective way.",
   },
   {
-    icon: PlayCircle,
-    title: "Recordings available for flexibility",
-    description: "Watch at your own pace, whenever suits you",
+    icon: Users,
+    title: "Set boundaries that actually work",
+    description: "Put simple, realistic rules in place that your family can stick to.",
   },
   {
-    icon: Wrench,
-    title: "Practical tools and strategies",
-    description: "Actionable approaches you can use immediately",
+    icon: Lightbulb,
+    title: "Get practical strategies you can use immediately",
+    description: "Each session gives you clear ideas you can apply straight away at home.",
   },
   {
-    icon: CheckCircle,
-    title: "Clear, real-world guidance",
-    description: "Evidence-based advice that works for families",
+    icon: Heart,
+    title: "Reduce stress and conflict",
+    description: "Move away from constant battles over devices and towards a more balanced family approach.",
+  },
+  {
+    icon: CheckCircle2,
+    title: "A structured programme you can trust",
+    description: "4 live sessions covering 8 key modules, with recordings available for flexibility.",
   },
 ]
 
@@ -32,39 +39,40 @@ export function BenefitsSection() {
   return (
     <section className="bg-background py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            What parents get
+            Practical support for real family life
           </h2>
+
           <p className="mt-4 text-pretty text-lg text-muted-foreground">
-            Everything you need to confidently navigate your child&apos;s digital world
+            This is not theory. It’s clear, practical guidance designed to help you feel more confident and in control at home.
           </p>
         </div>
 
-        <div className="mx-auto mt-12 max-w-4xl">
-          <div className="grid gap-6 sm:grid-cols-2 lg:gap-8">
-            {benefits.map((benefit, index) => (
+        <div className="mx-auto mt-12 max-w-5xl">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {benefits.map((benefit) => (
               <div
                 key={benefit.title}
-                className={`flex gap-4 ${index === benefits.length - 1 && benefits.length % 2 !== 0 ? "sm:col-span-2 sm:mx-auto sm:max-w-md" : ""}`}
+                className="bg-card p-6 rounded-xl border border-border hover:border-accent/30 transition-colors"
               >
-                <div className="flex-shrink-0">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-accent-foreground">
-                    <benefit.icon className="h-5 w-5" />
-                  </div>
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary mb-4">
+                  <benefit.icon className="h-5 w-5" />
                 </div>
-                <div>
-                  <h3 className="font-semibold text-foreground">
-                    {benefit.title}
-                  </h3>
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    {benefit.description}
-                  </p>
-                </div>
+
+                <h3 className="font-semibold text-foreground mb-2">
+                  {benefit.title}
+                </h3>
+
+                <p className="text-sm text-muted-foreground">
+                  {benefit.description}
+                </p>
               </div>
             ))}
           </div>
         </div>
+
       </div>
     </section>
   )
