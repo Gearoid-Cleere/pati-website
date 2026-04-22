@@ -14,12 +14,16 @@ export function ModulesSection() {
     <section id="modules" className="bg-muted/30 py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
+          <p className="text-accent font-semibold text-sm uppercase tracking-wider mb-3">
+            What You’ll Learn
+          </p>
+
           <h2 className="text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            Programme structure
+            A structured programme built around the real issues parents face
           </h2>
+
           <p className="mt-4 text-pretty text-lg text-muted-foreground">
-            The PATI programme is structured across eight focused modules
-            covering the key areas of childhood and technology.
+            The PATI programme is delivered across eight focused modules, giving you practical guidance on the key technology issues affecting family life today.
           </p>
         </div>
 
@@ -32,11 +36,18 @@ export function ModulesSection() {
               <span className="inline-block rounded bg-primary/10 px-2 py-1 text-xs font-semibold text-primary">
                 {module.number}
               </span>
+
               <h3 className="mt-3 font-semibold text-foreground">
                 {module.title}
               </h3>
             </div>
           ))}
+        </div>
+
+        <div className="mx-auto mt-10 max-w-3xl text-center">
+          <p className="text-sm text-muted-foreground">
+            Delivered across 4 live online sessions, with recordings available so you can keep up even if you miss one.
+          </p>
         </div>
       </div>
     </section>
