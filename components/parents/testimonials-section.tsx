@@ -1,7 +1,5 @@
 "use client"
 
-import { Quote } from "lucide-react"
-
 const testimonials = [
   {
     quote:
@@ -18,18 +16,16 @@ const testimonials = [
   {
     quote:
       "It gave me practical ways to handle real situations at home and helped me feel more calm, confident, and in control.",
-    author: "Anonymous parent",
+    author: "PATI parent",
     role: "",
   },
 ]
 
 export function TestimonialsSection() {
   return (
-    <section className="bg-muted/30 py-16 sm:py-24">
+    <section className="bg-background py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-
-        {/* Header */}
-        <div className="mx-auto max-w-2xl text-center mb-12">
+        <div className="mx-auto max-w-2xl text-center mb-14">
           <p className="text-accent font-semibold text-sm uppercase tracking-wider mb-3">
             Parent Feedback
           </p>
@@ -43,27 +39,22 @@ export function TestimonialsSection() {
           </p>
         </div>
 
-        {/* Testimonials */}
-        <div className="mx-auto grid max-w-5xl gap-6 lg:grid-cols-3">
+        <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-3">
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="relative rounded-2xl border border-border bg-card p-6 transition-all hover:shadow-md hover:-translate-y-0.5"
+              className="flex h-full flex-col rounded-2xl border border-border bg-card p-7 shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5"
             >
-              <Quote className="absolute right-6 top-6 h-8 w-8 text-accent/20" />
+              <p className="text-base leading-8 text-foreground">
+                “{testimonial.quote}”
+              </p>
 
-              <blockquote>
-                <p className="text-[15px] leading-relaxed text-foreground">
-                  “{testimonial.quote}”
-                </p>
-              </blockquote>
-
-              <div className="mt-6 border-t border-border pt-4">
+              <div className="mt-8 border-t border-border pt-5">
                 <p className="font-semibold text-foreground">
                   {testimonial.author}
                 </p>
                 {testimonial.role && (
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-muted-foreground mt-1">
                     {testimonial.role}
                   </p>
                 )}
@@ -71,7 +62,6 @@ export function TestimonialsSection() {
             </div>
           ))}
         </div>
-
       </div>
     </section>
   )
