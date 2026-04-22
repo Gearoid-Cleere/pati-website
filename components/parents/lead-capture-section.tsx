@@ -1,72 +1,89 @@
-"use client" 
+"use client"
 
-import { useState } from "react"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Download, Lock } from "lucide-react"
+import { ArrowRight, School, User } from "lucide-react"
 
 export function LeadCaptureSection() {
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [submitted, setSubmitted] = useState(false)
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // In a real app, this would submit to an API
-    setSubmitted(true)
-  }
-
   return (
     <section className="bg-background py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-xl rounded-2xl border border-border bg-card p-8 text-center shadow-sm sm:p-12">
-          <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
-            <Download className="h-7 w-7 text-primary" />
+
+        <div className="mx-auto max-w-5xl rounded-2xl border border-border bg-card p-8 shadow-sm sm:p-12">
+          <div className="mx-auto max-w-3xl text-center mb-12">
+            <p className="text-accent font-semibold text-sm uppercase tracking-wider mb-3">
+              Take the Next Step
+            </p>
+
+            <h2 className="text-balance text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+              Want PATI in your school, or ready to join independently?
+            </h2>
+
+            <p className="mt-4 text-pretty text-muted-foreground">
+              The best-value way to access PATI is through your school, but parents can also join independently if their school is not yet participating.
+            </p>
           </div>
 
-          <h2 className="text-balance text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-            Download the Parent Guide
-          </h2>
-          <p className="mt-4 text-pretty text-muted-foreground">
-            Receive a practical overview of how to support your child&apos;s use of
-            technology.
-          </p>
+          <div className="grid gap-6 lg:grid-cols-2">
+            
+            {/* School Route */}
+            <div className="rounded-2xl border border-border bg-secondary/40 p-6 sm:p-8">
+              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
+                <School className="h-6 w-6 text-primary" />
+              </div>
 
-          {submitted ? (
-            <div className="mt-8 rounded-lg bg-accent/10 p-6 text-center">
-              <p className="font-semibold text-foreground">
-                Thank you! Check your email for the guide.
+              <h3 className="text-xl font-semibold text-foreground">
+                Bring PATI to Your School
+              </h3>
+
+              <p className="mt-3 text-muted-foreground">
+                If you’d like your school to offer the programme, we can help you express interest and start that conversation.
               </p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="mt-8 space-y-4">
-              <Input
-                type="text"
-                placeholder="Your name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-                className="bg-background"
-              />
-              <Input
-                type="email"
-                placeholder="Your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="bg-background"
-              />
-              <Button type="submit" className="w-full" size="lg">
-                Download Guide
-              </Button>
-            </form>
-          )}
 
-          <p className="mt-6 flex items-center justify-center gap-2 text-xs text-muted-foreground">
-            <Lock className="h-3 w-3" />
-            We respect your privacy. Unsubscribe at any time.
-          </p>
+              <ul className="mt-5 space-y-2 text-sm text-muted-foreground">
+                <li>• Lower parent price through the school</li>
+                <li>• Shared experience with other parents in your school community</li>
+                <li>• Helps create demand from parents upwards</li>
+              </ul>
+
+              <Button asChild size="lg" className="mt-6 w-full">
+                <Link href="/contact">
+                  Bring PATI to Your School
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
+
+            {/* Independent Route */}
+            <div className="rounded-2xl border border-border bg-background p-6 sm:p-8">
+              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
+                <User className="h-6 w-6 text-primary" />
+              </div>
+
+              <h3 className="text-xl font-semibold text-foreground">
+                Join Independently
+              </h3>
+
+              <p className="mt-3 text-muted-foreground">
+                If your school is not yet participating, you can still access the PATI programme independently.
+              </p>
+
+              <ul className="mt-5 space-y-2 text-sm text-muted-foreground">
+                <li>• Full access to the parent programme</li>
+                <li>• Live sessions plus recordings</li>
+                <li>• Independent parent price: €79.95</li>
+              </ul>
+
+              <Button asChild size="lg" variant="outline" className="mt-6 w-full">
+                <Link href="/contact">
+                  Join Independently
+                </Link>
+              </Button>
+            </div>
+
+          </div>
         </div>
+
       </div>
     </section>
   )
