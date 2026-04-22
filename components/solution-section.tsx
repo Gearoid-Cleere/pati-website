@@ -26,7 +26,7 @@ const benefits = [
   {
     icon: Target,
     title: "Aligned to School Priorities",
-    description: "Content supports wellbeing priorities and aligns with SPHE, making it easy to integrate into your overall school approach."
+    description: "Content supports school wellbeing priorities and reflects the key themes of SPHE, helping schools reinforce a consistent message with parents."
   }
 ]
 
