@@ -16,19 +16,23 @@ export function HeroSection() {
               <span className="flex h-2 w-2 rounded-full bg-accent" />
               For Schools
             </div>
-            
+
             <h1 className="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl lg:text-6xl text-balance leading-tight">
-              Expert Parent Education, Delivered for You
+              Expert Parent Education, Delivered for Your School Community
             </h1>
-            
+
             <p className="mt-6 text-lg leading-relaxed text-muted-foreground max-w-xl">
-              PATI brings practical, expert-led sessions on technology and family wellbeing directly to your school community. Supporting parents at home while providing classroom-ready guidance for teachers and students. We handle everything. Your staff simply share the invite.
+              PATI delivers practical, expert-led sessions on technology and family life directly to your parents. Led by Dr Richard Hogan, the programme supports families navigating smartphones, gaming, and social media — while keeping things simple for schools.
             </p>
-            
+
+            <p className="mt-4 text-lg leading-relaxed text-muted-foreground max-w-xl">
+              We handle everything. Your staff simply share the invite.
+            </p>
+
             <ul className="mt-8 space-y-3">
               <li className="flex items-center gap-3 text-foreground">
                 <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0" />
-                <span>Live online sessions with expert facilitators</span>
+                <span>Live online sessions delivered by a leading family expert</span>
               </li>
               <li className="flex items-center gap-3 text-foreground">
                 <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0" />
@@ -36,12 +40,12 @@ export function HeroSection() {
               </li>
               <li className="flex items-center gap-3 text-foreground">
                 <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0" />
-                <span>All communications and resources provided</span>
+                <span>All communications and resources provided to the school</span>
               </li>
             </ul>
-            
+
             <div className="mt-10 flex flex-col sm:flex-row gap-4">
-              
+
               {/* PRIMARY CTA */}
               <Button
                 asChild
@@ -72,7 +76,7 @@ export function HeroSection() {
           {/* RIGHT PANEL */}
           <div className="relative lg:pl-8">
             <div className="relative rounded-2xl bg-primary p-8 lg:p-10 text-primary-foreground">
-              
+
               <p className="text-sm font-semibold tracking-wider uppercase text-primary-foreground/70 mb-6">
                 Trusted by schools across Ireland
               </p>
