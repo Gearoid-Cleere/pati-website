@@ -8,7 +8,10 @@ export function LeadCaptureSection() {
   return (
     <section className="bg-background py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
         <div className="mx-auto max-w-5xl rounded-2xl border border-border bg-card p-8 shadow-sm sm:p-12">
+          
+          {/* Header */}
           <div className="mx-auto max-w-3xl text-center mb-12">
             <p className="text-accent font-semibold text-sm uppercase tracking-wider mb-3">
               Take the Next Step
@@ -23,8 +26,12 @@ export function LeadCaptureSection() {
             </p>
           </div>
 
+          {/* Cards */}
           <div className="grid gap-6 lg:grid-cols-2">
-            <div className="flex flex-col justify-between rounded-2xl border border-border bg-secondary/40 p-6 sm:p-8">
+
+            {/* School Route */}
+            <div className="flex flex-col justify-between rounded-2xl border border-border bg-secondary/40 p-6 sm:p-8 transition-all hover:shadow-md hover:-translate-y-0.5">
+              
               <div>
                 <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
                   <School className="h-6 w-6 text-primary" />
@@ -35,7 +42,7 @@ export function LeadCaptureSection() {
                 </h3>
 
                 <p className="mt-3 text-muted-foreground">
-                  If you’d like your school to offer the programme, we can help you express interest and start that conversation.
+                  If you’d like your school to offer the programme, we can help you express interest and start the conversation.
                 </p>
 
                 <ul className="mt-5 space-y-3 text-sm text-muted-foreground">
@@ -45,7 +52,11 @@ export function LeadCaptureSection() {
                 </ul>
               </div>
 
-              <Button asChild size="lg" className="mt-6 w-full">
+              <Button
+                asChild
+                size="lg"
+                className="mt-6 w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
+              >
                 <Link href="/contact">
                   Bring PATI to Your School
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -53,7 +64,9 @@ export function LeadCaptureSection() {
               </Button>
             </div>
 
-            <div className="flex flex-col justify-between rounded-2xl border border-primary/20 bg-primary/5 p-6 sm:p-8">
+            {/* Independent Route */}
+            <div className="flex flex-col justify-between rounded-2xl border border-primary/20 bg-primary/5 p-6 sm:p-8 transition-all hover:shadow-md hover:-translate-y-0.5">
+              
               <div>
                 <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
                   <User className="h-6 w-6 text-primary" />
@@ -77,14 +90,14 @@ export function LeadCaptureSection() {
               <Button
                 asChild
                 size="lg"
-                variant="outline"
-                className="mt-6 w-full border-primary/30 hover:bg-primary/10"
+                className="mt-6 w-full bg-primary/10 text-primary hover:bg-primary/20 font-semibold"
               >
                 <Link href="/contact">
                   Join Independently
                 </Link>
               </Button>
             </div>
+
           </div>
         </div>
       </div>
