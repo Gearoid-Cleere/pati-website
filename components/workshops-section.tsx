@@ -76,7 +76,7 @@ export function WorkshopsSection() {
 
         <div className="mb-12 text-center">
           <p className="text-sm text-muted-foreground">
-            Delivered as a structured 8-module programme (M1–M8), each session builds practical understanding and confidence for parents week by week.
+            Delivered as a structured 8-module programme (M1–M8) over 4 weeks, each session builds practical understanding and confidence for parents week by week.
           </p>
         </div>
 
