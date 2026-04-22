@@ -92,7 +92,7 @@ export function HeroSection() {
                 </div>
                 <div>
                   <p className="text-4xl font-bold">94%</p>
-                  <p className="text-sm text-primary-foreground/80">Would recommend</p>
+                  <p className="text-sm text-primary-foreground/80">Positive feedback</p>
                 </div>
                 <div>
                   <p className="text-4xl font-bold">18+</p>
