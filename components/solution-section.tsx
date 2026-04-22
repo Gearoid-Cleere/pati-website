@@ -6,27 +6,27 @@ const benefits = [
   {
     icon: Clock,
     title: "Minimal Staff Time",
-    description: "Your team shares our materials with parents. That is it. No preparation, facilitation, or follow-up required."
+    description: "Your team shares our materials with parents. No preparation, facilitation, or follow-up required."
   },
   {
     icon: Users,
     title: "Strong Parent Engagement",
-    description: "Proven promotional materials and convenient online timing consistently deliver strong parent attendance per session."
+    description: "Clear messaging and convenient online delivery help drive strong parent attendance across each session."
   },
   {
     icon: Presentation,
-    title: "Expert-Led Content",
-    description: "Sessions delivered by trained PATI facilitators who specialise in digital wellbeing — not your already-stretched staff."
+    title: "Expert-Led Sessions",
+    description: "All sessions are delivered by Dr Richard Hogan, an experienced family psychotherapist specialising in technology and family life."
   },
   {
     icon: Video,
     title: "Flexible Access",
-    description: "Parents who cannot attend live receive access to session recordings, maximising reach across your community."
+    description: "Parents who cannot attend live receive access to recordings, ensuring wider reach across your school community."
   },
   {
     icon: Target,
-    title: "Wellbeing Aligned",
-    description: "Content maps directly to SPHE requirements and school wellbeing priorities. Easy to evidence in your school improvement plan."
+    title: "Aligned to School Priorities",
+    description: "Content supports wellbeing priorities and aligns with SPHE, making it easy to integrate into your overall school approach."
   }
 ]
 
@@ -40,16 +40,16 @@ export function SolutionSection() {
               Why Schools Choose PATI
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6 text-balance">
-              High Impact, Low Effort
+              High Impact for Parents, Low Effort for Schools
             </h2>
             <p className="text-lg text-muted-foreground">
-              PATI is designed specifically for busy schools. We handle the complexity so you can offer something genuinely valuable to parents without adding to your workload.
+              PATI is designed specifically for busy schools. We handle the delivery, communication, and content so you can offer meaningful support to parents without adding to staff workload.
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {benefits.map((benefit, index) => (
-              <div 
+              <div
                 key={index}
                 className="bg-card p-6 rounded-xl border border-border hover:border-accent/30 transition-colors"
               >
@@ -61,9 +61,10 @@ export function SolutionSection() {
               </div>
             ))}
           </div>
-          
+
           <div className="mt-16 bg-secondary/50 rounded-2xl p-8 lg:p-10">
             <div className="grid lg:grid-cols-2 gap-8 items-start">
+
               <div>
                 <h3 className="text-2xl font-bold text-foreground mb-4">
                   What Your School Provides
@@ -71,29 +72,22 @@ export function SolutionSection() {
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
-                    <span className="text-foreground">Share our ready-made materials with parents</span>
+                    <span className="text-foreground">Share ready-made materials with parents</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
-                    <span className="text-foreground">Promote sessions via newsletter and email</span>
+                    <span className="text-foreground">Promote sessions through existing school channels</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
-                    <span className="text-foreground">Encourage participation across your school community</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
-                    <span className="text-foreground">Support a positive approach to technology</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
-                    <span className="text-foreground">Demonstrate commitment to student and parent wellbeing</span>
+                    <span className="text-foreground">Encourage participation across your parent community</span>
                   </li>
                 </ul>
                 <p className="text-sm text-muted-foreground mt-4">
-                  That is the full extent of your involvement. Everything else is handled by PATI.
+                  That is the full extent of your involvement.
                 </p>
               </div>
+
               <div>
                 <h3 className="text-2xl font-bold text-foreground mb-4">
                   What PATI Handles
@@ -101,28 +95,26 @@ export function SolutionSection() {
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
-                    <span className="text-foreground">Expert facilitator for every session</span>
+                    <span className="text-foreground">All live session delivery with Dr Richard Hogan</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
-                    <span className="text-foreground">All promotional materials (emails, flyers, graphics)</span>
+                    <span className="text-foreground">All communications (emails, reminders, materials)</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
-                    <span className="text-foreground">Parent handouts and take-home resources</span>
+                    <span className="text-foreground">Parent resources and take-home guidance</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
-                    <span className="text-foreground">Teacher-ready classroom resources and guidance</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
-                    <span className="text-foreground">Materials to support student wellbeing and digital awareness</span>
+                    <span className="text-foreground">Session recordings for flexible access</span>
                   </li>
                 </ul>
               </div>
+
             </div>
           </div>
+
         </div>
       </div>
     </section>
