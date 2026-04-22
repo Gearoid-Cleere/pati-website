@@ -101,12 +101,12 @@ export function HeroSection() {
               </div>
 
               <div className="mt-8 pt-6 border-t border-primary-foreground/20">
-                <p className="text-sm text-primary-foreground/90 italic">
-                  {"Finally, a parent programme that requires nothing from us but delivers real value. Parents are feeling confident and supported."}
-                </p>
-                <p className="text-sm font-medium mt-2 text-primary-foreground/70">
-                  - Deputy Principal, Dublin Primary School
-                </p>
+             <p className="text-sm text-primary-foreground/90 italic">
+  {"It reassured me that our approach is on the right track and made me feel much more confident as a parent."}
+</p>
+<p className="text-sm font-medium mt-2 text-primary-foreground/70">
+  — Aoife, Letterfrack National School
+</p>
               </div>
 
             </div>
