@@ -6,30 +6,30 @@ import {
   BadgeCheck,
   Gamepad2,
   EyeOff,
-  Users,
+  UserX,
   Smartphone,
   Monitor,
   Heart,
 } from "lucide-react"
 
 const modules = [
-  { title: "Age of Technology", description: "Understanding the digital landscape", icon: Clock },
-  { title: "Boundaries", description: "Setting healthy limits", icon: BadgeCheck },
-  { title: "Gaming", description: "Managing gaming habits", icon: Gamepad2 },
-  { title: "Pornography", description: "Protection and conversations", icon: EyeOff },
-  { title: "Bullying", description: "Prevention and response", icon: Users },
-  { title: "Social Media & Anxiety", description: "Mental health impacts", icon: Smartphone },
-  { title: "Technology & Devices", description: "Practical device management", icon: Monitor },
-  { title: "Thriving as a Family", description: "Building healthy relationships", icon: Heart },
+  { title: "M1: Age of Technology", description: "Understanding the digital world children are growing up in", icon: Clock },
+  { title: "M2: Boundaries", description: "Setting healthy limits around devices and screen time", icon: BadgeCheck },
+  { title: "M3: Gaming", description: "Managing gaming habits and understanding what parents need to know", icon: Gamepad2 },
+  { title: "M4: Pornography", description: "How to protect children and approach difficult conversations", icon: EyeOff },
+  { title: "M5: Bullying", description: "Recognising issues early and responding well", icon: UserX },
+  { title: "M6: Social Media & Anxiety", description: "Understanding the link between online life and wellbeing", icon: Smartphone },
+  { title: "M7: Technology & Devices", description: "Practical guidance on phones, apps, and device use at home", icon: Monitor },
+  { title: "M8: Thriving as a Family", description: "Building a healthier family relationship with technology", icon: Heart },
 ]
 
 const included = [
-  "Expert facilitator for every session",
-  "Promotional emails and newsletter copy",
-  "Social media graphics and printable flyers",
-  "Parent handouts and take-home guides",
+  "Live online sessions led by Dr Richard Hogan",
+  "Ready-to-send parent communications",
+  "Promotional materials for the school",
+  "Parent handouts and practical take-home resources",
   "Access to session recordings",
-  "Attendance reports and impact summary",
+  "A simple, low-effort process for school staff",
 ]
 
 export function WorkshopsSection() {
@@ -46,7 +46,7 @@ export function WorkshopsSection() {
           </h2>
 
           <p className="text-lg text-muted-foreground">
-            Parents take part in expert-led sessions focused on the real challenges of raising children in a digital world, with practical guidance they can apply at home.
+            Parents take part in practical, expert-led sessions focused on the real challenges of raising children in a digital world, with guidance they can apply at home straight away.
           </p>
         </div>
 
@@ -76,7 +76,7 @@ export function WorkshopsSection() {
 
         <div className="mb-12 text-center">
           <p className="text-sm text-muted-foreground">
-            Schools can select individual modules or run the full programme across a series of sessions.
+            Delivered as a structured 8-module programme (M1–M8), each session builds practical understanding and confidence for parents week by week.
           </p>
         </div>
 
@@ -96,7 +96,7 @@ export function WorkshopsSection() {
             </div>
 
             <p className="mt-8 text-center text-sm text-muted-foreground">
-              Everything needed to deliver a high-quality parent experience, with practical support for families and minimal additional workload for your school.
+              Everything is designed to create a high-quality parent experience while keeping the process straightforward for your school.
             </p>
           </div>
         </div>
