@@ -43,7 +43,7 @@ export function HowItWorksSection() {
             Four Simple Steps
           </h2>
           <p className="text-lg text-muted-foreground">
-            PATI is designed to be simple for schools to run. We handle the delivery and parent communications, so your team can offer meaningful support with minimal extra work.
+            PATI is designed to be simple for schools to run. We handle the delivery and parent communications, so your school can offer meaningful support with minimal extra work.
           </p>
         </div>
 
