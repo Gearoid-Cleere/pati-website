@@ -6,7 +6,7 @@ const testimonials = [
   {
     quote: "You’ll get very practical advice from an expert who has lived it with his own family. I feel much more equipped to manage what’s coming as my children get older.",
     author: "Niamh",
-    school: "Scoil Mhuire Griffith Avenue"
+    school: "Scoil Mhuire, Griffith Avenue"
   },
   {
     quote: "It’s practical and down to earth. It reassured me that our approach is on the right track and helped me feel more confident about the future.",
