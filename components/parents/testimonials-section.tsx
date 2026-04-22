@@ -5,19 +5,19 @@ const testimonials = [
     quote:
       "It reassured me that our approach is on the right track and made me feel much more confident as a parent.",
     author: "Aoife",
-    role: "Letterfrack National School",
+    school: "Letterfrack National School",
   },
   {
     quote:
-      "I feel more empowered and better able to manage my child’s use of devices, set boundaries, and deal with challenges.",
-    author: "Jennifer",
-    role: "Parent",
+      "You’ll get very practical advice from an expert who has lived it with his own family. I feel much more equipped to manage what’s coming as my children get older.",
+    author: "Niamh",
+    school: "Scoil Mhuire Griffith Avenue",
   },
   {
     quote:
-      "It gave me practical ways to handle real situations at home and helped me feel more calm, confident, and in control.",
-    author: "PATI parent",
-    role: "",
+      "It gave me added confidence and practical tools I could use straight away at home. I’ve even changed the language and approach we use around screen time.",
+    author: "Fionnuala Ní Chonaire",
+    school: "Scoil na bhForbacha",
   },
 ]
 
@@ -53,11 +53,9 @@ export function TestimonialsSection() {
                 <p className="font-semibold text-foreground">
                   {testimonial.author}
                 </p>
-                {testimonial.role && (
-                  <p className="text-sm text-muted-foreground mt-1">
-                    {testimonial.role}
-                  </p>
-                )}
+                <p className="text-sm text-muted-foreground mt-1">
+                  {testimonial.school}
+                </p>
               </div>
             </div>
           ))}
