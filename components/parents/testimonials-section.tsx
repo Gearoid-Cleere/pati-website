@@ -9,7 +9,7 @@ const testimonials = [
   },
   {
     quote:
-      "I feel more empowered and better able to manage my child’s use of devices, set boundaries, and deal with online challenges.",
+      "I feel more empowered and better able to manage my child’s use of devices, set boundaries, and deal with challenges.",
     author: "Jennifer",
     role: "Parent",
   },
