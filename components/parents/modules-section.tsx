@@ -50,7 +50,7 @@ const modules = [
   },
   {
     number: "M7",
-    title: "Technology & Devices Workshop",
+    title: "Technology & Devices",
     description: "Practical guidance on phones, apps, and device use at home",
     icon: Monitor,
   },
