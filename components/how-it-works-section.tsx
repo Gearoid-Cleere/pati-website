@@ -24,7 +24,7 @@ const steps = [
   },
   {
     number: "04",
-    title: "Resources Shared Afterward",
+    title: "Resources Shared",
     highlight: "Flexible access",
     description:
       "Parents receive recordings and follow-up resources after each session, helping more families benefit even if they cannot attend live.",
