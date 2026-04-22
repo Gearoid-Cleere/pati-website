@@ -30,11 +30,13 @@ export function PricingSection() {
           <p className="text-sm font-semibold tracking-widest text-accent uppercase mb-4">
             Pricing
           </p>
+
           <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight mb-6 text-balance">
             Simple and Transparent Pricing
           </h2>
+
           <p className="text-lg text-muted-foreground">
-            A straightforward model for schools, with low-cost access for parents once a school is registered.
+            A simple model for schools, with low-cost access for parents once the school is registered.
           </p>
         </div>
 
@@ -64,7 +66,7 @@ export function PricingSection() {
           <div className="bg-card rounded-2xl border border-border p-8 lg:p-10">
             <div className="mb-8">
               <h3 className="text-xl font-semibold text-foreground mb-2">For Parents</h3>
-              <span className="text-4xl font-bold text-primary">€8.95</span>
+              <span className="text-4xl font-bold text-primary">€14.95</span>
               <p className="text-muted-foreground mt-1">Per parent through a registered school</p>
               <p className="text-sm text-muted-foreground mt-2">
                 Parents join individually once their school is registered with PATI.
@@ -83,7 +85,7 @@ export function PricingSection() {
         </div>
 
         <p className="text-center text-muted-foreground mb-10">
-          Schools register once, and parents can then access the programme at a reduced rate through the school.
+          Schools register annually, giving parents access to the programme at a reduced rate through the school.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
