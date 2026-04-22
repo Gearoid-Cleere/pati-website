@@ -6,35 +6,36 @@ const features = [
   {
     icon: Monitor,
     title: "Live Online Sessions",
-    description: "All sessions are delivered live online, making it easy for parents to join from home. No venue booking or setup required from your school."
+    description:
+      "All sessions are delivered live online, making it easy for parents to join from home. No venue booking or on-site setup required from your school.",
   },
   {
     icon: PlayCircle,
     title: "Recordings Available",
-    description: "Every session is recorded and shared with registered parents, ensuring those who cannot attend live can still benefit."
+    description:
+      "Each session is recorded and shared afterward, so parents who cannot attend live can still benefit from the programme.",
   },
   {
     icon: Mail,
     title: "School Communications Provided",
-    description: "We provide all promotional materials, including emails, newsletter copy, and social media graphics. Simply share with your parent community."
-  }
+    description:
+      "We provide ready-to-send parent communications and promotional materials for the school. Your team simply shares them through existing channels.",
+  },
 ]
 
 const benefits = [
   "No venue or equipment needed",
-  "Higher parent attendance rates",
-  "Flexible timing for busy families",
-  "Recordings extend reach to all parents",
+  "Accessible for busy families",
+  "Flexible live and recorded access",
   "Minimal administrative burden",
-  "Consistent, professional delivery"
+  "Consistent, professional delivery",
+  "Simple for staff to manage",
 ]
 
 export function DeliverySection() {
   return (
     <section className="py-20 lg:py-28">
       <div className="container mx-auto px-6">
-        
-        {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-16">
           <p className="text-accent font-semibold text-sm uppercase tracking-wider mb-3">
             How It Works for Your School
@@ -45,14 +46,13 @@ export function DeliverySection() {
           </h2>
 
           <p className="text-lg text-muted-foreground">
-            PATI manages the full delivery of the programme—from parent communications and registration to live sessions and follow-up resources—so your school can support families without adding to staff workload.
+            PATI manages the delivery of the programme, including parent communications, live sessions, recordings, and follow-up resources, so your school can support families without adding to staff workload.
           </p>
         </div>
 
-        {/* Features */}
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
           {features.map((feature, index) => (
-            <div 
+            <div
               key={index}
               className="bg-card rounded-xl p-6 border border-border"
             >
@@ -71,7 +71,6 @@ export function DeliverySection() {
           ))}
         </div>
 
-        {/* Benefits */}
         <div className="bg-secondary/50 rounded-2xl p-8 lg:p-10 max-w-4xl mx-auto">
           <h3 className="text-xl font-bold text-foreground text-center mb-6">
             Why This Works for Schools
@@ -86,7 +85,6 @@ export function DeliverySection() {
             ))}
           </div>
         </div>
-
       </div>
     </section>
   )
