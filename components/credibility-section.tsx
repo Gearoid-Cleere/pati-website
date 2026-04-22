@@ -14,7 +14,7 @@ export function CredibilitySection() {
           </h2>
 
           <p className="text-lg text-muted-foreground mb-10 max-w-2xl mx-auto">
-            PATI is delivering parent education across primary and secondary schools throughout Ireland. Our network includes national schools, secondary schools, and Educate Together schools.
+            PATI is working with primary and secondary schools across Ireland to support parents navigating technology and family life. Schools include national schools, secondary schools, and Educate Together schools.
           </p>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-8 border-y border-border">
@@ -30,7 +30,7 @@ export function CredibilitySection() {
 
             <div>
               <p className="text-3xl md:text-4xl font-bold text-primary">94%</p>
-              <p className="text-sm text-muted-foreground mt-1">Would recommend</p>
+              <p className="text-sm text-muted-foreground mt-1">Positive feedback from parents</p>
             </div>
 
             <div>
@@ -40,7 +40,7 @@ export function CredibilitySection() {
           </div>
 
           <p className="text-sm text-muted-foreground mt-8">
-            Request our information pack to see case studies and testimonials from schools like yours.
+            Schools can request further information, including examples of how the programme has been delivered in other school communities.
           </p>
         </div>
       </div>
