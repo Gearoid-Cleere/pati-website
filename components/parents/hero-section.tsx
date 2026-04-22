@@ -28,17 +28,21 @@ export function HeroSection() {
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
-              <Button size="lg" asChild className="shadow-md">
+
+              {/* PRIMARY CTA */}
+              <Button size="lg" asChild className="shadow-md font-semibold">
                 <Link href="/contact">
-                  Bring PATI to Your School
+                  Get PATI in Your School
                 </Link>
               </Button>
 
+              {/* SECONDARY CTA */}
               <Button size="lg" variant="outline" asChild>
-                <Link href="/contact">
-                  Join Independently
+                <Link href="#modules">
+                  See What You’ll Learn
                 </Link>
               </Button>
+
             </div>
           </div>
 
