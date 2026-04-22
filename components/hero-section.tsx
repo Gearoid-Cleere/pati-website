@@ -53,7 +53,7 @@ export function HeroSection() {
                 className="gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-6 text-base"
               >
                 <Link href="/schools">
-                  Register Your School
+                  Express Interest
                   <ArrowRight className="h-5 w-5" />
                 </Link>
               </Button>
@@ -66,7 +66,7 @@ export function HeroSection() {
                 className="gap-2 px-6 py-6 text-base"
               >
                 <Link href="/contact">
-                  Download School Information Pack
+                  Request Information Pack
                 </Link>
               </Button>
 
