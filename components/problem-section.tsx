@@ -5,23 +5,23 @@ import { HelpCircle, Clock, Users, Heart } from "lucide-react"
 const challenges = [
   {
     icon: HelpCircle,
-    title: "Parents are asking for help",
-    description: "School offices receive constant enquiries from parents unsure how to manage their children's technology use."
+    title: "Parents are looking for guidance",
+    description: "Many parents are unsure how to manage smartphones, gaming, social media, and screen time at home."
   },
   {
     icon: Clock,
-    title: "Staff do not have time",
-    description: "Teachers and wellbeing leads are already stretched — they cannot add another programme to their workload."
+    title: "Staff have limited capacity",
+    description: "Teachers and school leaders are already stretched. Most schools do not have the time to build and run an additional parent programme."
   },
   {
     icon: Users,
-    title: "Generic advice does not work",
-    description: "Parents need practical, age-specific strategies — not vague warnings about screen time."
+    title: "Parents need practical support",
+    description: "Generic advice is rarely enough. Parents respond best to clear, realistic strategies they can apply in everyday family life."
   },
   {
     icon: Heart,
-    title: "Wellbeing is a school priority",
-    description: "Technology's impact on student wellbeing is clear, but schools need expert support to address it effectively."
+    title: "Student wellbeing matters",
+    description: "The impact of technology on children and teenagers is now a real concern for many school communities, but schools need expert support to respond well."
   }
 ]
 
@@ -34,16 +34,16 @@ export function ProblemSection() {
             The Challenge
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6 text-balance">
-            Schools Need Expert Support to Help Parents
+            Schools Want to Support Parents — But Cannot Do It Alone
           </h2>
           <p className="text-lg text-muted-foreground text-pretty">
-            Parents are overwhelmed by technology challenges at home. They are looking to schools for guidance — but most schools lack the resources to deliver meaningful support.
+            Parents are navigating increasingly complex technology issues at home, and many look to schools for help. But most schools do not have the time, internal resource, or specialist expertise to provide that support in a consistent and meaningful way.
           </p>
         </div>
-        
+
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {challenges.map((challenge, index) => (
-            <div 
+            <div
               key={index}
               className="bg-card p-6 rounded-lg border border-border hover:border-accent/30 transition-colors"
             >
