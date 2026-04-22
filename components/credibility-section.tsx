@@ -30,7 +30,7 @@ export function CredibilitySection() {
 
             <div>
               <p className="text-3xl md:text-4xl font-bold text-primary">94%</p>
-              <p className="text-sm text-muted-foreground mt-1">Positive feedback from parents</p>
+              <p className="text-sm text-muted-foreground mt-1">Positive feedback</p>
             </div>
 
             <div>
