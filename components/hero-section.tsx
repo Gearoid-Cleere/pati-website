@@ -102,7 +102,7 @@ export function HeroSection() {
 
               <div className="mt-8 pt-6 border-t border-primary-foreground/20">
              <p className="text-sm text-primary-foreground/90 italic">
-  {"It reassured me that our approach is on the right track and made me feel much more confident as a parent."}
+  {"It reassured me that our approach was on the right track and made me feel much more confident as a parent."}
 </p>
 <p className="text-sm font-medium mt-2 text-primary-foreground/70">
   — Aoife, Letterfrack National School
