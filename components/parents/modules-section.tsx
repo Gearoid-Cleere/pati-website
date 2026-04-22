@@ -66,34 +66,37 @@ export function ModulesSection() {
   return (
     <section id="modules" className="bg-muted/30 py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
+
+        {/* Header */}
+        <div className="mx-auto max-w-3xl text-center mb-16">
           <p className="text-accent font-semibold text-sm uppercase tracking-wider mb-3">
             What You’ll Learn
           </p>
 
           <h2 className="text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            A structured programme built around the real issues parents face
+            A structured programme built around the real challenges families face
           </h2>
 
           <p className="mt-4 text-pretty text-lg text-muted-foreground">
-            The PATI programme is delivered across eight focused modules, giving you practical guidance on the key technology issues affecting family life today.
+            The PATI programme is delivered across eight focused modules, giving you practical guidance on the key technology challenges facing families today.
           </p>
         </div>
 
-        <div className="mx-auto mt-12 grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {/* Modules Grid */}
+        <div className="mx-auto grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {modules.map((module, index) => {
             const IconComponent = module.icon
 
             return (
               <div
                 key={index}
-                className="rounded-xl border border-border bg-card p-6 transition-all hover:shadow-md"
+                className="rounded-xl border border-border bg-card p-6 transition-all hover:shadow-md hover:-translate-y-0.5"
               >
                 <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-muted">
                   <IconComponent className="h-6 w-6 text-foreground/70" />
                 </div>
 
-                <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-accent">
+                <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-accent">
                   {module.number}
                 </p>
 
@@ -109,11 +112,13 @@ export function ModulesSection() {
           })}
         </div>
 
-        <div className="mx-auto mt-10 max-w-3xl text-center">
+        {/* Footer Note */}
+        <div className="mx-auto mt-12 max-w-3xl text-center">
           <p className="text-sm text-muted-foreground">
             Delivered as a structured 8-module programme (M1–M8) across 4 live online sessions, with recordings available for flexibility.
           </p>
         </div>
+
       </div>
     </section>
   )
