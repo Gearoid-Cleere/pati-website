@@ -14,6 +14,7 @@ export function WhyThisMattersSection() {
         </div>
 
         <div className="grid gap-8 md:grid-cols-2 md:gap-12">
+          
           {/* The Impact */}
           <div className="rounded-2xl border border-border bg-card p-8 md:p-10">
             <div className="mb-6 flex items-center gap-3">
@@ -29,14 +30,14 @@ export function WhyThisMattersSection() {
               <li className="flex gap-3">
                 <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-destructive/60" />
                 <span className="text-muted-foreground">
-                  <strong className="text-foreground">Distraction during the working day</strong> — employees preoccupied with concerns about devices, gaming, social media, and online activity
+                  <strong className="text-foreground">Distraction during the working day</strong> — employees preoccupied with devices, gaming, social media, and online activity
                 </span>
               </li>
 
               <li className="flex gap-3">
                 <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-destructive/60" />
                 <span className="text-muted-foreground">
-                  <strong className="text-foreground">Ongoing stress at home</strong> — uncertainty around boundaries, sleep, conflict, online safety, and what is reasonable to allow
+                  <strong className="text-foreground">Ongoing stress at home</strong> — uncertainty around boundaries, sleep, conflict, and what is reasonable to allow
                 </span>
               </li>
 
@@ -64,25 +65,26 @@ export function WhyThisMattersSection() {
               <li className="flex gap-3">
                 <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-primary/60" />
                 <span className="text-muted-foreground">
-                  <strong className="text-foreground">These challenges do not stay at home</strong> — they affect focus, wellbeing, performance, and engagement
+                  <strong className="text-foreground">These challenges do not stay at home</strong> — they directly affect focus, wellbeing, and performance at work
                 </span>
               </li>
 
               <li className="flex gap-3">
                 <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-primary/60" />
                 <span className="text-muted-foreground">
-                  <strong className="text-foreground">Working parents need practical support</strong> — not theory, but clear tools they can apply in everyday family life
+                  <strong className="text-foreground">Working parents need practical support</strong> — clear, realistic tools they can apply in everyday family life
                 </span>
               </li>
 
               <li className="flex gap-3">
                 <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-primary/60" />
                 <span className="text-muted-foreground">
-                  <strong className="text-foreground">Organisations can respond meaningfully</strong> — by supporting employees in a visible, relevant, and practical way
+                  <strong className="text-foreground">Organisations can respond meaningfully</strong> — by supporting employees in a way that is visible, relevant, and practical
                 </span>
               </li>
             </ul>
           </div>
+
         </div>
       </div>
     </section>
