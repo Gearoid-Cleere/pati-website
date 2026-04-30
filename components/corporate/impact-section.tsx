@@ -2,28 +2,28 @@ import { Heart, Target, Shield, Users } from "lucide-react"
 
 const impacts = [
   {
-    icon: Heart,
-    title: "Improved employee wellbeing",
-    description:
-      "Employees gain practical strategies to reduce family-related stress and feel more supported in managing challenges at home.",
-  },
-  {
     icon: Target,
-    title: "Better focus and performance",
+    title: "A clear understanding of what is happening",
     description:
-      "When home pressures are reduced, employees are better able to concentrate, contribute, and perform consistently at work.",
+      "Understand the challenges families are facing with technology — and how these are showing up in employee stress, distraction, and performance at work.",
   },
   {
     icon: Shield,
-    title: "Stronger support for working parents",
+    title: "A practical framework you can apply",
     description:
-      "The programme gives organisations a visible and credible way to support employees with children in the digital age.",
+      "A simple, structured approach to supporting employees dealing with technology-related challenges at home.",
   },
   {
     icon: Users,
-    title: "Greater engagement and retention",
+    title: "What actually works in practice",
     description:
-      "A more relevant wellbeing offering can strengthen employee engagement and contribute positively to culture and retention.",
+      "Insights from working directly with families and organisations — what helps, what does not, and where to focus.",
+  },
+  {
+    icon: Heart,
+    title: "A more relevant approach to wellbeing",
+    description:
+      "Support employees in a way that is visible, practical, and directly connected to real pressures they are facing.",
   },
 ]
 
@@ -33,10 +33,10 @@ export function ImpactSection() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="mb-16 text-center">
           <h2 className="font-serif text-3xl font-medium tracking-tight text-foreground md:text-4xl">
-            What organisations can expect
+            What you will take away from this session
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-            A more visible, practical, and credible approach to supporting working parents across your organisation.
+            A clear, practical understanding of the issue — and a framework you can apply within your organisation.
           </p>
         </div>
 
