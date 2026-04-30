@@ -18,11 +18,11 @@ export function HeroSection() {
             </p>
 
             <h1 className="mt-5 font-serif text-4xl font-medium leading-tight tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-              Supporting working parents today
+              Employee Stress Doesn’t Start at Work — It Starts at Home
             </h1>
 
             <p className="mt-5 text-lg leading-relaxed text-muted-foreground sm:text-xl">
-              A structured, year-round programme designed to reduce family-related stress, strengthen employee wellbeing, and improve engagement across your organisation.
+             Children’s use of smartphones, gaming, and social media is creating real pressure for families — and increasingly impacting employee focus, stress, and wellbeing at work.
             </p>
 
             <div className="mt-8 flex flex-col items-start">
@@ -32,13 +32,13 @@ export function HeroSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Join Executive Briefing – Thursday 7 May
+                  Register for Executive Briefing
                   <ArrowRight className="h-5 w-5" />
                 </a>
               </Button>
 
               <p className="mt-3 text-sm text-muted-foreground">
-                12:30 – 13:15 | Live online
+                14:00 – 14:45 | Live online
               </p>
 
               <p className="mt-1 text-xs text-muted-foreground">
