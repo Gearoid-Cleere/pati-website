@@ -37,9 +37,9 @@ export function HeroSection() {
                 </a>
               </Button>
 
-              <p className="mt-3 text-sm text-muted-foreground">
-                14:00 – 14:45 | Live online
-              </p>
+              </p><p className="mt-3 text-sm text-muted-foreground">
+  Thursday 21st May at 2:00pm | Live online
+</p>
 
               <p className="mt-1 text-xs text-muted-foreground">
                 Free to attend | Limited places
