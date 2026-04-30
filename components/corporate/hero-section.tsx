@@ -32,7 +32,7 @@ export function HeroSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Register for Executive Briefing
+                  Register for Executive Briefing (21 May, 2pm)
                   <ArrowRight className="h-5 w-5" />
                 </a>
               </Button>
