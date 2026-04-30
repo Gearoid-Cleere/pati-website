@@ -14,7 +14,7 @@ export function HeroSection() {
           {/* Left Content */}
           <div className="max-w-xl">
             <p className="text-sm font-medium uppercase tracking-[0.2em] text-accent">
-              Corporate Wellbeing Programme
+              Executive Briefing for HR & People Leaders
             </p>
 
             <h1 className="mt-5 font-serif text-4xl font-medium leading-tight tracking-tight text-foreground sm:text-5xl lg:text-6xl">
