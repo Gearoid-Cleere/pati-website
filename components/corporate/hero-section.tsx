@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Download } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 
 export function HeroSection() {
   return (
@@ -11,8 +11,10 @@ export function HeroSection() {
 
       <div className="relative z-10 mx-auto max-w-6xl px-6">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-          {/* Left Content */}
+
+          {/* LEFT CONTENT */}
           <div className="max-w-xl">
+
             <p className="text-sm font-medium uppercase tracking-[0.2em] text-accent">
               Executive Briefing for HR & People Leaders
             </p>
@@ -22,45 +24,43 @@ export function HeroSection() {
             </h1>
 
             <p className="mt-5 text-lg leading-relaxed text-muted-foreground sm:text-xl">
-             Children’s use of smartphones, gaming, and social media is creating real pressure for families — and increasingly impacting employee focus, stress, and wellbeing at work.
+              Children’s use of smartphones, gaming, and social media is creating real pressure for families — and increasingly impacting employee focus, stress, and wellbeing at work.
+            </p>
+
+            <p className="mt-3 text-base text-muted-foreground">
+              A short, practical executive briefing for HR and People leaders.
             </p>
 
             <div className="mt-8 flex flex-col items-start">
+
               <Button asChild size="lg" className="h-14 gap-2 px-8 text-base font-semibold shadow-lg">
                 <a
                   href="https://us06web.zoom.us/webinar/register/WN_sP_4iBuIS2-4sJzv2P4t5g"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Register for Executive Briefing (21 May, 2pm)
+                  Register for Executive Briefing
                   <ArrowRight className="h-5 w-5" />
                 </a>
               </Button>
 
-              </p><p className="mt-3 text-sm text-muted-foreground">
-  Thursday 21st May at 2:00pm | Live online
-</p>
+              <p className="mt-3 text-sm text-muted-foreground">
+                Thursday 21st May at 2:00pm | Live online
+              </p>
 
               <p className="mt-1 text-xs text-muted-foreground">
                 Free to attend | Limited places
               </p>
 
-              <div className="mt-5">
-                <Button asChild size="lg" variant="outline" className="h-14 gap-2 px-8 text-base">
-                  <Link href="/contact">
-                    <Download className="h-5 w-5" />
-                    Get Corporate Overview
-                  </Link>
-                </Button>
-              </div>
             </div>
           </div>
 
-          {/* Right Visual */}
+          {/* RIGHT VISUAL */}
           <div className="relative hidden lg:block">
             <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-secondary">
               <div className="flex h-full items-center justify-center">
                 <div className="text-center">
+
                   <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-primary/10">
                     <svg
                       className="h-10 w-10 text-primary"
@@ -78,12 +78,14 @@ export function HeroSection() {
                   </div>
 
                   <p className="text-sm font-medium text-muted-foreground">
-                    Supporting working families
+                    Supporting employees and families in a digital world
                   </p>
+
                 </div>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
