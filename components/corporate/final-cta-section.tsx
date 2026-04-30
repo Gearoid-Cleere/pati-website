@@ -10,16 +10,16 @@ export function FinalCtaSection() {
         
         <h2 className="font-serif text-3xl font-medium tracking-tight text-foreground md:text-4xl lg:text-5xl">
           <span className="text-balance">
-            Join Our Executive Briefing
+            Join the Executive Briefing
           </span>
         </h2>
 
         <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-          A short session for HR and People leaders exploring how organisations can better support working parents in a digital world.
+          A short, practical session for HR and People leaders on what is happening in families — and how it is impacting employees at work.
         </p>
 
         <p className="mt-4 text-sm text-muted-foreground">
-          Thursday 7 May | 12:30 – 13:15 | Live online
+          Thursday 21st May at 2:00pm | Live online
         </p>
 
         <div className="mt-10 flex flex-col items-center gap-4">
@@ -30,7 +30,7 @@ export function FinalCtaSection() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Join Executive Briefing – Thursday 7 May
+              Register for Executive Briefing
               <ArrowRight className="h-5 w-5" />
             </a>
           </Button>
