@@ -6,33 +6,48 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Download, FileText } from "lucide-react"
 
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mbdwywav"
+
 export function DownloadSection() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [error, setError] = useState("")
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setError("")
 
-    const formData = new FormData(e.currentTarget)
+    const form = e.currentTarget
+    const formData = new FormData(form)
 
-    const lead = {
-      name: formData.get("name"),
-      email: formData.get("email"),
-      organisation: formData.get("organisation"),
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      })
+
+      if (!response.ok) {
+        throw new Error("Form submission failed")
+      }
+
+      const link = document.createElement("a")
+      link.href = "/corporate-wellbeing-overview.pdf"
+      link.download = "corporate-wellbeing-overview.pdf"
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+
+      setSubmitted(true)
+      form.reset()
+    } catch (err) {
+      setError("Sorry, something went wrong. Please try again or contact us directly.")
+    } finally {
+      setIsSubmitting(false)
     }
-
-    console.log("Corporate wellbeing overview download lead:", lead)
-
-    const link = document.createElement("a")
-    link.href = "/corporate-wellbeing-overview.pdf"
-    link.download = "corporate-wellbeing-overview.pdf"
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-
-    setSubmitted(true)
-    setIsSubmitting(false)
   }
 
   return (
@@ -148,6 +163,12 @@ export function DownloadSection() {
                     className="h-12"
                   />
                 </div>
+
+                {error && (
+                  <p className="text-sm text-destructive">
+                    {error}
+                  </p>
+                )}
 
                 <Button
                   type="submit"
