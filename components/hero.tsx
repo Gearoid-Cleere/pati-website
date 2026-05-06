@@ -26,37 +26,34 @@ export function Hero() {
 
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row lg:mt-12">
             <Button
-              variant="outline"
               size="lg"
               asChild
-              className="h-14 min-w-[220px] border px-8 text-[15px] font-medium"
+              className="h-14 min-w-[190px] px-6 text-[15px] font-medium"
             >
               <Link href="/parents">
-                Explore Support for Parents
+                Support for Parents
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
 
             <Button
-              variant="outline"
               size="lg"
               asChild
-              className="h-14 min-w-[220px] border px-8 text-[15px] font-medium"
+              className="h-14 min-w-[190px] px-6 text-[15px] font-medium"
             >
               <Link href="/schools">
-                Explore Support for Schools
+                Support for Schools
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
 
             <Button
-              variant="outline"
               size="lg"
               asChild
-              className="h-14 min-w-[220px] border px-8 text-[15px] font-medium"
+              className="h-14 min-w-[190px] px-6 text-[15px] font-medium"
             >
               <Link href="/organisations">
-                Explore Support for Organisations
+                Support for Organisations
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
