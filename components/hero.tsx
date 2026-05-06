@@ -6,27 +6,33 @@ export function Hero() {
   return (
     <section className="relative bg-background">
       <div className="mx-auto max-w-7xl px-6 pb-24 pt-16 sm:px-8 lg:px-12 lg:pb-28 lg:pt-20">
-        <div className="mx-auto max-w-3xl text-center">
+        <div className="mx-auto max-w-4xl text-center">
           <h1 className="font-serif text-[2.75rem] font-normal leading-[1.1] tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-[4.25rem]">
             <span className="text-balance">
-              Helping Families Navigate
+              Parenting in a Digital World
               <br className="hidden sm:block" />
-              Technology with Confidence
+              Has Changed Dramatically
             </span>
           </h1>
 
-          <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground lg:mt-8 lg:text-xl">
-            Expert-led programmes supporting families, schools and organisations to manage children&apos;s technology use with clarity and confidence.
-          </p>
+          <div className="mx-auto mt-6 max-w-2xl space-y-4 text-lg leading-relaxed text-muted-foreground lg:mt-8 lg:text-xl">
+            <p>
+              Technology is reshaping family life — and the effects are increasingly being felt at home, in schools, and in the workplace.
+            </p>
+            <p>
+              The Parenting and Technology Institute supports parents, schools, and organisations through practical guidance, programmes, and support for modern family life.
+            </p>
+          </div>
 
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row lg:mt-12">
             <Button
+              variant="outline"
               size="lg"
               asChild
-              className="h-14 min-w-[200px] px-8 text-[15px] font-medium"
+              className="h-14 min-w-[220px] border px-8 text-[15px] font-medium"
             >
-              <Link href="/schools">
-                Register Your School
+              <Link href="/parents">
+                Explore Support for Parents
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
@@ -35,20 +41,25 @@ export function Hero() {
               variant="outline"
               size="lg"
               asChild
-              className="h-14 min-w-[200px] border px-8 text-[15px] font-medium"
+              className="h-14 min-w-[220px] border px-8 text-[15px] font-medium"
             >
-              <Link href="/parents">Join as a Parent</Link>
+              <Link href="/schools">
+                Explore Support for Schools
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
             </Button>
-          </div>
 
-          <div className="mt-8">
-            <Link
-              href="/organisations"
-              className="inline-flex items-center text-sm text-muted-foreground transition-colors hover:text-foreground"
+            <Button
+              variant="outline"
+              size="lg"
+              asChild
+              className="h-14 min-w-[220px] border px-8 text-[15px] font-medium"
             >
-              Looking for corporate wellbeing solutions?
-              <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
-            </Link>
+              <Link href="/organisations">
+                Explore Support for Organisations
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
           </div>
         </div>
       </div>
