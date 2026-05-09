@@ -59,14 +59,13 @@ const featuredMembers = [
     bio:
       "Garry works across education, institutional development, and programme strategy, supporting the Institute’s mission to deliver practical guidance for families, schools, and organisations.",
   },
-  {
-    name: "Dr James Trimble",
-    title: "Advisory Contributor",
-    image: "/james-trimble.jpg",
-    bio:
-      "James contributes expertise across research, education, and professional learning, supporting the Institute’s multidisciplinary and evidence-informed approach.",
-  },
-]
+{
+  name: "Dr James Trimble",
+  title: "Education Leader & Advisory Contributor",
+  image: "/james-trimble.jpg",
+  bio:
+    "James is an experienced education leader and Principal of a community college in Wexford, bringing valuable perspective on school leadership, student wellbeing, and the practical challenges facing school communities in the digital age.",
+},]
 
 export default function AdvisoryCouncilPage() {
   return (
