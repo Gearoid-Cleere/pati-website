@@ -54,7 +54,7 @@ const featuredMembers = [
   },
   {
     name: "Garry Cleere",
-    title: "Programme Director",
+    title: "Programme Director & Co-Founder",
     image: "/garry-cleere.jpg",
     bio:
       "Garry works across education, institutional development, and programme strategy, supporting the Institute’s mission to deliver practical guidance for families, schools, and organisations.",
