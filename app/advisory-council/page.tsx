@@ -179,7 +179,7 @@ export default function AdvisoryCouncilPage() {
             {/* Featured Members */}
             <div className="mb-20">
               <h2 className="mb-4 text-center font-serif text-2xl font-medium text-primary">
-                Featured Advisory Council Members
+                Founding Advisory Contributors
               </h2>
 
               <p className="mx-auto mb-12 max-w-3xl text-center leading-relaxed text-muted-foreground">
