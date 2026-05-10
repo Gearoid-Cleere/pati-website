@@ -1,21 +1,21 @@
 const reflections = [
   {
     quote:
-      "For the first time, I felt someone really understood the pressure families are under around technology. It was calm, practical and reassuring.",
+      "It was supportive, not directive. It helped me understand that we are not the only family trying to navigate this and that no parent is getting it perfect.",
+    author: "Parent",
+    role: "School community participant",
+  },
+  {
+    quote:
+      "It helped us approach these conversations more calmly and confidently. We’ve already introduced clearer family boundaries around phones and screen time.",
     author: "Parent",
     role: "PATI participant",
   },
   {
     quote:
-      "The guidance helped our school community approach these conversations with more confidence and less fear. It gave parents language, structure and support.",
-    author: "School leader",
-    role: "Primary school community",
-  },
-  {
-    quote:
-      "This is the kind of support working parents need — thoughtful, practical and relevant to what is actually happening in family life today.",
-    author: "People leader",
-    role: "Organisation participant",
+      "The programme reassured me that a balanced, practical approach is possible. I left feeling more informed, more empowered and less overwhelmed.",
+    author: "Parent",
+    role: "School community participant",
   },
 ]
 
