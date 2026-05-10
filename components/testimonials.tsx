@@ -1,48 +1,58 @@
-const testimonials = [
+const reflections = [
   {
     quote:
-      "PATI gave us practical tools we could implement immediately. The sessions were insightful and the ongoing support has been invaluable for our family.",
-    author: "Sarah M.",
-    role: "Parent",
+      "For the first time, I felt someone really understood the pressure families are under around technology. It was calm, practical and reassuring.",
+    author: "Parent",
+    role: "PATI participant",
   },
   {
     quote:
-      "Rolling out PATI across our school community has transformed how parents engage with technology topics. The programme is well-structured and professionally delivered.",
-    author: "James R.",
-    role: "School Principal",
+      "The guidance helped our school community approach these conversations with more confidence and less fear. It gave parents language, structure and support.",
+    author: "School leader",
+    role: "Primary school community",
   },
   {
     quote:
-      "Our employees have found the corporate sessions incredibly valuable. It's a unique offering that supports working parents in a meaningful way.",
-    author: "Emma T.",
-    role: "HR Director",
+      "This is the kind of support working parents need — thoughtful, practical and relevant to what is actually happening in family life today.",
+    author: "People leader",
+    role: "Organisation participant",
   },
 ]
 
 export function Testimonials() {
   return (
-    <section className="bg-background py-28 lg:py-36">
+    <section className="bg-background py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
-        <div className="mb-20 text-center lg:mb-24">
+        <div className="mx-auto mb-16 max-w-3xl text-center lg:mb-20">
+          <p className="mb-4 text-sm font-medium uppercase tracking-[0.22em] text-accent">
+            Community Reflections
+          </p>
+
           <h2 className="font-serif text-[2rem] font-normal tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem]">
-            What People Say
+            Voices from families, schools and organisations
           </h2>
+
+          <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+            The Institute’s work is shaped by the real experiences of parents, educators and working families navigating technology in everyday life.
+          </p>
         </div>
+
         <div className="grid gap-8 md:grid-cols-3 lg:gap-10">
-          {testimonials.map((testimonial, index) => (
+          {reflections.map((reflection, index) => (
             <div
               key={index}
-              className="flex flex-col rounded-2xl border border-border/60 bg-card p-10 lg:p-12"
+              className="flex flex-col rounded-2xl border border-border/60 bg-card p-8 lg:p-10"
             >
               <blockquote className="flex-grow text-[15px] leading-relaxed text-foreground">
-                &ldquo;{testimonial.quote}&rdquo;
+                &ldquo;{reflection.quote}&rdquo;
               </blockquote>
-              <div className="mt-10 border-t border-border/60 pt-6">
+
+              <div className="mt-8 border-t border-border/60 pt-5">
                 <p className="font-medium text-foreground">
-                  {testimonial.author}
+                  {reflection.author}
                 </p>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  {testimonial.role}
+                  {reflection.role}
                 </p>
               </div>
             </div>
