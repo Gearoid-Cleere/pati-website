@@ -2,7 +2,6 @@ import { Header } from "@/components/header"
 import { Hero } from "@/components/hero"
 import { WhyThisMatters } from "@/components/why-this-matters"
 import { PathwayCards } from "@/components/pathway-cards"
-import { HowItWorks } from "@/components/how-it-works"
 import { ProgrammeOverview } from "@/components/programme-overview"
 import { CorporateFeature } from "@/components/corporate-feature"
 import { Testimonials } from "@/components/testimonials"
@@ -21,8 +20,6 @@ export default function Home() {
         <WhyThisMatters />
 
         <PathwayCards />
-
-        <HowItWorks />
 
         <ProgrammeOverview />
 
