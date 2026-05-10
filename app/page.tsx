@@ -5,7 +5,6 @@ import { PathwayCards } from "@/components/pathway-cards"
 import { ProgrammeOverview } from "@/components/programme-overview"
 import { CorporateFeature } from "@/components/corporate-feature"
 import { Testimonials } from "@/components/testimonials"
-import { BrochureForm } from "@/components/brochure-form"
 import { FinalCta } from "@/components/final-cta"
 import { Footer } from "@/components/footer"
 
@@ -26,8 +25,6 @@ export default function Home() {
         <CorporateFeature />
 
         <Testimonials />
-
-        <BrochureForm />
 
         <FinalCta />
       </main>
