@@ -7,7 +7,6 @@ import {
   UserX,
   Smartphone,
   Laptop,
-  Heart,
   ArrowRight,
 } from "lucide-react"
 
@@ -15,37 +14,38 @@ const themes = [
   {
     icon: ShieldCheck,
     title: "Boundaries & confidence",
-    description: "Helping families create clearer expectations around technology at home.",
+    description:
+      "Helping families create clearer expectations and reduce conflict around technology at home.",
   },
   {
     icon: Gamepad2,
     title: "Gaming & screen time",
-    description: "Understanding gaming habits, motivation, limits and family pressure points.",
+    description:
+      "Understanding gaming habits, motivation, limits and family pressure points.",
   },
   {
     icon: Smartphone,
     title: "Social media & wellbeing",
-    description: "Supporting healthier conversations around anxiety, identity and online life.",
+    description:
+      "Supporting healthier conversations around anxiety, identity and online life.",
   },
   {
     icon: EyeOff,
     title: "Online risks & exposure",
-    description: "Helping parents approach difficult topics calmly, clearly and practically.",
+    description:
+      "Helping parents approach difficult topics calmly, clearly and practically.",
   },
   {
     icon: UserX,
     title: "Bullying & online behaviour",
-    description: "Supporting families and schools to respond to harmful online interactions.",
+    description:
+      "Supporting families and schools to respond to harmful online interactions.",
   },
   {
     icon: Laptop,
-    title: "Devices & digital habits",
-    description: "Practical guidance for managing devices, routines and family digital culture.",
-  },
-  {
-    icon: Heart,
-    title: "Family relationships",
-    description: "Helping families move from conflict and fear towards connection and confidence.",
+    title: "Devices & skills",
+    description:
+      "Building practical digital skills, routines and habits that support healthier family life.",
   },
 ]
 
@@ -74,7 +74,10 @@ export function ProgrammeOverview() {
               className="rounded-xl border border-border/60 bg-card p-7 transition-all duration-300 hover:border-border hover:shadow-md lg:p-8"
             >
               <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-lg bg-muted/60">
-                <theme.icon className="h-5 w-5 text-primary" strokeWidth={1.5} />
+                <theme.icon
+                  className="h-5 w-5 text-primary"
+                  strokeWidth={1.5}
+                />
               </div>
 
               <h3 className="mb-2 font-semibold tracking-tight text-foreground">
