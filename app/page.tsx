@@ -1,6 +1,6 @@
 import { Header } from "@/components/header"
 import { Hero } from "@/components/hero"
-import { TrustBar } from "@/components/trust-bar"
+import { WhyThisMatters } from "@/components/why-this-matters"
 import { PathwayCards } from "@/components/pathway-cards"
 import { HowItWorks } from "@/components/how-it-works"
 import { ProgrammeOverview } from "@/components/programme-overview"
@@ -14,17 +14,27 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
+
       <main className="flex-1">
         <Hero />
-        <TrustBar />
+
+        <WhyThisMatters />
+
         <PathwayCards />
+
         <HowItWorks />
+
         <ProgrammeOverview />
+
         <CorporateFeature />
+
         <Testimonials />
+
         <BrochureForm />
+
         <FinalCta />
       </main>
+
       <Footer />
     </div>
   )
