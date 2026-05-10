@@ -1,7 +1,6 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import {
-  Clock,
   ShieldCheck,
   Gamepad2,
   EyeOff,
@@ -12,61 +11,92 @@ import {
   ArrowRight,
 } from "lucide-react"
 
-const modules = [
-  { icon: Clock, title: "Age of Technology", description: "Understanding the digital landscape" },
-  { icon: ShieldCheck, title: "Boundaries", description: "Setting healthy limits" },
-  { icon: Gamepad2, title: "Gaming", description: "Managing gaming habits" },
-  { icon: EyeOff, title: "Pornography", description: "Protection and conversations" },
-  { icon: UserX, title: "Bullying", description: "Prevention and response" },
-  { icon: Smartphone, title: "Social Media & Anxiety", description: "Mental health impacts" },
-  { icon: Laptop, title: "Technology & Devices", description: "Practical device management" },
-  { icon: Heart, title: "Thriving as a Family", description: "Building healthy relationships" },
+const themes = [
+  {
+    icon: ShieldCheck,
+    title: "Boundaries & confidence",
+    description: "Helping families create clearer expectations around technology at home.",
+  },
+  {
+    icon: Gamepad2,
+    title: "Gaming & screen time",
+    description: "Understanding gaming habits, motivation, limits and family pressure points.",
+  },
+  {
+    icon: Smartphone,
+    title: "Social media & wellbeing",
+    description: "Supporting healthier conversations around anxiety, identity and online life.",
+  },
+  {
+    icon: EyeOff,
+    title: "Online risks & exposure",
+    description: "Helping parents approach difficult topics calmly, clearly and practically.",
+  },
+  {
+    icon: UserX,
+    title: "Bullying & online behaviour",
+    description: "Supporting families and schools to respond to harmful online interactions.",
+  },
+  {
+    icon: Laptop,
+    title: "Devices & digital habits",
+    description: "Practical guidance for managing devices, routines and family digital culture.",
+  },
+  {
+    icon: Heart,
+    title: "Family relationships",
+    description: "Helping families move from conflict and fear towards connection and confidence.",
+  },
 ]
 
 export function ProgrammeOverview() {
   return (
-    <section className="bg-background py-28 lg:py-36">
+    <section className="bg-secondary/20 py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
-        {/* Section header */}
-        <div className="mx-auto mb-20 max-w-2xl text-center lg:mb-24">
+        <div className="mx-auto mb-16 max-w-3xl text-center lg:mb-20">
+          <p className="mb-4 text-sm font-medium uppercase tracking-[0.22em] text-accent">
+            Areas of Guidance
+          </p>
+
           <h2 className="font-serif text-[2rem] font-normal tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem]">
-            Programme Overview
+            Practical support for the issues families are facing now
           </h2>
-          <p className="mt-5 text-lg text-muted-foreground">
-            Eight comprehensive modules covering essential topics for navigating technology in family life
+
+          <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+            Our programmes translate research, clinical insight and real-world experience into practical guidance across the areas where technology is creating the greatest pressure for families, schools and organisations.
           </p>
         </div>
-        
-        {/* Module grid */}
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
-          {modules.map((module) => (
+
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+          {themes.map((theme) => (
             <div
-              key={module.title}
-              className="rounded-xl border border-border/60 bg-card p-8 transition-all duration-300 hover:border-border hover:shadow-md lg:p-9"
+              key={theme.title}
+              className="rounded-xl border border-border/60 bg-card p-7 transition-all duration-300 hover:border-border hover:shadow-md lg:p-8"
             >
-              <div className="mb-6 flex h-11 w-11 items-center justify-center rounded-lg bg-muted/60">
-                <module.icon className="h-5 w-5 text-primary" strokeWidth={1.5} />
+              <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-lg bg-muted/60">
+                <theme.icon className="h-5 w-5 text-primary" strokeWidth={1.5} />
               </div>
+
               <h3 className="mb-2 font-semibold tracking-tight text-foreground">
-                {module.title}
+                {theme.title}
               </h3>
-              <p className="text-sm text-muted-foreground">
-                {module.description}
+
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                {theme.description}
               </p>
             </div>
           ))}
         </div>
-        
-        {/* CTA */}
-        <div className="mt-20 text-center">
-          <Button 
-            size="lg" 
-            variant="outline" 
-            asChild 
+
+        <div className="mt-16 text-center">
+          <Button
+            size="lg"
+            variant="outline"
+            asChild
             className="h-13 px-8 text-[15px]"
           >
             <Link href="/programme">
-              View Full Programme Details
+              Explore programme themes
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
