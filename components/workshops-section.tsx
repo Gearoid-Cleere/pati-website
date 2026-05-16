@@ -46,7 +46,7 @@ export function WorkshopsSection() {
           </h2>
 
           <p className="text-lg text-muted-foreground">
-            Parents take part in practical, expert-led sessions focused on the real challenges of raising children in a digital world, with guidance they can apply at home straight away. 'Parenting the Tech-Savvy Child' is comprised of 8 modules as follows:
+            Parents take part in practical, expert-led sessions focused on the real challenges of raising children in a digital world, with guidance they can apply at home straight away. The 'Parenting the Tech-Savvy Child' programme is comprised of 8 modules as follows:
           </p>
         </div>
 
