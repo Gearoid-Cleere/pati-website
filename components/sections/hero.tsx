@@ -23,7 +23,7 @@ export function HeroSection() {
           </h1>
           
           <p className="mx-auto mt-6 max-w-2xl text-xl leading-relaxed text-foreground/80 sm:text-2xl">
-            A comprehensive 4-week programme equipping parents with expert knowledge and practical tools to guide their children through the digital age.
+            A comprehensive 4-week programme, 'Parenting the Tech-Savvy Child' equips parents with expert knowledge and practical tools to guide their children through the digital age.
           </p>
           
           <p className="mx-auto mt-4 max-w-xl text-base text-muted-foreground">
