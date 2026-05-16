@@ -1,49 +1,6 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 
-const expertiseAreas = [
-  {
-    title: "Clinical Psychology",
-    description:
-      "Expertise in adolescent wellbeing, emotional development, family dynamics, and the psychological impact of technology on children and young people.",
-  },
-  {
-    title: "Education Leadership",
-    description:
-      "School leaders and educators with direct experience supporting children, parents, and school communities in everyday practice.",
-  },
-  {
-    title: "Child Development",
-    description:
-      "Specialist perspectives on the developmental needs of children and young people as they grow up in a technology-rich world.",
-  },
-  {
-    title: "Digital Wellbeing & Online Safety",
-    description:
-      "Insight into online behaviour, digital boundaries, cyber safety, safeguarding, and the opportunities and risks of digital platforms.",
-  },
-  {
-    title: "Corporate Wellbeing",
-    description:
-      "Perspectives on how family pressures, parenting challenges, and technology-related stress can affect employees and organisations.",
-  },
-  {
-    title: "Academic Research",
-    description:
-      "Research-informed perspectives that help deepen understanding of parenting, childhood, technology, and modern family life.",
-  },
-  {
-    title: "Parent & Community Voice",
-    description:
-      "Grounded perspectives reflecting the real concerns, questions, and lived experiences of families navigating digital life.",
-  },
-  {
-    title: "Technology, Ethics & Society",
-    description:
-      "Broader insight into how technology is shaping behaviour, relationships, learning, wellbeing, and society.",
-  },
-]
-
 const foundingContributors = [
   {
     name: "Dr Richard Hogan",
@@ -188,34 +145,6 @@ export default function AdvisoryCouncilPage() {
                   </span>
                 </li>
               </ul>
-            </div>
-
-            {/* Expertise Areas */}
-            <div className="mb-20">
-              <h2 className="mb-4 text-center font-serif text-2xl font-medium text-primary">
-                Areas of Expertise
-              </h2>
-
-              <p className="mx-auto mb-12 max-w-3xl text-center leading-relaxed text-muted-foreground">
-                The Council is being assembled to reflect the multidisciplinary nature of the challenges families, schools, and organisations now face.
-              </p>
-
-              <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-                {expertiseAreas.map((area) => (
-                  <div
-                    key={area.title}
-                    className="rounded-2xl border border-border bg-white p-6"
-                  >
-                    <h3 className="mb-2 font-medium text-primary">
-                      {area.title}
-                    </h3>
-
-                    <p className="text-sm leading-relaxed text-muted-foreground">
-                      {area.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
             </div>
 
             {/* Advisory Council in Formation */}
