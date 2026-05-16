@@ -22,7 +22,7 @@ export function HeroSection() {
             </h1>
 
             <p className="mt-6 text-lg leading-relaxed text-muted-foreground max-w-xl">
-              PATI delivers practical, expert-led sessions on technology and family life directly to your parents. Led by Dr Richard Hogan, the programme supports families navigating smartphones, gaming, and social media — while keeping things simple for schools.
+              PATI delivers practical, expert-led sessions on technology and family life directly to your parents. Led by Dr Richard Hogan, the 'Parenting the Tech-Savvy Child' programme supports families navigating smartphones, gaming, and social media — while keeping things simple for schools.
             </p>
 
             <p className="mt-4 text-lg leading-relaxed text-muted-foreground max-w-xl">
