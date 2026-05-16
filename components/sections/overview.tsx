@@ -34,13 +34,13 @@ export function OverviewSection() {
           </h2>
           <div className="mt-8 space-y-6 text-lg leading-relaxed text-muted-foreground">
             <p>
-              The PATI Programme is a comprehensive educational programme designed to equip parents with the knowledge, skills, and confidence to navigate childhood in a digital world.
+              The 'Parenting the Tech-Savvy Child' Programme is a comprehensive educational programme designed to equip parents with the knowledge, skills, and confidence to navigate childhood in a digital world.
             </p>
             <p>
-              Developed by the Parenting &amp; Technology Institute, this programme addresses the most pressing challenges facing modern families: screen time, social media, gaming, online safety, and the impact of technology on child development and family life.
+              Developed by the Parenting &amp; Technology Institute, 'Parenting the Tech-Savvy Child' addresses the most pressing challenges facing modern families: screen time, social media, gaming, online safety, and the impact of technology on child development and family life.
             </p>
             <p>
-              Whether you are a parent seeking guidance, a school supporting your community, or an organisation investing in employee wellbeing, the PATI Programme provides a structured, evidence-based approach to one of the defining challenges of contemporary parenting.
+              Whether you are a parent seeking guidance, a school supporting your community, or an organisation investing in employee wellbeing, the 'Parenting the Tech-Savvy Child' Programme provides a structured, evidence-based approach to one of the defining challenges of contemporary parenting.
             </p>
           </div>
         </div>
