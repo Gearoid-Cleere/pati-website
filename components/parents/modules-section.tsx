@@ -78,7 +78,7 @@ export function ModulesSection() {
           </h2>
 
           <p className="mt-4 text-pretty text-lg text-muted-foreground">
-            The PATI programme is delivered across eight focused modules, giving you practical guidance on the key technology challenges facing families today.
+            The 'Parenting the Tech-Savvy Child' programme is delivered across eight focused modules, giving you practical guidance on the key technology challenges facing families today.
           </p>
         </div>
 
