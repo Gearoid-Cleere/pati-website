@@ -44,13 +44,13 @@ const expertiseAreas = [
   },
 ]
 
-const featuredMembers = [
+const foundingContributors = [
   {
     name: "Dr Richard Hogan",
     title: "Family Psychotherapist & Co-Founder",
     image: "/richard-hogan.jpg",
     bio:
-      "Richard is a family psychotherapist and widely recognised voice on adolescent wellbeing, parenting, and the impact of technology on children and family life.",
+      "Richard is a family psychotherapist and co-founder of the Institute. His work provides a core clinical and family wellbeing perspective within a broader multidisciplinary advisory structure.",
   },
   {
     name: "Garry Cleere",
@@ -59,13 +59,53 @@ const featuredMembers = [
     bio:
       "Garry works across education, institutional development, and programme strategy, supporting the Institute’s mission to deliver practical guidance for families, schools, and organisations.",
   },
-{
-  name: "Dr James Trimble",
-  title: "Education Leader & Advisory Contributor",
-  image: "/james-trimble.jpg",
-  bio:
-    "James is an experienced education leader and Principal of a community college in Wexford, bringing valuable perspective on school leadership, student wellbeing, and the practical challenges facing school communities in the digital age.",
-},]
+  {
+    name: "Dr James Trimble",
+    title: "Education Leader & Advisory Contributor",
+    image: "/james-trimble.jpg",
+    bio:
+      "James is an experienced education leader and Principal of a community college in Wexford, bringing valuable perspective on school leadership, student wellbeing, and the practical challenges facing school communities in the digital age.",
+  },
+]
+
+const advisoryRoles = [
+  {
+    title: "Clinical Psychology",
+  },
+  {
+    title: "Child & Adolescent Psychiatry",
+  },
+  {
+    title: "Education Leadership",
+  },
+  {
+    title: "Digital Wellbeing & Online Safety",
+  },
+  {
+    title: "Parent & Community Voice",
+  },
+  {
+    title: "Academic Research",
+  },
+  {
+    title: "Corporate Wellbeing",
+  },
+  {
+    title: "Technology Ethics",
+  },
+  {
+    title: "Youth Mental Health",
+  },
+  {
+    title: "Social Policy & Society",
+  },
+  {
+    title: "Learning & Development",
+  },
+  {
+    title: "Future of Childhood & Technology",
+  },
+]
 
 export default function AdvisoryCouncilPage() {
   return (
@@ -75,6 +115,7 @@ export default function AdvisoryCouncilPage() {
       <main className="flex-1">
         <section className="bg-white py-20 md:py-28">
           <div className="mx-auto max-w-6xl px-6">
+
             {/* Intro */}
             <div className="mx-auto mb-16 max-w-3xl text-center">
               <p className="mb-4 text-sm font-medium uppercase tracking-widest text-accent">
@@ -86,7 +127,7 @@ export default function AdvisoryCouncilPage() {
               </h1>
 
               <p className="text-lg leading-relaxed text-muted-foreground">
-                The Parenting and Technology Institute is establishing an International Advisory Council bringing together expertise across psychology, education, child development, digital wellbeing, research, and organisational life.
+                The Parenting and Technology Institute is establishing an International Advisory Council bringing together expertise across psychology, education, child development, digital wellbeing, research, workplace wellbeing, and modern family life.
               </p>
 
               <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
@@ -101,7 +142,7 @@ export default function AdvisoryCouncilPage() {
               </h2>
 
               <p className="text-center leading-relaxed text-muted-foreground">
-                The Advisory Council provides guidance, perspective, and multidisciplinary insight as the Institute develops programmes, research, and practical supports for families, schools, and organisations. Its role is to help ensure that our work remains balanced, evidence-informed, ethical, and grounded in real-world experience.
+                The Advisory Council provides guidance, perspective, and multidisciplinary insight as the Institute develops programmes, research, and practical supports for families, schools, organisations, and communities. Its role is to help ensure that our work remains balanced, evidence-informed, ethical, and grounded in real-world experience.
               </p>
             </div>
 
@@ -115,7 +156,7 @@ export default function AdvisoryCouncilPage() {
                 <li className="flex gap-3">
                   <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-accent" />
                   <span>
-                    Providing perspective on emerging challenges affecting children, families, schools, and organisations in a rapidly changing digital world.
+                    Providing perspective on emerging challenges affecting children, families, schools, organisations, and society in a rapidly changing digital world.
                   </span>
                 </li>
 
@@ -129,7 +170,7 @@ export default function AdvisoryCouncilPage() {
                 <li className="flex gap-3">
                   <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-accent" />
                   <span>
-                    Supporting a consistent, evidence-informed approach across Institute programmes, resources, and public-facing initiatives.
+                    Supporting a balanced and evidence-informed approach across Institute programmes, resources, and public-facing initiatives.
                   </span>
                 </li>
 
@@ -156,7 +197,7 @@ export default function AdvisoryCouncilPage() {
               </h2>
 
               <p className="mx-auto mb-12 max-w-3xl text-center leading-relaxed text-muted-foreground">
-                The Council is being assembled to reflect the multidisciplinary nature of the challenges families and organisations now face.
+                The Council is being assembled to reflect the multidisciplinary nature of the challenges families, schools, and organisations now face.
               </p>
 
               <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -168,6 +209,7 @@ export default function AdvisoryCouncilPage() {
                     <h3 className="mb-2 font-medium text-primary">
                       {area.title}
                     </h3>
+
                     <p className="text-sm leading-relaxed text-muted-foreground">
                       {area.description}
                     </p>
@@ -176,18 +218,18 @@ export default function AdvisoryCouncilPage() {
               </div>
             </div>
 
-            {/* Featured Members */}
+            {/* Advisory Council in Formation */}
             <div className="mb-20">
               <h2 className="mb-4 text-center font-serif text-2xl font-medium text-primary">
-                Founding Advisory Contributors
+                International Advisory Council in Formation
               </h2>
 
               <p className="mx-auto mb-12 max-w-3xl text-center leading-relaxed text-muted-foreground">
-                The Council will continue to expand progressively, bringing together leading voices committed to supporting healthier relationships between children, families, and technology.
+                The Council is being developed progressively to bring together a balanced and multidisciplinary group of contributors across psychology, education, research, technology, workplace wellbeing, ethics, and parent voice. Additional appointments will be announced over time.
               </p>
 
-              <div className="grid gap-8 md:grid-cols-3">
-                {featuredMembers.map((member) => (
+              <div className="mb-16 grid gap-8 md:grid-cols-3">
+                {foundingContributors.map((member) => (
                   <div
                     key={member.name}
                     className="rounded-2xl border border-border bg-white p-6 text-center"
@@ -212,6 +254,36 @@ export default function AdvisoryCouncilPage() {
                   </div>
                 ))}
               </div>
+
+              {/* Additional Roles */}
+              <div>
+                <h3 className="mb-8 text-center font-serif text-xl font-medium text-primary">
+                  Additional Advisory Roles Being Appointed
+                </h3>
+
+                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                  {advisoryRoles.map((role) => (
+                    <div
+                      key={role.title}
+                      className="rounded-2xl border border-dashed border-border bg-secondary/10 p-6 text-center"
+                    >
+                      <div className="mb-4 flex justify-center">
+                        <div className="flex h-20 w-20 items-center justify-center rounded-full bg-secondary text-sm text-muted-foreground">
+                          Pending
+                        </div>
+                      </div>
+
+                      <h4 className="font-medium text-primary">
+                        {role.title}
+                      </h4>
+
+                      <p className="mt-2 text-sm text-muted-foreground">
+                        Advisory appointment in development.
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
 
             {/* Closing */}
@@ -220,6 +292,7 @@ export default function AdvisoryCouncilPage() {
                 As the Parenting and Technology Institute continues to expand its work across families, schools, organisations, and communities, the Advisory Council remains an important source of guidance, perspective, and multidisciplinary expertise. Additional council members and contributors will be announced progressively.
               </p>
             </div>
+
           </div>
         </section>
       </main>
