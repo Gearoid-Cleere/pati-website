@@ -1,53 +1,31 @@
 import { NextResponse } from "next/server"
 import { Resend } from "resend"
 import Stripe from "stripe"
+import { formatOpsEmail, formatPurchaserEmail } from "@/lib/emails"
 import { getStripe } from "@/lib/stripe"
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
 
-function formatOpsEmail(session: Stripe.Checkout.Session) {
-  const metadata = session.metadata || {}
-  const journey = metadata.journey || "unknown"
-  const lines = [
-    "A PATI website registration payment was completed.",
-    "",
-    `Journey: ${journey}`,
-    `Stripe session: ${session.id}`,
-    `Customer email: ${session.customer_email || metadata.email || "not provided"}`,
-    `Amount total: ${session.amount_total ?? "unknown"} ${session.currency || ""}`.trim(),
-    `Payment status: ${session.payment_status}`,
-    "",
-    "Registration details:",
-  ]
+function getResendClient() {
+  const apiKey = process.env.RESEND_API_KEY
 
-  for (const [key, value] of Object.entries(metadata)) {
-    if (value) {
-      lines.push(`- ${key}: ${value}`)
-    }
+  if (!apiKey) {
+    return null
   }
 
-  lines.push(
-    "",
-    "This email is operational only. Stripe remains the system of record."
-  )
-
-  return {
-    subject: `PATI registration paid (${journey})`,
-    text: lines.join("\n"),
-  }
+  return new Resend(apiKey)
 }
 
 async function sendOpsNotification(session: Stripe.Checkout.Session) {
-  const apiKey = process.env.RESEND_API_KEY
+  const resend = getResendClient()
   const to = process.env.PATI_OPS_EMAIL
 
-  if (!apiKey || !to) {
+  if (!resend || !to) {
     console.warn("Skipping PATI ops email: RESEND_API_KEY or PATI_OPS_EMAIL is not configured.")
     return
   }
 
-  const resend = new Resend(apiKey)
   const { subject, text } = formatOpsEmail(session)
 
   const { error } = await resend.emails.send({
@@ -55,6 +33,32 @@ async function sendOpsNotification(session: Stripe.Checkout.Session) {
     to,
     subject,
     text,
+  })
+
+  if (error) {
+    throw error
+  }
+}
+
+async function sendPurchaserEmail(session: Stripe.Checkout.Session) {
+  const resend = getResendClient()
+  const message = formatPurchaserEmail(session)
+
+  if (!resend) {
+    console.warn("Skipping purchaser email: RESEND_API_KEY is not configured.")
+    return
+  }
+
+  if (!message) {
+    console.warn("Skipping purchaser email: no recipient or unrecognised journey.")
+    return
+  }
+
+  const { error } = await resend.emails.send({
+    from: process.env.RESEND_FROM_EMAIL || "PATI <beth.t@example.com>",
+    to: message.to,
+    subject: message.subject,
+    text: message.text,
   })
 
   if (error) {
@@ -89,6 +93,12 @@ export async function POST(request: Request) {
       await sendOpsNotification(session)
     } catch (error) {
       console.error("PATI ops notification failed after successful payment:", error)
+    }
+
+    try {
+      await sendPurchaserEmail(session)
+    } catch (error) {
+      console.error("Purchaser email failed after successful payment:", error)
     }
   }
 

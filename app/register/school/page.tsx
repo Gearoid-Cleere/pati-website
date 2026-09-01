@@ -6,7 +6,7 @@ export default function RegisterSchoolPage() {
     <RegisterShell
       eyebrow="For Schools"
       title="Register Your School"
-      description="Complete your school details below to register. Payment of €499.95 is completed securely with Stripe. After registration, PATI will send the parent registration information to the contact email provided."
+      description="Complete your school details below to register. Payment of €499.95 is completed securely with Stripe. After payment, you will receive the registration/payment link for parents associated with your registered school, which you can forward to your parents."
     >
       <SchoolForm />
     </RegisterShell>

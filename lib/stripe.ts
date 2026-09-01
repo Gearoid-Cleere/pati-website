@@ -1,4 +1,5 @@
 import Stripe from "stripe"
+import type { Journey } from "@/lib/registration"
 
 export function getStripe() {
   const secretKey = process.env.STRIPE_SECRET_KEY
@@ -10,12 +11,13 @@ export function getStripe() {
   return new Stripe(secretKey)
 }
 
-export function getPriceIdForJourney(journey: "parent" | "school" | "organisation") {
-  const priceIds = {
+export function getPriceIdForJourney(journey: Journey) {
+  const priceIds: Record<Journey, string | undefined> = {
     parent: process.env.STRIPE_PRICE_PARENT,
     school: process.env.STRIPE_PRICE_SCHOOL,
     organisation: process.env.STRIPE_PRICE_ORGANISATION,
-  } as const
+    schoolParent: process.env.STRIPE_PRICE_SCHOOL_PARENT,
+  }
 
   const priceId = priceIds[journey]
 

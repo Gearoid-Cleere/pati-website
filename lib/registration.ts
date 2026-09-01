@@ -1,6 +1,6 @@
 import { z } from "zod"
 
-export const journeys = ["parent", "school", "organisation"] as const
+export const journeys = ["parent", "school", "organisation", "schoolParent"] as const
 export type Journey = (typeof journeys)[number]
 
 const optionalText = z.string().trim().max(200).optional().or(z.literal(""))
@@ -36,10 +36,21 @@ export const organisationCheckoutSchema = z.object({
   termsAccepted: z.literal(true),
 })
 
+export const schoolParentCheckoutSchema = z.object({
+  journey: z.literal("schoolParent"),
+  name: z.string().trim().min(1).max(200),
+  email: z.string().trim().email().max(200),
+  phone: optionalText,
+  schoolName: z.string().trim().min(1).max(200),
+  schoolCounty: optionalText,
+  termsAccepted: z.literal(true),
+})
+
 export const checkoutRequestSchema = z.discriminatedUnion("journey", [
   parentCheckoutSchema,
   schoolCheckoutSchema,
   organisationCheckoutSchema,
+  schoolParentCheckoutSchema,
 ])
 
 export type CheckoutRequest = z.infer<typeof checkoutRequestSchema>

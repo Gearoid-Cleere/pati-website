@@ -15,7 +15,7 @@ function confirmationCopy(session: Stripe.Checkout.Session) {
   if (journey === "school") {
     return {
       title: "School registration received",
-      body: `Thank you. Your school registration payment has been received. PATI will send the parent registration information to ${email}.`,
+      body: `Thank you. Your school registration payment has been received. You will receive an email at ${email} with the registration/payment link for parents associated with your registered school. You can forward that same link to your parents. Programme details will follow from PATI.`,
     }
   }
 
@@ -23,6 +23,18 @@ function confirmationCopy(session: Stripe.Checkout.Session) {
     return {
       title: "Organisation registration received",
       body: `Thank you. Your organisation registration payment has been received. PATI will follow up at ${email} about employee and parent access.`,
+    }
+  }
+
+  if (journey === "schoolParent") {
+    const schoolName = session.metadata?.schoolName
+    const schoolLine = schoolName
+      ? ` You identified your school as ${schoolName}.`
+      : ""
+
+    return {
+      title: "Registration received",
+      body: `Thank you. Your payment has been received.${schoolLine} We will email programme details to ${email}.`,
     }
   }
 
