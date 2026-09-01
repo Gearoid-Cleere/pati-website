@@ -6,14 +6,14 @@ const actions = [
     icon: User,
     label: "Parents",
     description: "Enrol in the programme",
-    href: "/parents",
+    href: "/register/parent",
     cta: "Enrol Now",
   },
   {
     icon: GraduationCap,
     label: "Schools",
     description: "Partner with PATI",
-    href: "/schools",
+    href: "/register/school",
     cta: "Register Your School",
   },
   {

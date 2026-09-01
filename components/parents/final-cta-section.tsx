@@ -27,7 +27,7 @@ export function FinalCtaSection() {
               asChild
               className="bg-primary-foreground text-primary shadow-md hover:bg-primary-foreground/90"
             >
-              <Link href="/contact">
+              <Link href="/register/parent">
                 Join the Programme
               </Link>
             </Button>

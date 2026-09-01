@@ -1,49 +1,47 @@
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
+import { GraduationCap, Building2, Users } from "lucide-react"
+
+const routes = [
+  {
+    icon: GraduationCap,
+    label: "I’m a School",
+    href: "/register/school",
+  },
+  {
+    icon: Building2,
+    label: "I’m an Organisation",
+    href: "/register/organisation",
+  },
+  {
+    icon: Users,
+    label: "I’m a Parent",
+    href: "/register/parent",
+  },
+]
 
 export function FinalCta() {
   return (
     <section className="border-t border-border/40 bg-muted/30 py-24 lg:py-28">
       <div className="mx-auto max-w-5xl px-6 text-center sm:px-8 lg:px-12">
-        <p className="mb-4 text-sm font-medium uppercase tracking-[0.22em] text-accent">
-          Continue Exploring
-        </p>
-
         <h2 className="font-serif text-[1.9rem] font-normal tracking-tight text-foreground sm:text-3xl lg:text-4xl">
-          Supporting families, schools and organisations through a period of profound technological change
+          Ready to Get Started?
         </h2>
 
-        <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
-          The Parenting and Technology Institute exists to help families and communities navigate technology thoughtfully, practically and with greater confidence. Explore the Institute’s work, programmes, insights and areas of support.
-        </p>
-
-        <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row lg:mt-14">
-          <Button
-            size="lg"
-            variant="outline"
-            asChild
-            className="h-13 px-8 text-[15px]"
-          >
-            <Link href="/about">About the Institute</Link>
-          </Button>
-
-          <Button
-            size="lg"
-            variant="ghost"
-            asChild
-            className="h-13 px-8 text-[15px] text-muted-foreground hover:text-foreground"
-          >
-            <Link href="/resources">Explore Resources</Link>
-          </Button>
-
-          <Button
-            size="lg"
-            variant="ghost"
-            asChild
-            className="h-13 px-8 text-[15px] text-muted-foreground hover:text-foreground"
-          >
-            <Link href="/contact">Contact</Link>
-          </Button>
+        <div className="mt-12 grid gap-4 sm:grid-cols-3 lg:mt-14">
+          {routes.map((route) => (
+            <Link
+              key={route.href}
+              href={route.href}
+              className="group flex flex-col items-center rounded-2xl border border-border/60 bg-card p-8 transition-all hover:border-border hover:shadow-lg hover:shadow-foreground/[0.03]"
+            >
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-muted/60">
+                <route.icon className="h-6 w-6 text-primary" strokeWidth={1.5} />
+              </div>
+              <span className="text-[15px] font-medium text-foreground">
+                {route.label}
+              </span>
+            </Link>
+          ))}
         </div>
       </div>
     </section>

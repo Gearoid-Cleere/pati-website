@@ -256,7 +256,7 @@ export default function ResourcesPage() {
                   asChild
                   className="w-full sm:w-auto"
                 >
-                  <Link href="/parents">
+                  <Link href="/register/parent">
                     Join as a Parent
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
@@ -268,7 +268,7 @@ export default function ResourcesPage() {
                   asChild
                   className="w-full border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground sm:w-auto"
                 >
-                  <Link href="/schools">Register Your School</Link>
+                  <Link href="/register/school">Register Your School</Link>
                 </Button>
 
                 <Button

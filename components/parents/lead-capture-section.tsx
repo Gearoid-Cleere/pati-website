@@ -57,7 +57,7 @@ export function LeadCaptureSection() {
                 size="lg"
                 className="mt-6 w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
               >
-                <Link href="/contact">
+                <Link href="/register/school">
                   Bring PATI to Your School
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
@@ -92,7 +92,7 @@ export function LeadCaptureSection() {
                 size="lg"
                 className="mt-6 w-full bg-primary/10 text-primary hover:bg-primary/20 font-semibold"
               >
-                <Link href="/contact">
+                <Link href="/register/parent">
                   Join Independently
                 </Link>
               </Button>

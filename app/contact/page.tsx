@@ -111,7 +111,7 @@ export default function ContactPage() {
                   Bring the PATI programme to your school and support students and families with evidence-based digital wellbeing education.
                 </p>
                 <Button variant="link" asChild className="mt-4 h-auto p-0 text-primary">
-                  <Link href="/schools" className="inline-flex items-center gap-1">
+                  <Link href="/register/school" className="inline-flex items-center gap-1">
                     Register Your School
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
@@ -182,7 +182,7 @@ export default function ContactPage() {
                 asChild
                 className="w-full border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground sm:w-auto"
               >
-                <Link href="/parents">Join as a Parent</Link>
+                <Link href="/register/parent">Join as a Parent</Link>
               </Button>
               <Button
                 size="lg"
@@ -190,7 +190,7 @@ export default function ContactPage() {
                 asChild
                 className="w-full border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground sm:w-auto"
               >
-                <Link href="/schools">Register Your School</Link>
+                <Link href="/register/school">Register Your School</Link>
               </Button>
             </div>
           </div>

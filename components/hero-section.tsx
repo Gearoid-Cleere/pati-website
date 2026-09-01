@@ -52,7 +52,7 @@ export function HeroSection() {
                 size="lg"
                 className="gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-6 text-base"
               >
-                <Link href="/contact">
+                <Link href="/register/school">
                   Express Interest
                   <ArrowRight className="h-5 w-5" />
                 </Link>

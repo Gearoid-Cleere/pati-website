@@ -146,7 +146,7 @@ export function Header() {
               Login
             </Link>
             <Button asChild className="h-11 px-6 text-[15px]">
-              <Link href="/parents">Register</Link>
+              <Link href="/register/parent">Register</Link>
             </Button>
           </div>
 
@@ -256,7 +256,7 @@ export function Header() {
 
           <div className="pt-8">
             <Button className="h-12 w-full text-[15px]" asChild>
-              <Link href="/parents" onClick={() => setMobileOpen(false)}>
+              <Link href="/register/parent" onClick={() => setMobileOpen(false)}>
                 Register
               </Link>
             </Button>

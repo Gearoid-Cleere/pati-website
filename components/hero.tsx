@@ -13,44 +13,36 @@ export function Hero() {
 
           <h1 className="font-serif text-[2.75rem] font-normal leading-[1.1] tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-[4.25rem]">
             <span className="text-balance">
-              Parenting in a Digital World
-              <br className="hidden sm:block" />
-              Has Changed Dramatically
+              Helping Parents Navigate Technology, Teenagers and Family Life
             </span>
           </h1>
 
-          <div className="mx-auto mt-6 max-w-2xl space-y-4 text-lg leading-relaxed text-muted-foreground lg:mt-8 lg:text-xl">
-            <p>
-              Technology is reshaping childhood, family life and human connection at extraordinary speed.
-            </p>
-            <p>
-              The Parenting and Technology Institute provides thoughtful, evidence-informed guidance to help families, schools and organisations navigate technology with greater confidence, balance and understanding.
+          <div className="mx-auto mt-6 max-w-2xl lg:mt-8">
+            <p className="text-lg leading-relaxed text-muted-foreground lg:text-xl">
+              Expert-led parent education for schools, organisations and families — helping parents respond confidently to the challenges of raising children in a rapidly changing digital world.
             </p>
           </div>
 
-          <div className="mt-10 flex flex-col items-center justify-center lg:mt-12">
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row lg:mt-12">
             <Button
               size="lg"
               asChild
               className="h-14 px-8 text-[15px] font-medium"
             >
-              <Link href="/about">
-                Explore the Institute
+              <Link href="/programme">
+                Explore the Programme
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
 
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm text-muted-foreground">
-              <Link href="/parents" className="transition-colors hover:text-foreground">
-                For Parents
-              </Link>
-              <Link href="/schools" className="transition-colors hover:text-foreground">
-                For Schools
-              </Link>
-              <Link href="/organisations" className="transition-colors hover:text-foreground">
-                For Organisations
-              </Link>
-            </div>
+            <Button
+              size="lg"
+              variant="outline"
+              asChild
+              className="h-14 px-8 text-[15px] font-medium"
+            >
+              <a href="#access">Choose How to Join</a>
+            </Button>
           </div>
         </div>
       </div>

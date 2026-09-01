@@ -20,7 +20,7 @@ export default function PrivacyPage() {
 
         <p className="text-sm text-muted-foreground mb-4">
           We do not sell or share your personal data with third parties except where required
-          to deliver our services.
+          to deliver our services. Payments on this website are processed by Stripe.
         </p>
 
         <p className="text-sm text-muted-foreground">

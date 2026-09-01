@@ -25,16 +25,12 @@ export function Testimonials() {
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
         <div className="mx-auto mb-16 max-w-3xl text-center lg:mb-20">
           <p className="mb-4 text-sm font-medium uppercase tracking-[0.22em] text-accent">
-            Community Reflections
+            From the Programme
           </p>
 
           <h2 className="font-serif text-[2rem] font-normal tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem]">
-            Voices from families, schools and organisations
+            What parents have told us
           </h2>
-
-          <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-            The Institute’s work is shaped by the real experiences of parents, educators and working families navigating technology in everyday life.
-          </p>
         </div>
 
         <div className="grid gap-8 md:grid-cols-3 lg:gap-10">

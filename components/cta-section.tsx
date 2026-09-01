@@ -75,7 +75,7 @@ export function CtaSection() {
                     variant="outline"
                     className="w-full font-semibold py-6 text-base"
                   >
-                    <Link href="/contact">
+                    <Link href="/register/school">
                       Express Interest
                     </Link>
                   </Button>
@@ -100,7 +100,7 @@ export function CtaSection() {
                 size="lg"
                 className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-8 py-6 text-base"
               >
-                <Link href="/contact">
+                <Link href="/register/school">
                   Express Interest
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Link>

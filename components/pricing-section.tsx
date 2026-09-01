@@ -90,7 +90,7 @@ export function PricingSection() {
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8">
-            <Link href="/contact">
+            <Link href="/register/school">
               Express Interest
               <ArrowRight className="ml-2 w-4 h-4" />
             </Link>

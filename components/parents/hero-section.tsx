@@ -31,7 +31,7 @@ export function HeroSection() {
 
               {/* PRIMARY CTA */}
               <Button size="lg" asChild className="shadow-md font-semibold">
-                <Link href="/contact">
+                <Link href="/register/school">
                   Get PATI in Your School
                 </Link>
               </Button>
