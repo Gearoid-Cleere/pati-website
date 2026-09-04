@@ -1,4 +1,5 @@
 import Stripe from "stripe"
+import { getOrganisationUserRegistrationUrlFromSession } from "@/lib/organisation-user-link"
 import { getSiteUrl } from "@/lib/stripe"
 
 function metadata(session: Stripe.Checkout.Session) {
@@ -82,6 +83,18 @@ export function formatOpsEmail(session: Stripe.Checkout.Session) {
     )
   }
 
+  if (journey === "organisation") {
+    const organisationUserLink = getOrganisationUserRegistrationUrlFromSession(session)
+    lines.push(
+      "",
+      "Organisation user registration/payment link to send if needed:"
+    )
+    lines.push(
+      organisationUserLink ||
+        "Link not generated. Check ORGANISATION_USER_LINK_SECRET and resend from the Stripe organisation payment."
+    )
+  }
+
   lines.push("", "This email is operational only. Stripe remains the system of record.")
 
   return {
@@ -142,6 +155,19 @@ export function formatPurchaserEmail(session: Stripe.Checkout.Session) {
   }
 
   if (journey === "organisation") {
+    const organisationUserLink = getOrganisationUserRegistrationUrlFromSession(session)
+    const linkLines = organisationUserLink
+      ? [
+          "This is the unique registration/payment link for people associated with your registered organisation. Please forward this same link to them:",
+          "",
+          organisationUserLink,
+          "",
+          "People who use this link pay €24.95 individually through Stripe. The organisation is identified by the link, so they cannot choose a different organisation.",
+        ]
+      : [
+          "PATI will send you the unique registration/payment link for people associated with your registered organisation.",
+        ]
+
     return {
       to,
       subject: "Your PATI organisation registration",
@@ -150,7 +176,9 @@ export function formatPurchaserEmail(session: Stripe.Checkout.Session) {
         "",
         `Your organisation registration payment of ${amount} has been received. Stripe will also send a payment receipt to this email address.`,
         "",
-        "PATI will contact you at this email address regarding user and token access. Organisation access is arranged directly with PATI; there is no employee self-checkout on the website.",
+        ...linkLines,
+        "",
+        "PATI will also be in touch regarding programme access details.",
         "",
         "If you have any questions, please contact PATI.",
       ].join("\n"),

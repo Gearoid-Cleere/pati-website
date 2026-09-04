@@ -6,7 +6,13 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useCheckoutSubmit } from "@/components/register/start-checkout"
 
-export function OrganisationUserForm() {
+export function OrganisationUserForm({
+  organisationUserCode,
+  organisationName,
+}: {
+  organisationUserCode: string
+  organisationName: string
+}) {
   const { isSubmitting, error, submit } = useCheckoutSubmit()
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -19,7 +25,7 @@ export function OrganisationUserForm() {
       firstName: String(data.get("firstName") || ""),
       lastName: String(data.get("lastName") || ""),
       email: String(data.get("email") || ""),
-      organisationName: String(data.get("organisationName") || ""),
+      organisationUserCode,
       termsAccepted: data.get("termsAccepted") === "on",
     })
   }
@@ -56,8 +62,13 @@ export function OrganisationUserForm() {
       </div>
 
       <div>
-        <Label htmlFor="organisationName">Organisation name</Label>
-        <Input id="organisationName" name="organisationName" required maxLength={200} className="mt-1.5" />
+        <p className="text-sm font-medium leading-none">Organisation</p>
+        <p className="mt-1.5 rounded-md border border-border bg-muted/40 px-3 py-2 text-sm text-foreground">
+          {organisationName}
+        </p>
+        <p className="mt-1.5 text-sm text-muted-foreground">
+          This organisation is set by your registration link and cannot be changed.
+        </p>
       </div>
 
       <label className="flex items-start gap-3 text-sm leading-relaxed text-muted-foreground">

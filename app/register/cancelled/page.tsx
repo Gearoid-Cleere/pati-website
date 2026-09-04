@@ -3,24 +3,33 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { journeys, type Journey } from "@/lib/registration"
+import { getOrganisationUserRegistrationPath } from "@/lib/organisation-user-link"
 
-const retryHrefs: Record<Journey, string> = {
+const retryHrefs: Record<Exclude<Journey, "organisationUser">, string> = {
   parent: "/register/parent",
   school: "/register/school",
   organisation: "/register/organisation",
   schoolParent: "/register/school-parent",
-  organisationUser: "/register/organisation-user",
 }
 
 export default async function RegisterCancelledPage({
   searchParams,
 }: {
-  searchParams: Promise<{ journey?: string }>
+  searchParams: Promise<{ journey?: string; code?: string }>
 }) {
-  const { journey } = await searchParams
+  const { journey, code } = await searchParams
   const validJourney = journeys.includes(journey as Journey)
     ? (journey as Journey)
     : null
+
+  const retryHref =
+    validJourney === "organisationUser"
+      ? code
+        ? getOrganisationUserRegistrationPath(code)
+        : "/register/organisation-user"
+      : validJourney
+        ? retryHrefs[validJourney]
+        : "/#access"
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -37,7 +46,7 @@ export default async function RegisterCancelledPage({
 
             <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Button asChild>
-                <Link href={validJourney ? retryHrefs[validJourney] : "/#access"}>
+                <Link href={retryHref}>
                   {validJourney ? "Return to registration" : "Choose how to join"}
                 </Link>
               </Button>
