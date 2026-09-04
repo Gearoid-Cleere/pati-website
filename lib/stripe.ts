@@ -17,6 +17,7 @@ export function getPriceIdForJourney(journey: Journey) {
     school: process.env.STRIPE_PRICE_SCHOOL,
     organisation: process.env.STRIPE_PRICE_ORGANISATION,
     schoolParent: process.env.STRIPE_PRICE_SCHOOL_PARENT,
+    organisationUser: process.env.STRIPE_PRICE_ORGANISATION_USER,
   }
 
   const priceId = priceIds[journey]

@@ -38,6 +38,18 @@ function confirmationCopy(session: Stripe.Checkout.Session) {
     }
   }
 
+  if (journey === "organisationUser") {
+    const organisationName = session.metadata?.organisationName
+    const organisationLine = organisationName
+      ? ` You identified your organisation as ${organisationName}.`
+      : ""
+
+    return {
+      title: "Registration received",
+      body: `Thank you. Your payment has been received.${organisationLine} We will email programme details to ${email}.`,
+    }
+  }
+
   return {
     title: "Registration received",
     body: `Thank you. Your payment has been received. We will email programme details to ${email}.`,

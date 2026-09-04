@@ -9,6 +9,7 @@ const retryHrefs: Record<Journey, string> = {
   school: "/register/school",
   organisation: "/register/organisation",
   schoolParent: "/register/school-parent",
+  organisationUser: "/register/organisation-user",
 }
 
 export default async function RegisterCancelledPage({

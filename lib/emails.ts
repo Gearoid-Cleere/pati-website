@@ -49,6 +49,11 @@ export function formatOpsEmail(session: Stripe.Checkout.Session) {
     subject = schoolName
       ? `School parent paid: ${name || "parent"} — ${schoolName}`
       : `School parent paid: ${name || "parent"}`
+  } else if (journey === "organisationUser") {
+    const userName = [details.firstName, details.lastName].filter(Boolean).join(" ")
+    subject = organisationName
+      ? `Organisation user paid: ${userName || "user"} — ${organisationName}`
+      : `Organisation user paid: ${userName || "user"}`
   }
 
   const lines = [
@@ -169,6 +174,26 @@ export function formatPurchaserEmail(session: Stripe.Checkout.Session) {
         schoolLine,
         "",
         "We will email programme details and next steps to this address shortly.",
+        "",
+        "If you have any questions, please contact PATI.",
+      ].join("\n"),
+    }
+  }
+
+  if (journey === "organisationUser") {
+    return {
+      to,
+      subject: "Your PATI registration",
+      text: [
+        "Thank you for registering with PATI.",
+        "",
+        `Your payment of ${amount} has been received.`,
+        "",
+        `You registered through ${organisationName}.`,
+        "",
+        "We will send programme access details and joining information to this email address.",
+        "",
+        "Stripe will also send a separate payment receipt.",
         "",
         "If you have any questions, please contact PATI.",
       ].join("\n"),
