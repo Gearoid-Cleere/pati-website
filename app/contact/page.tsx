@@ -1,7 +1,6 @@
 import Link from "next/link"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { ContactForm } from "@/components/contact-form"
 import { Button } from "@/components/ui/button"
 import { Mail, MapPin, School, Users, Building2, ArrowRight } from "lucide-react"
 
@@ -29,12 +28,22 @@ export default function ContactPage() {
             <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
               {/* Contact Form */}
               <div>
-                <h2 className="text-2xl font-semibold text-foreground">Send us a message</h2>
+                <h2 className="text-2xl font-semibold text-foreground">Get in touch</h2>
                 <p className="mt-2 text-muted-foreground">
-                  Fill out the form below and we&apos;ll get back to you as soon as possible.
+                  Email PATI and we&apos;ll get back to you as soon as possible.
                 </p>
                 <div className="mt-8">
-                  <ContactForm />
+                  <Button size="lg" asChild className="h-auto min-h-14 px-6 py-3 text-[15px] font-medium">
+                    <a href="mailto:info@parentingandtechnologyinstitute.com">Email PATI</a>
+                  </Button>
+                  <p className="mt-4 text-sm text-muted-foreground">
+                    <a
+                      href="mailto:info@parentingandtechnologyinstitute.com"
+                      className="text-accent transition-colors hover:text-accent/80"
+                    >
+                      info@parentingandtechnologyinstitute.com
+                    </a>
+                  </p>
                 </div>
               </div>
 
@@ -108,7 +117,7 @@ export default function ContactPage() {
                   Primary and secondary schools across Ireland
                 </p>
                 <p className="mt-3 text-muted-foreground">
-                  Bring the PATI programme to your school and support students and families with evidence-based digital wellbeing education.
+                  Bring the PATI programme to your school and support students and families with research-informed digital wellbeing education.
                 </p>
                 <Button variant="link" asChild className="mt-4 h-auto p-0 text-primary">
                   <Link href="/register/school" className="inline-flex items-center gap-1">
@@ -152,7 +161,7 @@ export default function ContactPage() {
                 </p>
                 <Button variant="link" asChild className="mt-4 h-auto p-0 text-primary">
                   <Link href="/organisations" className="inline-flex items-center gap-1">
-                    Book a Call
+                    For Organisations
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </Button>

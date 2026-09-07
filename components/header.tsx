@@ -15,7 +15,6 @@ const whoWeHelpLinks = [
 const aboutLinks = [
   { href: "/about", label: "About the Institute" },
   { href: "/leadership", label: "Leadership" },
-  { href: "/advisory-council", label: "Advisory Council" },
   { href: "/research", label: "Research & Insights" },
 ]
 
@@ -103,13 +102,6 @@ export function Header() {
               Programme
             </Link>
 
-            <Link
-              href="/resources"
-              className="px-5 py-2 text-[15px] text-muted-foreground transition-colors hover:text-foreground"
-            >
-              Resources
-            </Link>
-
             <div className="group relative">
               <button className="flex items-center gap-1.5 px-5 py-2 text-[15px] text-muted-foreground transition-colors hover:text-foreground">
                 About
@@ -139,12 +131,6 @@ export function Header() {
           </nav>
 
           <div className="hidden items-center gap-6 lg:flex">
-            <Link
-              href="/login"
-              className="text-[15px] text-muted-foreground transition-colors hover:text-foreground"
-            >
-              Login
-            </Link>
             <Button asChild className="h-11 px-6 text-[15px]">
               <Link href="/register/parent">Register</Link>
             </Button>
@@ -211,14 +197,6 @@ export function Header() {
             Programme
           </Link>
 
-          <Link
-            href="/resources"
-            onClick={() => setMobileOpen(false)}
-            className="border-b border-border/40 py-4 text-[15px] font-medium text-foreground transition-colors hover:text-primary"
-          >
-            Resources
-          </Link>
-
           <div className="border-b border-border/40 py-4">
             <div className="mb-2 text-[15px] font-medium text-foreground">
               About
@@ -244,14 +222,6 @@ export function Header() {
             className="border-b border-border/40 py-4 text-[15px] font-medium text-foreground transition-colors hover:text-primary"
           >
             Contact
-          </Link>
-
-          <Link
-            href="/login"
-            onClick={() => setMobileOpen(false)}
-            className="border-b border-border/40 py-4 text-[15px] text-muted-foreground transition-colors hover:text-foreground"
-          >
-            Login
           </Link>
 
           <div className="pt-8">

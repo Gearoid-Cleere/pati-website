@@ -14,7 +14,7 @@ const sourceSerif = Source_Serif_4({
 })
 
 export const metadata: Metadata = {
-  title: 'PATI - Parenting & Technology Institute',
+  title: 'PATI - Parenting and Technology Institute',
   description:
     'Helping Families, Schools and Organisations Navigate Technology with Confidence. Expert-led programmes supporting parents, school communities and employees to manage children\'s technology use.',
   generator: 'v0.app',

@@ -148,9 +148,6 @@ export default function AboutPage() {
               <p className="mb-6 text-sm text-muted-foreground leading-relaxed">
                 Our work is supported by an Advisory Council providing insight across psychology, education, and digital life.
               </p>
-              <Button asChild>
-                <Link href="/advisory-council">View Advisory Council</Link>
-              </Button>
             </div>
 
             {/* Research */}

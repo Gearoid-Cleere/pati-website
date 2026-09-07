@@ -56,7 +56,6 @@ export function Footer() {
             <ul className="space-y-3 text-sm">
               <li><Link href="/about">About the Institute</Link></li>
               <li><Link href="/leadership">Leadership</Link></li>
-              <li><Link href="/advisory-council">Advisory Council</Link></li>
               <li><Link href="/research">Research & Insights</Link></li>
               <li><Link href="/contact">Contact</Link></li>
             </ul>
@@ -64,10 +63,14 @@ export function Footer() {
 
         </div>
 
-        <div className="mt-16 border-t border-border pt-6 text-center">
+        <div className="mt-16 flex flex-col items-center gap-3 border-t border-border pt-6 text-center sm:flex-row sm:justify-between sm:text-left">
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} Parenting and Technology Institute. All rights reserved.
           </p>
+          <ul className="flex gap-6 text-sm text-muted-foreground">
+            <li><Link href="/privacy">Privacy</Link></li>
+            <li><Link href="/terms">Terms</Link></li>
+          </ul>
         </div>
 
       </div>

@@ -11,7 +11,6 @@ const navLinks = [
   { href: "/schools", label: "Schools" },
   { href: "/organisations", label: "Organisations" },
   { href: "/parents", label: "Parents" },
-  { href: "/resources", label: "Resources" },
   { href: "/about", label: "About" },
 ]
 
@@ -83,12 +82,6 @@ export function HomeHeader() {
           </nav>
 
           <div className="hidden items-center gap-6 lg:flex">
-            <Link
-              href="/login"
-              className="text-[15px] text-muted-foreground transition-colors hover:text-foreground"
-            >
-              Login
-            </Link>
             <Button asChild className="h-11 px-6 text-[15px]">
               <a href="#access">Join PATI</a>
             </Button>
@@ -128,14 +121,6 @@ export function HomeHeader() {
               {link.label}
             </Link>
           ))}
-
-          <Link
-            href="/login"
-            onClick={() => setMobileOpen(false)}
-            className="border-b border-border/40 py-4 text-[15px] text-muted-foreground transition-colors hover:text-foreground"
-          >
-            Login
-          </Link>
 
           <div className="pt-8">
             <Button className="h-12 w-full text-[15px]" asChild>
