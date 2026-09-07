@@ -1,33 +1,29 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-
-import { HeroSection } from "@/components/corporate/hero-section"
-import { WhyThisMattersSection } from "@/components/corporate/why-this-matters-section"
-import { ImpactSection } from "@/components/corporate/impact-section"
-import { WhatWeDeliverSection } from "@/components/corporate/what-we-deliver-section"
-import { TopicsSection } from "@/components/corporate/topics-section"
-import { HowItWorksSection } from "@/components/corporate/how-it-works-section"
-import { DownloadSection } from "@/components/corporate/download-section"
-import { TestimonialsSection } from "@/components/corporate/testimonials-section"
-import { OptionsSection } from "@/components/corporate-v2/options-section"
-import { AboutSection } from "@/components/corporate-v2/about-section"
-import { FinalCtaSection as CorporateV2FinalCtaSection } from "@/components/corporate-v2/final-cta-section"
+import { OrganisationsHero } from "@/components/organisations/hero"
+import { OrganisationsEmployerCase } from "@/components/organisations/employer-case"
+import { OrganisationsHowItWorks } from "@/components/organisations/how-it-works"
+import { OrganisationsProgramme } from "@/components/organisations/programme"
+import { OrganisationsExpertise } from "@/components/organisations/expertise"
+import { OrganisationsTestimonials } from "@/components/organisations/testimonials"
+import { OrganisationsPricing } from "@/components/organisations/pricing"
+import { OrganisationsFaq } from "@/components/organisations/faq"
+import { OrganisationsFinalCta } from "@/components/organisations/final-cta"
 
 export default function OrganisationsPage() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="flex min-h-screen flex-col bg-background">
       <Header />
-      <main>
-        <HeroSection />
-        <WhyThisMattersSection />
-        <ImpactSection />
-        <WhatWeDeliverSection />
-        <TopicsSection />
-       <HowItWorksSection />
-        <OptionsSection />
-        <DownloadSection />
-        <AboutSection />
-        <CorporateV2FinalCtaSection />
+      <main className="flex-1">
+        <OrganisationsHero />
+        <OrganisationsEmployerCase />
+        <OrganisationsHowItWorks />
+        <OrganisationsProgramme />
+        <OrganisationsExpertise />
+        <OrganisationsTestimonials />
+        <OrganisationsPricing />
+        <OrganisationsFaq />
+        <OrganisationsFinalCta />
       </main>
       <Footer />
     </div>
