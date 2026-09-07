@@ -58,13 +58,6 @@ export function TrustBar() {
             ))}
           </div>
         </div>
-
-        {/* Foundation Support */}
-        <div className="mt-14 text-center">
-          <p className="text-[13px] font-medium tracking-wide text-muted-foreground/60">
-            Supported by the Sunflower Charitable Foundation
-          </p>
-        </div>
       </div>
     </section>
   )

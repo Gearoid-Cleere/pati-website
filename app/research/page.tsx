@@ -36,7 +36,7 @@ export default function ResearchPage() {
                 </h2>
 
                 <p className="text-muted-foreground leading-relaxed mb-6">
-                  In partnership with the Sunflower Foundation, this research project explores how families are navigating technology in everyday life—capturing the real challenges, behaviours, and concerns facing parents today.
+                  This independently funded research project explores how families are navigating technology in everyday life—capturing the real challenges, behaviours, and concerns facing parents today.
                 </p>
 
                 <p className="text-muted-foreground leading-relaxed mb-6">
@@ -104,7 +104,7 @@ export default function ResearchPage() {
 
             <div className="border border-dashed border-border rounded-xl p-10">
               <p className="text-muted-foreground">
-                Our first report will be published following the completion of the Sunflower Foundation study.
+                Our first report will be published following the completion of this independently funded research project.
               </p>
             </div>
           </div>
