@@ -1,31 +1,31 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { HeroSection } from "@/components/sections/hero"
-import { OverviewSection } from "@/components/sections/overview"
-import { StructureSection } from "@/components/sections/structure"
-import { ModulesSection } from "@/components/sections/modules"
-import { BenefitsSection } from "@/components/sections/benefits"
-import { AudienceSection } from "@/components/sections/audience"
-import { HowItWorksSection } from "@/components/sections/how-it-works"
-import { TestimonialsSection } from "@/components/sections/testimonials"
-import { DownloadSection } from "@/components/sections/download"
-import { FinalCtaSection } from "@/components/sections/final-cta"
+import { ProgrammeHero } from "@/components/programme/hero"
+import { ProgrammeOverview } from "@/components/programme/overview"
+import { ProgrammeStructure } from "@/components/programme/structure"
+import { ProgrammeModules } from "@/components/programme/modules"
+import { ProgrammeOutcomes } from "@/components/programme/outcomes"
+import { ProgrammeDelivery } from "@/components/programme/delivery"
+import { ProgrammeAccess } from "@/components/programme/access"
+import { ProgrammeTestimonials } from "@/components/programme/testimonials"
+import { ProgrammeFaq } from "@/components/programme/faq"
+import { ProgrammeFinalCta } from "@/components/programme/final-cta"
 
 export default function ProgrammePage() {
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col bg-background">
       <Header />
       <main className="flex-1">
-        <HeroSection />
-        <OverviewSection />
-        <StructureSection />
-        <ModulesSection />
-        <BenefitsSection />
-        <AudienceSection />
-        <HowItWorksSection />
-        <TestimonialsSection />
-        <DownloadSection />
-        <FinalCtaSection />
+        <ProgrammeHero />
+        <ProgrammeOverview />
+        <ProgrammeStructure />
+        <ProgrammeModules />
+        <ProgrammeOutcomes />
+        <ProgrammeDelivery />
+        <ProgrammeAccess />
+        <ProgrammeTestimonials />
+        <ProgrammeFaq />
+        <ProgrammeFinalCta />
       </main>
       <Footer />
     </div>
