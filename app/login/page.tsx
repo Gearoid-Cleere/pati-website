@@ -33,7 +33,7 @@ export default function LoginPage() {
             <div className="flex justify-center mb-6">
               <Link href="/">
                 <Image
-                  src="/pati-logo.svg"
+                  src="/pati-logo.jpg"
                   alt="Parenting and Technology Institute"
                   width={320}
                   height={90}

@@ -41,7 +41,7 @@ export function HomeHeader() {
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link href="/" className="flex items-center">
             <Image
-              src="/pati-logo.svg"
+              src="/pati-logo.jpg"
               alt="Parenting and Technology Institute"
               width={320}
               height={90}
@@ -61,7 +61,7 @@ export function HomeHeader() {
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link href="/" className="flex items-center">
             <Image
-              src="/pati-logo.svg"
+              src="/pati-logo.jpg"
               alt="Parenting and Technology Institute"
               width={320}
               height={90}

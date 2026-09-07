@@ -12,7 +12,7 @@ export function Footer() {
           <div>
             <Link href="/" className="inline-flex items-center">
               <Image
-                src="/pati-logo.svg"
+                src="/pati-logo.jpg"
                 alt="Parenting and Technology Institute"
                 width={320}
                 height={90}
