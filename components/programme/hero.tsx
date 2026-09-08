@@ -8,7 +8,7 @@ export function ProgrammeHero() {
       <div className="mx-auto max-w-7xl px-6 pb-16 pt-16 sm:px-8 lg:px-12 lg:pb-20 lg:pt-20">
         <div className="mx-auto max-w-4xl text-center">
           <p className="mb-5 text-sm font-medium uppercase tracking-[0.22em] text-accent">
-            The PATI Programme
+            Parenting the Tech-Savvy Child
           </p>
 
           <h1 className="font-serif text-[2.5rem] font-normal leading-[1.1] tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-[4rem]">

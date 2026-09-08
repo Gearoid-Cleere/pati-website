@@ -72,7 +72,8 @@ export function ParentsProgramme() {
             A Structured Programme for Parents
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-            Eight focused modules covering the issues parents are navigating every day.
+            Parenting the Tech-Savvy Child is delivered across eight focused modules covering the
+            issues parents are navigating every day.
           </p>
         </div>
 

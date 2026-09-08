@@ -26,7 +26,7 @@ export function OrganisationsExpertise() {
 
             <p className="mt-6 font-serif text-xl font-medium text-foreground">Dr Richard Hogan</p>
             <p className="mt-2 text-[15px] text-muted-foreground">
-              Family Psychotherapist and Co-Founder of the Parenting &amp; Technology Institute
+              Family Psychotherapist and Co-Founder of the Parenting and Technology Institute (PATI)
             </p>
 
             <div className="mt-8 space-y-5 text-lg leading-relaxed text-muted-foreground">

@@ -49,7 +49,7 @@ const faqs = [
   {
     question: "Who delivers the programme?",
     answer:
-      "The programme is delivered by Dr Richard Hogan, Family Psychotherapist and Co-Founder of the Parenting & Technology Institute.",
+      "The programme is delivered by Dr Richard Hogan, Family Psychotherapist and Co-Founder of the Parenting and Technology Institute (PATI).",
   },
   {
     question: "What does annual school registration mean?",

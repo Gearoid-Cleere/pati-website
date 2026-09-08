@@ -69,7 +69,7 @@ export function ProgrammeOverview() {
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
         <div className="mx-auto mb-16 max-w-3xl text-center lg:mb-20">
           <p className="mb-4 text-sm font-medium uppercase tracking-[0.22em] text-accent">
-            The PATI Programme
+            Parenting the Tech-Savvy Child
           </p>
 
           <h2 className="font-serif text-[2rem] font-normal tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem]">

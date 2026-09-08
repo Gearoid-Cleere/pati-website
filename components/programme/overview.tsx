@@ -18,9 +18,9 @@ export function ProgrammeOverview() {
 
           <div className="mt-8 space-y-5 text-lg leading-relaxed text-muted-foreground">
             <p>
-              PATI is a structured parent education programme from the Parenting and Technology
-              Institute. It is designed to help families navigate the practical challenges
-              created by technology and modern digital life.
+              The Parenting and Technology Institute (PATI) delivers Parenting the Tech-Savvy Child,
+              a structured parent education programme designed to help parents navigate the
+              challenges of raising children in a digital world.
             </p>
             <p>
               Over four weeks, parents join four live online sessions covering eight focused

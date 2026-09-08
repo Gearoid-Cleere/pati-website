@@ -6,7 +6,7 @@ export default function RegisterParentPage() {
     <RegisterShell
       eyebrow="Independent Parent"
       title="Join PATI Independently"
-      description="Complete your details below to register for the PATI programme. Payment of €79.95 is completed securely with Stripe."
+      description="Complete your details below to register for Parenting the Tech-Savvy Child. Payment of €79.95 is completed securely with Stripe."
     >
       <ParentForm />
     </RegisterShell>
