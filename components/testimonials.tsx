@@ -1,21 +1,21 @@
 const reflections = [
   {
     quote:
-      "It was supportive, not directive. It helped me understand that we are not the only family trying to navigate this and that no parent is getting it perfect.",
-    author: "Parent",
-    role: "School community participant",
+      "You’ll get very practical advice from an expert who has lived it with his own family. I feel much more equipped to manage what’s coming as my children get older.",
+    author: "Niamh",
+    role: "Scoil Mhuire, Griffith Avenue",
   },
   {
     quote:
-      "It helped us approach these conversations more calmly and confidently. We’ve already introduced clearer family boundaries around phones and screen time.",
-    author: "Parent",
-    role: "PATI participant",
+      "It’s practical and down to earth. It reassured me that our approach is on the right track and helped me feel more confident about the future.",
+    author: "Aoife",
+    role: "Letterfrack National School",
   },
   {
     quote:
-      "The programme reassured me that a balanced, practical approach is possible. I left feeling more informed, more empowered and less overwhelmed.",
-    author: "Parent",
-    role: "School community participant",
+      "It gave me practical tools I could use straight away at home. I’ve even changed the language and approach we use around screen time.",
+    author: "Fionnuala Ní Chonaire",
+    role: "Scoil na bhForbacha",
   },
 ]
 
@@ -29,7 +29,7 @@ export function Testimonials() {
           </p>
 
           <h2 className="font-serif text-[2rem] font-normal tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem]">
-            What parents have told us
+            What Parents Say
           </h2>
         </div>
 
