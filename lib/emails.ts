@@ -1,5 +1,4 @@
 import Stripe from "stripe"
-import { getOrganisationUserRegistrationUrlFromSession } from "@/lib/organisation-user-link"
 import { getSiteUrl } from "@/lib/stripe"
 
 function metadata(session: Stripe.Checkout.Session) {
@@ -32,6 +31,10 @@ function formatAmount(session: Stripe.Checkout.Session) {
 
 function schoolParentRegistrationUrl() {
   return `${getSiteUrl().replace(/\/$/, "")}/register/school-parent`
+}
+
+function organisationUserRegistrationUrl() {
+  return `${getSiteUrl().replace(/\/$/, "")}/register/organisation-user`
 }
 
 const PATI_ZOOM_REGISTRATION_URL =
@@ -92,16 +95,10 @@ export function formatOpsEmail(session: Stripe.Checkout.Session) {
   }
 
   if (journey === "organisation") {
-    const organisationUserLink = getOrganisationUserRegistrationUrlFromSession(session)
-
     lines.push(
       "",
-      "Organisation user registration/payment link to send if needed:"
-    )
-
-    lines.push(
-      organisationUserLink ||
-        "Link not generated. Check ORGANISATION_USER_LINK_SECRET and resend from the Stripe organisation payment."
+      "Organisation user registration/payment link:",
+      organisationUserRegistrationUrl()
     )
   }
 
@@ -189,20 +186,7 @@ export function formatPurchaserEmail(session: Stripe.Checkout.Session) {
   }
 
   if (journey === "organisation") {
-    const organisationUserLink =
-      getOrganisationUserRegistrationUrlFromSession(session)
-
-    const linkLines = organisationUserLink
-      ? [
-          "This is the unique registration/payment link for people associated with your registered organisation. Please forward this same link to them:",
-          "",
-          organisationUserLink,
-          "",
-          "People who use this link pay €24.95 individually through Stripe. The organisation is identified by the link, so they cannot choose a different organisation.",
-        ]
-      : [
-          "PATI will send you the unique registration/payment link for people associated with your registered organisation.",
-        ]
+    const organisationUserLink = organisationUserRegistrationUrl()
 
     return {
       to,
@@ -212,9 +196,17 @@ export function formatPurchaserEmail(session: Stripe.Checkout.Session) {
         "",
         `Your organisation registration payment of ${amount} has been received. Stripe will also send a payment receipt to this email address.`,
         "",
-        ...linkLines,
+        "EMPLOYEE AND PARENT REGISTRATION",
         "",
-        "PATI will also be in touch regarding programme access details.",
+        "Please forward the registration/payment link below to employees and parents associated with your organisation who wish to participate in the PATI Parent Programme:",
+        "",
+        organisationUserLink,
+        "",
+        "Employees and parents use this common PATI link to register and pay €24.95 individually through Stripe.",
+        "",
+        "As part of registration, they enter the name of the organisation they are associated with so PATI can match their registration to your organisation.",
+        "",
+        "PATI will be in touch with programme details in due course.",
         "",
         "If you have any questions, please contact PATI.",
       ].join("\n"),
