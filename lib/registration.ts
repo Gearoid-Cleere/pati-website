@@ -7,6 +7,7 @@ export const journeys = [
   "schoolParent",
   "organisationUser",
 ] as const
+
 export type Journey = (typeof journeys)[number]
 
 const optionalText = z.string().trim().max(200).optional().or(z.literal(""))
@@ -57,7 +58,7 @@ export const organisationUserCheckoutSchema = z.object({
   firstName: z.string().trim().min(1).max(200),
   lastName: z.string().trim().min(1).max(200),
   email: z.string().trim().email().max(200),
-  organisationUserCode: z.string().trim().min(1).max(800),
+  organisationName: z.string().trim().min(1).max(200),
   termsAccepted: z.literal(true),
 })
 
@@ -90,11 +91,8 @@ export function toStripeMetadata(data: CheckoutRequest) {
       continue
     }
 
-    if (key === "organisationUserCode") {
-      continue
-    }
-
     const nextValue = metadataValue(value as string | boolean | undefined)
+
     if (nextValue) {
       metadata[key] = nextValue
     }
