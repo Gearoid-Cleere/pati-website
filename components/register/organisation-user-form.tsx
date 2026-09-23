@@ -6,13 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useCheckoutSubmit } from "@/components/register/start-checkout"
 
-export function OrganisationUserForm({
-  organisationUserCode,
-  organisationName,
-}: {
-  organisationUserCode: string
-  organisationName: string
-}) {
+export function OrganisationUserForm() {
   const { isSubmitting, error, submit } = useCheckoutSubmit()
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -25,13 +19,16 @@ export function OrganisationUserForm({
       firstName: String(data.get("firstName") || ""),
       lastName: String(data.get("lastName") || ""),
       email: String(data.get("email") || ""),
-      organisationUserCode,
+      organisationName: String(data.get("organisationName") || ""),
       termsAccepted: data.get("termsAccepted") === "on",
     })
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5 rounded-xl border border-border bg-card p-6 shadow-sm sm:p-8">
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-5 rounded-xl border border-border bg-card p-6 shadow-sm sm:p-8"
+    >
       <div>
         <Label htmlFor="firstName">First name</Label>
         <Input
@@ -58,17 +55,27 @@ export function OrganisationUserForm({
 
       <div>
         <Label htmlFor="email">Email address</Label>
-        <Input id="email" name="email" type="email" required maxLength={200} className="mt-1.5" autoComplete="email" />
+        <Input
+          id="email"
+          name="email"
+          type="email"
+          required
+          maxLength={200}
+          className="mt-1.5"
+          autoComplete="email"
+        />
       </div>
 
       <div>
-        <p className="text-sm font-medium leading-none">Organisation</p>
-        <p className="mt-1.5 rounded-md border border-border bg-muted/40 px-3 py-2 text-sm text-foreground">
-          {organisationName}
-        </p>
-        <p className="mt-1.5 text-sm text-muted-foreground">
-          This organisation is set by your registration link and cannot be changed.
-        </p>
+        <Label htmlFor="organisationName">Organisation name</Label>
+        <Input
+          id="organisationName"
+          name="organisationName"
+          required
+          maxLength={200}
+          className="mt-1.5"
+          autoComplete="organization"
+        />
       </div>
 
       <label className="flex items-start gap-3 text-sm leading-relaxed text-muted-foreground">
@@ -80,11 +87,17 @@ export function OrganisationUserForm({
         />
         <span>
           I agree to the{" "}
-          <Link href="/terms" className="text-foreground underline-offset-4 hover:underline">
+          <Link
+            href="/terms"
+            className="text-foreground underline-offset-4 hover:underline"
+          >
             Terms
           </Link>{" "}
           and{" "}
-          <Link href="/privacy" className="text-foreground underline-offset-4 hover:underline">
+          <Link
+            href="/privacy"
+            className="text-foreground underline-offset-4 hover:underline"
+          >
             Privacy Policy
           </Link>
           .
@@ -93,12 +106,18 @@ export function OrganisationUserForm({
 
       {error ? <p className="text-sm text-destructive">{error}</p> : null}
 
-      <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
+      <Button
+        type="submit"
+        className="w-full"
+        size="lg"
+        disabled={isSubmitting}
+      >
         {isSubmitting ? "Continuing to payment..." : "Continue to payment"}
       </Button>
 
       <p className="text-center text-xs text-muted-foreground">
-        You will be redirected to Stripe to complete payment. Card details are not collected on this website.
+        You will be redirected to Stripe to complete payment of €24.95.
+        Card details are not collected on this website.
       </p>
     </form>
   )
