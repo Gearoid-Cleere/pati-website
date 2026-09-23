@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server"
 import { checkoutRequestSchema, toStripeMetadata } from "@/lib/registration"
-import { verifyOrganisationUserToken } from "@/lib/organisation-user-link"
 import { getPriceIdForJourney, getSiteUrl, getStripe } from "@/lib/stripe"
 
 export const runtime = "nodejs"
@@ -21,21 +20,7 @@ export async function POST(request: Request) {
     const data = parsed.data
     const metadata = toStripeMetadata(data)
     const siteUrl = getSiteUrl()
-    let cancelUrl = `${siteUrl}/register/cancelled?journey=${data.journey}`
-
-    if (data.journey === "organisationUser") {
-      const verified = verifyOrganisationUserToken(data.organisationUserCode)
-
-      if (!verified) {
-        return NextResponse.json(
-          { error: "This registration link is not valid." },
-          { status: 400 }
-        )
-      }
-
-      metadata.organisationName = verified.organisationName
-      cancelUrl = `${siteUrl}/register/cancelled?journey=organisationUser&code=${encodeURIComponent(data.organisationUserCode)}`
-    }
+    const cancelUrl = `${siteUrl}/register/cancelled?journey=${data.journey}`
 
     const stripe = getStripe()
     const priceId = getPriceIdForJourney(data.journey)
