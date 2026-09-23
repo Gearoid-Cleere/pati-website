@@ -29,6 +29,9 @@ function schoolParentRegistrationUrl() {
   return `${getSiteUrl().replace(/\/$/, "")}/register/school-parent`
 }
 
+const PATI_ZOOM_REGISTRATION_URL =
+  "https://us06web.zoom.us/webinar/register/WN_AwOM9lhVRpeJZxFS0b1GIA"
+
 export function formatOpsEmail(session: Stripe.Checkout.Session) {
   const details = metadata(session)
   const journey = details.journey || "unknown"
@@ -85,17 +88,22 @@ export function formatOpsEmail(session: Stripe.Checkout.Session) {
 
   if (journey === "organisation") {
     const organisationUserLink = getOrganisationUserRegistrationUrlFromSession(session)
+
     lines.push(
       "",
       "Organisation user registration/payment link to send if needed:"
     )
+
     lines.push(
       organisationUserLink ||
         "Link not generated. Check ORGANISATION_USER_LINK_SECRET and resend from the Stripe organisation payment."
     )
   }
 
-  lines.push("", "This email is operational only. Stripe remains the system of record.")
+  lines.push(
+    "",
+    "This email is operational only. Stripe remains the system of record."
+  )
 
   return {
     subject,
@@ -155,7 +163,9 @@ export function formatPurchaserEmail(session: Stripe.Checkout.Session) {
   }
 
   if (journey === "organisation") {
-    const organisationUserLink = getOrganisationUserRegistrationUrlFromSession(session)
+    const organisationUserLink =
+      getOrganisationUserRegistrationUrlFromSession(session)
+
     const linkLines = organisationUserLink
       ? [
           "This is the unique registration/payment link for people associated with your registered organisation. Please forward this same link to them:",
@@ -187,23 +197,45 @@ export function formatPurchaserEmail(session: Stripe.Checkout.Session) {
 
   if (journey === "schoolParent") {
     const county = details.schoolCounty
+
     const schoolLine = county
-      ? `You identified your school as ${schoolName} (${county}).`
-      : `You identified your school as ${schoolName}.`
+      ? `You registered through ${schoolName} (${county}).`
+      : `You registered through ${schoolName}.`
 
     return {
       to,
-      subject: "Your PATI registration",
+      subject: "Your PATI Parent Programme access",
       text: [
-        "Thank you for registering with PATI.",
+        "Thank you for registering for the Parenting and Technology Institute (PATI) Parent Programme.",
         "",
-        `Your payment of ${amount} has been received. Stripe will also send a payment receipt to this email address.`,
+        `Your payment of ${amount} has been received. Stripe will also send a separate payment receipt to this email address.`,
         "",
         schoolLine,
         "",
-        "We will email programme details and next steps to this address shortly.",
+        "NEXT STEP – REGISTER FOR YOUR LIVE WEBINAR ACCESS",
         "",
-        "If you have any questions, please contact PATI.",
+        "Please use the link below to register for the live PATI Parent Programme:",
+        "",
+        PATI_ZOOM_REGISTRATION_URL,
+        "",
+        "You only need to register once. Zoom will then send your personal joining details and reminders for the live sessions.",
+        "",
+        "AUTUMN 2026 PROGRAMME DATES",
+        "",
+        "Tuesday 29 September – 7.00pm",
+        "Tuesday 6 October – 6.00pm (please note the earlier start time)",
+        "Tuesday 13 October – 7.00pm",
+        "Tuesday 20 October – 7.00pm",
+        "",
+        "Each session runs for approximately one hour and is presented live by Dr Richard Hogan.",
+        "",
+        "Please keep this email for your records.",
+        "",
+        "We look forward to welcoming you to the programme.",
+        "",
+        "Kind regards,",
+        "The PATI Team",
+        "Parenting and Technology Institute (PATI)",
       ].join("\n"),
     }
   }
