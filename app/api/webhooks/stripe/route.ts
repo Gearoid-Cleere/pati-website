@@ -7,6 +7,30 @@ import { getStripe } from "@/lib/stripe"
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
 
+const LEGACY_SCHOOL_PARENT_PAYMENT_LINK =
+  "plink_1SrYCvRpByHBjnWnzgUrdPYE"
+
+function normaliseLegacySchoolParentSession(
+  session: Stripe.Checkout.Session
+): Stripe.Checkout.Session {
+  const paymentLink =
+    typeof session.payment_link === "string"
+      ? session.payment_link
+      : session.payment_link?.id
+
+  if (paymentLink !== LEGACY_SCHOOL_PARENT_PAYMENT_LINK) {
+    return session
+  }
+
+  return {
+    ...session,
+    metadata: {
+      ...(session.metadata || {}),
+      journey: "schoolParent",
+    },
+  }
+}
+
 function getResendClient() {
   const apiKey = process.env.RESEND_API_KEY
 
@@ -22,7 +46,9 @@ async function sendOpsNotification(session: Stripe.Checkout.Session) {
   const to = process.env.PATI_OPS_EMAIL
 
   if (!resend || !to) {
-    console.warn("Skipping PATI ops email: RESEND_API_KEY or PATI_OPS_EMAIL is not configured.")
+    console.warn(
+      "Skipping PATI ops email: RESEND_API_KEY or PATI_OPS_EMAIL is not configured."
+    )
     return
   }
 
@@ -50,7 +76,9 @@ async function sendPurchaserEmail(session: Stripe.Checkout.Session) {
   }
 
   if (!message) {
-    console.warn("Skipping purchaser email: no recipient or unrecognised journey.")
+    console.warn(
+      "Skipping purchaser email: no recipient or unrecognised journey."
+    )
     return
   }
 
@@ -72,7 +100,10 @@ export async function POST(request: Request) {
   const signature = request.headers.get("stripe-signature")
 
   if (!webhookSecret || !signature) {
-    return NextResponse.json({ error: "Webhook is not configured." }, { status: 400 })
+    return NextResponse.json(
+      { error: "Webhook is not configured." },
+      { status: 400 }
+    )
   }
 
   const body = await request.text()
@@ -80,25 +111,45 @@ export async function POST(request: Request) {
   let event: Stripe.Event
 
   try {
-    event = stripe.webhooks.constructEvent(body, signature, webhookSecret)
+    event = stripe.webhooks.constructEvent(
+      body,
+      signature,
+      webhookSecret
+    )
   } catch (error) {
-    console.error("Stripe webhook signature verification failed:", error)
-    return NextResponse.json({ error: "Invalid signature." }, { status: 400 })
+    console.error(
+      "Stripe webhook signature verification failed:",
+      error
+    )
+    return NextResponse.json(
+      { error: "Invalid signature." },
+      { status: 400 }
+    )
   }
 
   if (event.type === "checkout.session.completed") {
-    const session = event.data.object as Stripe.Checkout.Session
+    const rawSession =
+      event.data.object as Stripe.Checkout.Session
+
+    const session =
+      normaliseLegacySchoolParentSession(rawSession)
 
     try {
       await sendOpsNotification(session)
     } catch (error) {
-      console.error("PATI ops notification failed after successful payment:", error)
+      console.error(
+        "PATI ops notification failed after successful payment:",
+        error
+      )
     }
 
     try {
       await sendPurchaserEmail(session)
     } catch (error) {
-      console.error("Purchaser email failed after successful payment:", error)
+      console.error(
+        "Purchaser email failed after successful payment:",
+        error
+      )
     }
   }
 
