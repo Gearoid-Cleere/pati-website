@@ -7,7 +7,12 @@ function metadata(session: Stripe.Checkout.Session) {
 }
 
 function customerEmail(session: Stripe.Checkout.Session) {
-  return session.customer_email || metadata(session).email || ""
+  return (
+    session.customer_email ||
+    session.customer_details?.email ||
+    metadata(session).email ||
+    ""
+  )
 }
 
 function formatAmount(session: Stripe.Checkout.Session) {
