@@ -40,6 +40,67 @@ function organisationUserRegistrationUrl() {
 const PATI_ZOOM_REGISTRATION_URL =
   "https://us06web.zoom.us/webinar/register/WN_AwOM9lhVRpeJZxFS0b1GIA"
 
+export function formatTeacherAccessEmail(data: {
+  firstName: string
+  schoolName: string
+}) {
+  return {
+    subject: "Your PATI Parent Programme Access",
+    text: [
+      `Hello ${data.firstName},`,
+      "",
+      "Your access to the PATI Parent Programme is free because you are a member of staff at a participating PATI school.",
+      "",
+      "Please register for the live PATI Parent Programme using the Zoom link below:",
+      "",
+      PATI_ZOOM_REGISTRATION_URL,
+      "",
+      "Once registered, Zoom will send your joining details directly.",
+      "",
+      "AUTUMN 2026 PROGRAMME DATES",
+      "",
+      "Tuesday 29 September 2026 - 7.00pm",
+      "Tuesday 6 October 2026 - 6.00pm (please note the earlier start)",
+      "Tuesday 13 October 2026 - 7.00pm",
+      "Tuesday 20 October 2026 - 7.00pm",
+      "",
+      "Each session runs for approximately one hour and recordings will be available.",
+      "",
+      `You are registered through ${data.schoolName}.`,
+      "",
+      "Kind regards,",
+      "The PATI Team",
+      "Parenting and Technology Institute (PATI)",
+    ].join("\n"),
+  }
+}
+
+export function formatTeacherOpsEmail(data: {
+  firstName: string
+  lastName: string
+  email: string
+  schoolName: string
+  schoolRollNumber: string
+  county: string
+  role: string
+}) {
+  const name = `${data.firstName} ${data.lastName}`
+
+  return {
+    subject: `Free teacher registration: ${name}`,
+    text: [
+      "A free PATI teacher/staff registration was submitted.",
+      "",
+      `Name: ${name}`,
+      `Email: ${data.email}`,
+      `School: ${data.schoolName}`,
+      `School roll number: ${data.schoolRollNumber}`,
+      `County: ${data.county}`,
+      `Role: ${data.role}`,
+    ].join("\n"),
+  }
+}
+
 export function formatOpsEmail(session: Stripe.Checkout.Session) {
   const details = metadata(session)
   const journey = details.journey || "unknown"

@@ -62,6 +62,26 @@ export const organisationUserCheckoutSchema = z.object({
   termsAccepted: z.literal(true),
 })
 
+export const teacherRegistrationSchema = z.object({
+  firstName: z.string().trim().min(1).max(100),
+  lastName: z.string().trim().min(1).max(100),
+  schoolName: z.string().trim().min(1).max(200),
+  schoolRollNumber: z.string().trim().min(1).max(50),
+  county: z.string().trim().min(1).max(100),
+  email: z.string().trim().email().max(200),
+  role: z.enum([
+    "Principal",
+    "Deputy Principal",
+    "Teacher",
+    "SNA",
+    "Other School Staff",
+  ]),
+  staffConfirmation: z.literal(true),
+  termsAccepted: z.literal(true),
+})
+
+export type TeacherRegistration = z.infer<typeof teacherRegistrationSchema>
+
 export const checkoutRequestSchema = z.discriminatedUnion("journey", [
   parentCheckoutSchema,
   schoolCheckoutSchema,
