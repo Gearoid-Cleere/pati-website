@@ -101,6 +101,60 @@ export function formatTeacherOpsEmail(data: {
   }
 }
 
+export function formatSchoolInvoiceRequestEmail(data: {
+  schoolName: string
+  contactName: string
+  role: string
+  email: string
+  phone: string
+  county: string
+  estimatedParents: string
+  invoicingOrganisation: string
+  invoiceEmail: string
+  purchaseOrderReference: string
+}) {
+  const invoiceRecipient = data.invoiceEmail || data.email
+
+  return {
+    confirmation: {
+      to: data.email,
+      subject: "Your PATI school invoice request",
+      text: [
+        `Thank you for registering ${data.schoolName} with PATI and requesting an invoice.`,
+        "",
+        "Your invoice request has been received. No payment is required at this stage.",
+        "",
+        `PATI will send the invoice to ${invoiceRecipient}. Once the invoice process is complete, we will provide your school's parent and teacher registration information.`,
+        "",
+        "PATI will be in touch shortly if any further information is needed.",
+        "",
+        "Kind regards,",
+        "The PATI Team",
+        "Parenting and Technology Institute (PATI)",
+      ].join("\n"),
+    },
+    operations: {
+      subject: `School invoice requested: ${data.schoolName}`,
+      text: [
+        "A PATI school registration requested payment by invoice.",
+        "",
+        `School: ${data.schoolName}`,
+        `Contact: ${data.contactName}`,
+        `Role: ${data.role}`,
+        `Registration email: ${data.email}`,
+        `Phone: ${data.phone}`,
+        `County / address: ${data.county || "not provided"}`,
+        `Estimated parents: ${data.estimatedParents || "not provided"}`,
+        `ETB / invoicing organisation: ${data.invoicingOrganisation || "not provided"}`,
+        `Invoice email: ${data.invoiceEmail || "same as registration email"}`,
+        `Purchase order / reference: ${data.purchaseOrderReference || "not provided"}`,
+        "",
+        "No payment has been taken. PATI should send the invoice and then provide the school's parent and teacher registration information.",
+      ].join("\n"),
+    },
+  }
+}
+
 export function formatOpsEmail(session: Stripe.Checkout.Session) {
   const details = metadata(session)
   const journey = details.journey || "unknown"

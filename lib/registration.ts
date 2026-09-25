@@ -32,6 +32,20 @@ export const schoolCheckoutSchema = z.object({
   termsAccepted: z.literal(true),
 })
 
+export const schoolInvoiceRequestSchema = z.object({
+  schoolName: z.string().trim().min(1).max(200),
+  contactName: z.string().trim().min(1).max(200),
+  role: z.string().trim().min(1).max(200),
+  email: z.string().trim().email().max(200),
+  phone: z.string().trim().min(1).max(50),
+  county: optionalText,
+  estimatedParents: optionalText,
+  invoicingOrganisation: optionalText,
+  invoiceEmail: z.string().trim().email().max(200).optional().or(z.literal("")),
+  purchaseOrderReference: optionalText,
+  termsAccepted: z.literal(true),
+})
+
 export const organisationCheckoutSchema = z.object({
   journey: z.literal("organisation"),
   organisationName: z.string().trim().min(1).max(200),
