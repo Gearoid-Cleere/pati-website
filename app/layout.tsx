@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter, Source_Serif_4 } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import patiFavicon from './PATI_Favicon.png'
 import './globals.css'
 
 const inter = Inter({ 
@@ -19,8 +20,8 @@ export const metadata: Metadata = {
     'Helping Families, Schools and Organisations Navigate Technology with Confidence. Expert-led programmes supporting parents, school communities and employees to manage children\'s technology use.',
   generator: 'v0.app',
   icons: {
-    icon: '/icon.png',
-    apple: '/apple-icon.png',
+    icon: patiFavicon.src,
+    apple: patiFavicon.src,
   },
 }
 
