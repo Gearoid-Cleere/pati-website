@@ -155,6 +155,58 @@ export function formatSchoolInvoiceRequestEmail(data: {
   }
 }
 
+export function formatOrganisationInvoiceRequestEmail(data: {
+  organisationName: string
+  firstName: string
+  lastName: string
+  role: string
+  email: string
+  phone: string
+  billingAddress: string
+  invoiceEmail: string
+  purchaseOrderReference: string
+  estimatedParticipants: string
+}) {
+  return {
+    confirmation: {
+      to: data.email,
+      subject: "Your PATI organisation invoice request",
+      text: [
+        `Thank you for registering ${data.organisationName} with PATI and requesting an invoice.`,
+        "",
+        "Your invoice request has been received. No payment is required at this stage.",
+        "",
+        `PATI will send the invoice to ${data.invoiceEmail}. Once the invoice process is complete, we will provide your organisation's programme participation information.`,
+        "",
+        "PATI will be in touch shortly if any further information is needed.",
+        "",
+        "Kind regards,",
+        "The PATI Team",
+        "Parenting and Technology Institute (PATI)",
+      ].join("\n"),
+    },
+    operations: {
+      subject: `Organisation invoice requested: ${data.organisationName}`,
+      text: [
+        "A PATI organisation registration requested payment by invoice.",
+        "",
+        `Organisation: ${data.organisationName}`,
+        `Contact first name: ${data.firstName}`,
+        `Contact last name: ${data.lastName}`,
+        `Role / job title: ${data.role}`,
+        `Contact email: ${data.email}`,
+        `Phone: ${data.phone}`,
+        `Billing address: ${data.billingAddress}`,
+        `Invoice email: ${data.invoiceEmail}`,
+        `PO / reference: ${data.purchaseOrderReference || "not provided"}`,
+        `Estimated participating employees / parents: ${data.estimatedParticipants}`,
+        "",
+        "No payment has been taken. PATI should send the invoice and then provide the organisation's programme participation information.",
+      ].join("\n"),
+    },
+  }
+}
+
 export function formatOpsEmail(session: Stripe.Checkout.Session) {
   const details = metadata(session)
   const journey = details.journey || "unknown"
