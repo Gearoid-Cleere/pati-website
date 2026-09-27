@@ -19,7 +19,7 @@ const pathways = [
   {
     icon: Building2,
     label: "Organisation",
-    title: "Support Parents in Your Organisation.",
+    title: "Support Parents at Work.",
     prices: [
       { label: "Organisation registration", value: "€999.95" },
       { label: "User access", value: "€24.95 per user" },
