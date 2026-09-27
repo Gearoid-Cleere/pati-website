@@ -14,7 +14,7 @@ const reflections = [
   {
     quote:
       "It gave me practical tools I could use straight away at home. I’ve even changed the language and approach we use around screen time.",
-    author: "Fionnuala Ní Chonaire",
+    author: "Fionnuala",
     role: "Scoil na bhForbacha",
   },
 ]
