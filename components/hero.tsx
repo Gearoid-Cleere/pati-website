@@ -13,7 +13,7 @@ export function Hero() {
 
           <h1 className="font-serif text-[2.75rem] font-normal leading-[1.1] tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-[4.25rem]">
             <span className="text-balance">
-              Helping Parents Navigate Technology, Teenagers and Family Life
+              Helping Parents Navigate Technology, Children and Family Life
             </span>
           </h1>
 
