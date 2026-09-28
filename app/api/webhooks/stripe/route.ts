@@ -9,10 +9,31 @@ export const dynamic = "force-dynamic"
 
 const LEGACY_SCHOOL_PARENT_PAYMENT_LINK =
   "plink_1SrYCvRpByHBjnWnzgUrdPYE"
+const LEGACY_SCHOOL_RENEWAL_PRICE =
+  "price_1STL6xRpByHBjnWnrzFx3rQ4"
 
-function normaliseLegacySchoolParentSession(
-  session: Stripe.Checkout.Session
-): Stripe.Checkout.Session {
+async function normaliseCheckoutSession(
+  session: Stripe.Checkout.Session,
+  stripe: Stripe
+): Promise<Stripe.Checkout.Session> {
+  const lineItems = await stripe.checkout.sessions.listLineItems(session.id, {
+    limit: 100,
+  })
+
+  if (
+    lineItems.data.some(
+      (lineItem) => lineItem.price?.id === LEGACY_SCHOOL_RENEWAL_PRICE
+    )
+  ) {
+    return {
+      ...session,
+      metadata: {
+        ...(session.metadata || {}),
+        journey: "school",
+      },
+    }
+  }
+
   const paymentLink =
     typeof session.payment_link === "string"
       ? session.payment_link
@@ -131,8 +152,7 @@ export async function POST(request: Request) {
     const rawSession =
       event.data.object as Stripe.Checkout.Session
 
-    const session =
-      normaliseLegacySchoolParentSession(rawSession)
+    const session = await normaliseCheckoutSession(rawSession, stripe)
 
     try {
       await sendOpsNotification(session)
