@@ -40,6 +40,11 @@ function organisationUserRegistrationUrl() {
 const PATI_ZOOM_REGISTRATION_URL =
   "https://us06web.zoom.us/webinar/register/WN_AwOM9lhVRpeJZxFS0b1GIA"
 
+const PATI_WEEK_1_RECORDING_URL =
+  "https://us06web.zoom.us/rec/share/m9IspHoMVIGk1tPd3XL6Y__8u6_a2Dz2iL8K_1cVSaB0K4ZtZdGN_LalAt-Mlu1C.hpRrWi-X_LKzkNFA"
+
+const PATI_WEEK_1_RECORDING_PASSCODE = "@a7*U0MK"
+
 export function formatTeacherAccessEmail(data: {
   firstName: string
   schoolName: string
@@ -73,9 +78,9 @@ export function formatTeacherAccessEmail(data: {
       "",
       "Watch the Week 1 recording using the link below:",
       "",
-      "https://us06web.zoom.us/rec/share/GVQyK5YaPYY2ukbOTTt_i2HWHMZzKnrHRshf1Rf5hCKK1KeHW_TtHSAeh3bP1nCF.LcGpUcJoHwzV51FO",
+      PATI_WEEK_1_RECORDING_URL,
       "",
-      "Recording passcode: @a7*U0MK",
+      `Recording passcode: ${PATI_WEEK_1_RECORDING_PASSCODE}`,
       "",
       "REMAINING AUTUMN 2026 PROGRAMME DATES",
       "",
@@ -424,9 +429,9 @@ export function formatPurchaserEmail(session: Stripe.Checkout.Session) {
         "",
         "Watch the Week 1 recording using the link below:",
         "",
-        "https://us06web.zoom.us/rec/share/GVQyK5YaPYY2ukbOTTt_i2HWHMZzKnrHRshf1Rf5hCKK1KeHW_TtHSAeh3bP1nCF.LcGpUcJoHwzV51FO",
+        PATI_WEEK_1_RECORDING_URL,
         "",
-        "Recording passcode: @a7*U0MK",
+        `Recording passcode: ${PATI_WEEK_1_RECORDING_PASSCODE}`,
         "",
         "NEXT STEP – REGISTER FOR THE REMAINING LIVE WEBINARS",
         "",
