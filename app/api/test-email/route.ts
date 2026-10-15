@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic"
 // Configure PATI_TEST_EMAIL_SECRET as a strong random value in Vercel.
 // Configure PATI_OPS_EMAIL to the verified internal recipient address.
 export async function POST(request: Request) {
-  const configuredSecret = process.env.PATI_TEST_EMAIL_SECRET
+  const configuredSecret = process.env.PATI_TEST_EMAIL_SECRET_V2
   const suppliedSecret = request.headers.get("x-pati-test-secret")
 
   if (!configuredSecret || !suppliedSecret || suppliedSecret !== configuredSecret) {
