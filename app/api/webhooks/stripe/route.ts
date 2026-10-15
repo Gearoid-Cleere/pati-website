@@ -2,55 +2,15 @@ import { NextResponse } from "next/server"
 import { Resend } from "resend"
 import Stripe from "stripe"
 import { formatOpsEmail, formatPurchaserEmail } from "@/lib/emails"
+import {
+  deliverPaidRegistrationEmails,
+  isPaidEmailEvent,
+  type DeliveryDependencies,
+} from "@/lib/paid-registration-emails"
 import { getStripe } from "@/lib/stripe"
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
-
-const LEGACY_SCHOOL_PARENT_PAYMENT_LINK =
-  "plink_1SrYCvRpByHBjnWnzgUrdPYE"
-const LEGACY_SCHOOL_RENEWAL_PRICE =
-  "price_1STL6xRpByHBjnWnrzFx3rQ4"
-
-async function normaliseCheckoutSession(
-  session: Stripe.Checkout.Session,
-  stripe: Stripe
-): Promise<Stripe.Checkout.Session> {
-  const lineItems = await stripe.checkout.sessions.listLineItems(session.id, {
-    limit: 100,
-  })
-
-  if (
-    lineItems.data.some(
-      (lineItem) => lineItem.price?.id === LEGACY_SCHOOL_RENEWAL_PRICE
-    )
-  ) {
-    return {
-      ...session,
-      metadata: {
-        ...(session.metadata || {}),
-        journey: "school",
-      },
-    }
-  }
-
-  const paymentLink =
-    typeof session.payment_link === "string"
-      ? session.payment_link
-      : session.payment_link?.id
-
-  if (paymentLink !== LEGACY_SCHOOL_PARENT_PAYMENT_LINK) {
-    return session
-  }
-
-  return {
-    ...session,
-    metadata: {
-      ...(session.metadata || {}),
-      journey: "schoolParent",
-    },
-  }
-}
 
 function getResendClient() {
   const apiKey = process.env.RESEND_API_KEY
@@ -62,56 +22,86 @@ function getResendClient() {
   return new Resend(apiKey)
 }
 
-async function sendOpsNotification(session: Stripe.Checkout.Session) {
+export async function sendOpsNotification(
+  session: Stripe.Checkout.Session,
+  idempotencyKey: string
+) {
   const resend = getResendClient()
   const to = process.env.PATI_OPS_EMAIL
 
-  if (!resend || !to) {
-    console.warn(
-      "Skipping PATI ops email: RESEND_API_KEY or PATI_OPS_EMAIL is not configured."
-    )
-    return
+  if (!resend) {
+    throw new Error("RESEND_API_KEY is not configured")
+  }
+
+  if (!to) {
+    console.warn("Skipping PATI ops email: PATI_OPS_EMAIL is not configured.")
+    return { skipped: true }
   }
 
   const { subject, text } = formatOpsEmail(session)
 
-  const { error } = await resend.emails.send({
-    from: process.env.RESEND_FROM_EMAIL || "PATI <beth.t@example.com>",
-    to,
-    subject,
-    text,
-  })
+  const { error } = await resend.emails.send(
+    {
+      from: process.env.RESEND_FROM_EMAIL || "PATI <beth.t@example.com>",
+      to,
+      subject,
+      text,
+    },
+    { idempotencyKey }
+  )
 
   if (error) {
     throw error
   }
 }
 
-async function sendPurchaserEmail(session: Stripe.Checkout.Session) {
+export async function sendPurchaserEmail(
+  session: Stripe.Checkout.Session,
+  idempotencyKey: string
+) {
   const resend = getResendClient()
   const message = formatPurchaserEmail(session)
 
   if (!resend) {
-    console.warn("Skipping purchaser email: RESEND_API_KEY is not configured.")
-    return
+    throw new Error("RESEND_API_KEY is not configured")
   }
 
   if (!message) {
     console.warn(
       "Skipping purchaser email: no recipient or unrecognised journey."
     )
-    return
+    return { skipped: true }
   }
 
-  const { error } = await resend.emails.send({
-    from: process.env.RESEND_FROM_EMAIL || "PATI <beth.t@example.com>",
-    to: message.to,
-    subject: message.subject,
-    text: message.text,
-  })
+  const { error } = await resend.emails.send(
+    {
+      from: process.env.RESEND_FROM_EMAIL || "PATI <beth.t@example.com>",
+      to: message.to,
+      subject: message.subject,
+      text: message.text,
+    },
+    { idempotencyKey }
+  )
 
   if (error) {
     throw error
+  }
+}
+
+export function createDeliveryDependencies(stripe: Stripe): DeliveryDependencies {
+  return {
+    retrieveSession: (sessionId) => stripe.checkout.sessions.retrieve(sessionId),
+    listLineItems: async (sessionId) => {
+      const lineItems = await stripe.checkout.sessions.listLineItems(sessionId, {
+        limit: 100,
+      })
+      return lineItems.data
+    },
+    updateSessionMetadata: async (sessionId, metadata) => {
+      await stripe.checkout.sessions.update(sessionId, { metadata })
+    },
+    sendOpsEmail: sendOpsNotification,
+    sendPurchaserEmail,
   }
 }
 
@@ -132,45 +122,36 @@ export async function POST(request: Request) {
   let event: Stripe.Event
 
   try {
-    event = stripe.webhooks.constructEvent(
-      body,
-      signature,
-      webhookSecret
-    )
+    event = stripe.webhooks.constructEvent(body, signature, webhookSecret)
   } catch (error) {
-    console.error(
-      "Stripe webhook signature verification failed:",
-      error
-    )
-    return NextResponse.json(
-      { error: "Invalid signature." },
-      { status: 400 }
-    )
+    console.error("Stripe webhook signature verification failed:", error)
+    return NextResponse.json({ error: "Invalid signature." }, { status: 400 })
   }
 
-  if (event.type === "checkout.session.completed") {
-    const rawSession =
-      event.data.object as Stripe.Checkout.Session
+  if (!isPaidEmailEvent(event.type)) {
+    return NextResponse.json({ received: true })
+  }
 
-    const session = await normaliseCheckoutSession(rawSession, stripe)
+  const rawSession = event.data.object as Stripe.Checkout.Session
 
-    try {
-      await sendOpsNotification(session)
-    } catch (error) {
-      console.error(
-        "PATI ops notification failed after successful payment:",
-        error
+  try {
+    const result = await deliverPaidRegistrationEmails(
+      rawSession.id,
+      createDeliveryDependencies(stripe)
+    )
+
+    if (result.incomplete) {
+      return NextResponse.json(
+        { error: "Email delivery incomplete." },
+        { status: 500 }
       )
     }
-
-    try {
-      await sendPurchaserEmail(session)
-    } catch (error) {
-      console.error(
-        "Purchaser email failed after successful payment:",
-        error
-      )
-    }
+  } catch (error) {
+    console.error("PATI paid registration email delivery failed:", error)
+    return NextResponse.json(
+      { error: "Email delivery incomplete." },
+      { status: 500 }
+    )
   }
 
   return NextResponse.json({ received: true })
