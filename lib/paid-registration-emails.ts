@@ -44,6 +44,45 @@ export const LEGACY_SCHOOL_PARENT_PAYMENT_LINK =
   "plink_1SrYCvRpByHBjnWnzgUrdPYE"
 export const LEGACY_SCHOOL_RENEWAL_PRICE = "price_1STL6xRpByHBjnWnrzFx3rQ4"
 
+export const RECOGNISED_PAID_JOURNEYS = [
+  "parent",
+  "school",
+  "organisation",
+  "schoolParent",
+  "organisationUser",
+] as const
+
+export type RecognisedPaidJourney = (typeof RECOGNISED_PAID_JOURNEYS)[number]
+
+export function isRecognisedPaidJourney(session: Stripe.Checkout.Session) {
+  const journey = session.metadata?.journey
+  return (RECOGNISED_PAID_JOURNEYS as readonly string[]).includes(journey || "")
+}
+
+export function resolveOpsEmail(value: string | undefined | null) {
+  const trimmed = value?.trim() ?? ""
+
+  if (!isValidOpsEmail(trimmed)) {
+    throw new Error("PATI_OPS_EMAIL is missing or invalid")
+  }
+
+  return trimmed
+}
+
+export function isValidOpsEmail(value: string) {
+  if (!value || /\s/.test(value)) {
+    return false
+  }
+
+  const at = value.indexOf("@")
+  if (at <= 0 || at !== value.lastIndexOf("@")) {
+    return false
+  }
+
+  const domain = value.slice(at + 1)
+  return domain.includes(".") && !domain.startsWith(".") && !domain.endsWith(".")
+}
+
 export type DeliveryDependencies = {
   retrieveSession: (sessionId: string) => Promise<Stripe.Checkout.Session>
   listLineItems: (sessionId: string) => Promise<Stripe.LineItem[]>
@@ -170,6 +209,11 @@ export async function deliverPaidRegistrationEmails(
           )
           incomplete = true
         }
+      } else if (isRecognisedPaidJourney(workingSession)) {
+        console.error(
+          "PATI ops notification skipped for a paid recognised registration journey."
+        )
+        incomplete = true
       }
     } catch (error) {
       console.error("PATI ops notification failed after successful payment:", error)

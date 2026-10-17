@@ -5,6 +5,8 @@ import { formatOpsEmail, formatPurchaserEmail } from "@/lib/emails"
 import {
   deliverPaidRegistrationEmails,
   isPaidEmailEvent,
+  isRecognisedPaidJourney,
+  resolveOpsEmail,
   type DeliveryDependencies,
 } from "@/lib/paid-registration-emails"
 import { getStripe } from "@/lib/stripe"
@@ -33,7 +35,14 @@ export async function sendOpsNotification(
     throw new Error("RESEND_API_KEY is not configured")
   }
 
-  if (!to) {
+  let recipient: string
+  try {
+    recipient = resolveOpsEmail(to)
+  } catch (error) {
+    if (isRecognisedPaidJourney(session)) {
+      throw error
+    }
+
     console.warn("Skipping PATI ops email: PATI_OPS_EMAIL is not configured.")
     return { skipped: true }
   }
@@ -43,7 +52,7 @@ export async function sendOpsNotification(
   const { error } = await resend.emails.send(
     {
       from: process.env.RESEND_FROM_EMAIL || "PATI <beth.t@example.com>",
-      to,
+      to: recipient,
       subject,
       text,
     },

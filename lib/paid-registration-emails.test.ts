@@ -7,8 +7,10 @@ import {
   PURCHASER_EMAIL_SENT_KEY,
   deliverPaidRegistrationEmails,
   isPaidEmailEvent,
+  isRecognisedPaidJourney,
   opsIdempotencyKey,
   purchaserIdempotencyKey,
+  resolveOpsEmail,
   type DeliveryDependencies,
 } from "./paid-registration-emails.ts"
 
@@ -91,6 +93,33 @@ describe("isPaidEmailEvent", () => {
     assert.equal(isPaidEmailEvent("checkout.session.completed"), true)
     assert.equal(isPaidEmailEvent("checkout.session.async_payment_succeeded"), true)
     assert.equal(isPaidEmailEvent("checkout.session.expired"), false)
+  })
+})
+
+describe("resolveOpsEmail", () => {
+  it("rejects missing or invalid PATI_OPS_EMAIL and trims a valid address", () => {
+    assert.throws(() => resolveOpsEmail(undefined), /missing or invalid/)
+    assert.throws(() => resolveOpsEmail(""), /missing or invalid/)
+    assert.throws(() => resolveOpsEmail("  "), /missing or invalid/)
+    assert.throws(() => resolveOpsEmail("not-an-email"), /missing or invalid/)
+    assert.throws(() => resolveOpsEmail("ops@"), /missing or invalid/)
+    assert.throws(() => resolveOpsEmail("schools@parentingandtechnologyinstitute.com extra"), /missing or invalid/)
+    assert.equal(
+      resolveOpsEmail("  schools@parentingandtechnologyinstitute.com  "),
+      "schools@parentingandtechnologyinstitute.com"
+    )
+  })
+})
+
+describe("isRecognisedPaidJourney", () => {
+  it("accepts the five paid PATI registration journeys", () => {
+    assert.equal(isRecognisedPaidJourney(sessionFixture({ metadata: { journey: "parent" } })), true)
+    assert.equal(isRecognisedPaidJourney(sessionFixture({ metadata: { journey: "school" } })), true)
+    assert.equal(isRecognisedPaidJourney(sessionFixture({ metadata: { journey: "organisation" } })), true)
+    assert.equal(isRecognisedPaidJourney(sessionFixture({ metadata: { journey: "schoolParent" } })), true)
+    assert.equal(isRecognisedPaidJourney(sessionFixture({ metadata: { journey: "organisationUser" } })), true)
+    assert.equal(isRecognisedPaidJourney(sessionFixture({ metadata: {} })), false)
+    assert.equal(isRecognisedPaidJourney(sessionFixture({ metadata: { journey: "teacher" } })), false)
   })
 })
 
@@ -210,6 +239,49 @@ describe("deliverPaidRegistrationEmails", () => {
     assert.equal(result.skipped, true)
     assert.deepEqual(opsKeys, [])
     assert.deepEqual(purchaserKeys, [])
+  })
+
+  it("treats a missing PATI_OPS_EMAIL as incomplete, still sends the purchaser email, and retries only ops", async () => {
+    const first = createDeps(sessionFixture(), {
+      sendOps: async () => {
+        throw new Error("PATI_OPS_EMAIL is missing or invalid")
+      },
+    })
+
+    const firstResult = await deliverPaidRegistrationEmails("cs_test_123", first.deps)
+
+    assert.equal(firstResult.incomplete, true)
+    assert.equal(firstResult.opsAttempted, true)
+    assert.equal(firstResult.purchaserAttempted, true)
+    assert.notEqual(first.store.session.metadata?.[OPS_EMAIL_SENT_KEY], EMAIL_SENT_VALUE)
+    assert.equal(first.store.session.metadata?.[PURCHASER_EMAIL_SENT_KEY], EMAIL_SENT_VALUE)
+    assert.deepEqual(first.purchaserKeys, [purchaserIdempotencyKey("cs_test_123")])
+
+    const retry = createDeps(first.store.session)
+    const retryResult = await deliverPaidRegistrationEmails("cs_test_123", retry.deps)
+
+    assert.equal(retryResult.incomplete, false)
+    assert.equal(retryResult.opsAttempted, true)
+    assert.equal(retryResult.purchaserAttempted, false)
+    assert.deepEqual(retry.opsKeys, [opsIdempotencyKey("cs_test_123")])
+    assert.deepEqual(retry.purchaserKeys, [])
+    assert.equal(retry.store.session.metadata?.[OPS_EMAIL_SENT_KEY], EMAIL_SENT_VALUE)
+    assert.equal(retry.store.session.metadata?.[PURCHASER_EMAIL_SENT_KEY], EMAIL_SENT_VALUE)
+  })
+
+  it("treats a skipped ops notification as incomplete for a recognised paid journey", async () => {
+    const { deps, store, purchaserKeys } = createDeps(sessionFixture(), {
+      sendOps: async () => ({ skipped: true }),
+    })
+
+    const result = await deliverPaidRegistrationEmails("cs_test_123", deps)
+
+    assert.equal(result.incomplete, true)
+    assert.equal(result.opsAttempted, true)
+    assert.equal(result.purchaserAttempted, true)
+    assert.notEqual(store.session.metadata?.[OPS_EMAIL_SENT_KEY], EMAIL_SENT_VALUE)
+    assert.equal(store.session.metadata?.[PURCHASER_EMAIL_SENT_KEY], EMAIL_SENT_VALUE)
+    assert.deepEqual(purchaserKeys, [purchaserIdempotencyKey("cs_test_123")])
   })
 
   it("returns incomplete when metadata cannot be updated after a successful send", async () => {
