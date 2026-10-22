@@ -50,11 +50,16 @@ const PATI_WEEK_2_RECORDING_URL =
 
 const PATI_WEEK_2_RECORDING_PASSCODE = "j$Z1iWdq"
 
+const PATI_WEEK_3_RECORDING_URL =
+  "https://us06web.zoom.us/rec/share/GmxUJgTkiIR8jT8zdOs6RKMibkE5r5En5oIlZKrOx9SUcjiRXD9GRQF1PfpOYtK7.cLlMXVEhBPj3h1qd"
+
+const PATI_WEEK_3_RECORDING_PASSCODE = "e4?.%9kr"
+
 function patiRecordingLines(): string[] {
   return [
-    "WEBINAR RECORDINGS – WEEKS 1 & 2",
+    "WEBINAR RECORDINGS – WEEKS 1, 2 & 3",
     "",
-    "You can catch up on the first four modules of the PATI Parent Programme using the recordings below.",
+    "You can catch up on the first six modules of the PATI Parent Programme using the recordings below.",
     "",
     "WEEK 1 – TUESDAY 29 SEPTEMBER",
     "Module 1 – Age of Technology",
@@ -70,21 +75,29 @@ function patiRecordingLines(): string[] {
     PATI_WEEK_2_RECORDING_URL,
     `Passcode: ${PATI_WEEK_2_RECORDING_PASSCODE}`,
     "",
+    "WEEK 3 – TUESDAY 20 OCTOBER",
+    "Module 5 – Bullying",
+    "Module 6 – Social Media & Anxiety",
+    "",
+    PATI_WEEK_3_RECORDING_URL,
+    `Passcode: ${PATI_WEEK_3_RECORDING_PASSCODE}`,
+    "",
   ]
 }
 
 function patiLiveSessionLines(): string[] {
   return [
-    "REMAINING LIVE WEBINARS",
+    "REMAINING LIVE WEBINAR",
     "",
-    "Tuesday 20 October 2026 – 7.00pm",
-    "Tuesday 3 November 2026 – 7.00pm (additional session)",
+    "Tuesday 3 November 2026 – 7.00pm",
+    "Module 7 – Technology & Devices",
+    "Module 8 – Thriving as a Family",
     "",
     "Please register for the live PATI Parent Programme using the Zoom link below:",
     "",
     PATI_ZOOM_REGISTRATION_URL,
     "",
-    "You only need to register once. Zoom will send your personal joining details and reminders for the remaining sessions.",
+    "You only need to register once. Zoom will send your personal joining details and reminder for the remaining session.",
     "",
     "Each live session runs for approximately one hour and is presented by Dr Richard Hogan.",
   ]
