@@ -5,7 +5,7 @@ import { isStripeConfigured } from "./stripe.ts"
 describe("isStripeConfigured", () => {
   const originalEnv = process.env.VERCEL_ENV
   const originalSecret = process.env.STRIPE_SECRET_KEY
-  const originalRestricted = process.env.STRIPE_RESTRICTED_KEY_TEST
+  const originalRestricted = process.env.STRIPE_RESTRICTED_KEY_SANDBOX
 
   function restore() {
     if (originalEnv === undefined) {
@@ -21,20 +21,20 @@ describe("isStripeConfigured", () => {
     }
 
     if (originalRestricted === undefined) {
-      delete process.env.STRIPE_RESTRICTED_KEY_TEST
+      delete process.env.STRIPE_RESTRICTED_KEY_SANDBOX
     } else {
-      process.env.STRIPE_RESTRICTED_KEY_TEST = originalRestricted
+      process.env.STRIPE_RESTRICTED_KEY_SANDBOX = originalRestricted
     }
   }
 
-  it("uses STRIPE_RESTRICTED_KEY_TEST in Preview, not STRIPE_SECRET_KEY", () => {
+  it("uses STRIPE_RESTRICTED_KEY_SANDBOX in Preview, not STRIPE_SECRET_KEY", () => {
     try {
       process.env.VERCEL_ENV = "preview"
       delete process.env.STRIPE_SECRET_KEY
-      process.env.STRIPE_RESTRICTED_KEY_TEST = "rk_test_fixture"
+      process.env.STRIPE_RESTRICTED_KEY_SANDBOX = "rk_test_fixture"
       assert.equal(isStripeConfigured(), true)
 
-      delete process.env.STRIPE_RESTRICTED_KEY_TEST
+      delete process.env.STRIPE_RESTRICTED_KEY_SANDBOX
       process.env.STRIPE_SECRET_KEY = "sk_test_fixture"
       assert.equal(isStripeConfigured(), false)
     } finally {
@@ -46,11 +46,11 @@ describe("isStripeConfigured", () => {
     try {
       process.env.VERCEL_ENV = "production"
       process.env.STRIPE_SECRET_KEY = "sk_live_fixture"
-      delete process.env.STRIPE_RESTRICTED_KEY_TEST
+      delete process.env.STRIPE_RESTRICTED_KEY_SANDBOX
       assert.equal(isStripeConfigured(), true)
 
       delete process.env.STRIPE_SECRET_KEY
-      process.env.STRIPE_RESTRICTED_KEY_TEST = "rk_test_fixture"
+      process.env.STRIPE_RESTRICTED_KEY_SANDBOX = "rk_test_fixture"
       assert.equal(isStripeConfigured(), false)
     } finally {
       restore()

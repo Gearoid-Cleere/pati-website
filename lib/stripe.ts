@@ -3,7 +3,7 @@ import type { Journey } from "@/lib/registration"
 
 function resolveStripeSecretKey() {
   if (process.env.VERCEL_ENV === "preview") {
-    return process.env.STRIPE_RESTRICTED_KEY_TEST
+    return process.env.STRIPE_RESTRICTED_KEY_SANDBOX
   }
 
   return process.env.STRIPE_SECRET_KEY

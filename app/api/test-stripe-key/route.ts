@@ -16,7 +16,7 @@ export async function GET(request: Request) {
     return new Response(null, { status: 404 });
   }
 
-  const key = process.env.STRIPE_RESTRICTED_KEY_TEST;
+  const key = process.env.STRIPE_RESTRICTED_KEY_SANDBOX;
 
   if (!key) {
     return NextResponse.json(
