@@ -3,7 +3,7 @@ import Stripe from "stripe"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
-import { getStripe } from "@/lib/stripe"
+import { getStripe, isStripeConfigured } from "@/lib/stripe"
 
 function confirmationCopy(session: Stripe.Checkout.Session) {
   const journey = session.metadata?.journey
@@ -65,7 +65,7 @@ export default async function RegisterSuccessPage({
 
   let session: Stripe.Checkout.Session | null = null
 
-  if (sessionId && process.env.STRIPE_SECRET_KEY) {
+  if (sessionId && isStripeConfigured()) {
     try {
       session = await getStripe().checkout.sessions.retrieve(sessionId)
     } catch (error) {

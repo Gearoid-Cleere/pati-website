@@ -1,11 +1,20 @@
 import Stripe from "stripe"
 import type { Journey } from "@/lib/registration"
 
+function resolveStripeSecretKey() {
+  if (process.env.VERCEL_ENV === "preview") {
+    return process.env.STRIPE_RESTRICTED_KEY_TEST
+  }
+
+  return process.env.STRIPE_SECRET_KEY
+}
+
+export function isStripeConfigured() {
+  return Boolean(resolveStripeSecretKey())
+}
+
 export function getStripe() {
-  const secretKey =
-  process.env.VERCEL_ENV === "preview"
-    ? process.env.STRIPE_RESTRICTED_KEY_TEST
-    : process.env.STRIPE_SECRET_KEY
+  const secretKey = resolveStripeSecretKey()
 
   if (!secretKey) {
     throw new Error("STRIPE_SECRET_KEY is not configured")
