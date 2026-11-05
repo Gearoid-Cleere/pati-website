@@ -37,9 +37,6 @@ function organisationUserRegistrationUrl() {
   return `${getSiteUrl().replace(/\/$/, "")}/register/organisation-user`
 }
 
-const PATI_ZOOM_REGISTRATION_URL =
-  "https://us06web.zoom.us/webinar/register/WN_AwOM9lhVRpeJZxFS0b1GIA"
-
 const PATI_WEEK_1_RECORDING_URL =
   "https://us06web.zoom.us/rec/share/m9IspHoMVIGk1tPd3XL6Y__8u6_a2Dz2iL8K_1cVSaB0K4ZtZdGN_LalAt-Mlu1C.hpRrWi-X_LKzkNFA"
 
@@ -55,11 +52,16 @@ const PATI_WEEK_3_RECORDING_URL =
 
 const PATI_WEEK_3_RECORDING_PASSCODE = "e4?.%9kr"
 
+const PATI_WEEK_4_RECORDING_URL =
+  "https://us06web.zoom.us/rec/share/yWY0j3uUj2QuzwJeWcSwYfNqge3j3hoXYruJf90kGVDxwW8untt0xsi3TfTHdwQ.xQR-WIKp0rxAHCIi"
+
+const PATI_WEEK_4_RECORDING_PASSCODE = "RE1=%*LS"
+
 function patiRecordingLines(): string[] {
   return [
-    "WEBINAR RECORDINGS – WEEKS 1, 2 & 3",
+    "WEBINAR RECORDINGS – WEEKS 1, 2, 3 & 4",
     "",
-    "You can catch up on the first six modules of the PATI Parent Programme using the recordings below.",
+    "You can catch up on all eight modules of the PATI Parent Programme using the recordings below.",
     "",
     "WEEK 1 – TUESDAY 29 SEPTEMBER",
     "Module 1 – Age of Technology",
@@ -82,24 +84,21 @@ function patiRecordingLines(): string[] {
     PATI_WEEK_3_RECORDING_URL,
     `Passcode: ${PATI_WEEK_3_RECORDING_PASSCODE}`,
     "",
-  ]
-}
-
-function patiLiveSessionLines(): string[] {
-  return [
-    "REMAINING LIVE WEBINAR",
-    "",
-    "Tuesday 3 November 2026 – 7.00pm",
+    "WEEK 4 – TUESDAY 3 NOVEMBER",
     "Module 7 – Technology & Devices",
     "Module 8 – Thriving as a Family",
     "",
-    "Please register for the live PATI Parent Programme using the Zoom link below:",
+    PATI_WEEK_4_RECORDING_URL,
+    `Passcode: ${PATI_WEEK_4_RECORDING_PASSCODE}`,
     "",
-    PATI_ZOOM_REGISTRATION_URL,
+  ]
+}
+
+function patiNextProgrammeLines(): string[] {
+  return [
+    "COMING IN JANUARY 2027 – PARENTING IN THE AGE OF AI",
     "",
-    "You only need to register once. Zoom will send your personal joining details and reminder for the remaining session.",
-    "",
-    "Each live session runs for approximately one hour and is presented by Dr Richard Hogan.",
+    "Our next four-week programme begins Tuesday 19 January 2027. Further programme and registration details will follow.",
   ]
 }
 
@@ -108,14 +107,14 @@ export function formatTeacherAccessEmail(data: {
   schoolName: string
 }) {
   return {
-    subject: "Your Free PATI Programme Access – Recordings & Live Sessions",
+    subject: "Your Free PATI Programme Access – Recordings",
     text: [
       `Hello ${data.firstName},`,
       "",
       "Your access to the PATI Parent Programme is free because you are a member of staff at a participating PATI school.",
       "",
       ...patiRecordingLines(),
-      ...patiLiveSessionLines(),
+      ...patiNextProgrammeLines(),
       "",
       `You are registered through ${data.schoolName}.`,
       "",
@@ -356,7 +355,7 @@ export function formatPurchaserEmail(session: Stripe.Checkout.Session) {
         `Your payment of ${amount} has been received. Stripe will also send a separate payment receipt to this email address.`,
         "",
         ...patiRecordingLines(),
-        ...patiLiveSessionLines(),
+        ...patiNextProgrammeLines(),
         "",
         "Please keep this email for your records.",
         "",
@@ -437,7 +436,7 @@ export function formatPurchaserEmail(session: Stripe.Checkout.Session) {
         schoolLine,
         "",
         ...patiRecordingLines(),
-        ...patiLiveSessionLines(),
+        ...patiNextProgrammeLines(),
         "",
         "Please keep this email for your records.",
         "",
@@ -462,7 +461,7 @@ export function formatPurchaserEmail(session: Stripe.Checkout.Session) {
         `You registered through ${organisationName}.`,
         "",
         ...patiRecordingLines(),
-        ...patiLiveSessionLines(),
+        ...patiNextProgrammeLines(),
         "",
         "Please keep this email for your records.",
         "",
