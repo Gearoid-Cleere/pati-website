@@ -43,8 +43,8 @@ export function Footer() {
               Programme
             </h4>
             <ul className="space-y-3 text-sm">
-              <li><Link href="/programme">Programme Overview</Link></li>
-              <li><Link href="/programme">How It Works</Link></li>
+              <li><Link href="/programme/parenting-in-the-age-of-ai">Parenting in the Age of AI</Link></li>
+              <li><Link href="/programme">Parenting the Tech-Savvy Child</Link></li>
             </ul>
           </div>
 

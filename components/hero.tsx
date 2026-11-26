@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
+import { AI_PROGRAMME_PATH, aiProgramme } from "@/lib/programmes"
 
 export function Hero() {
   return (
@@ -8,18 +9,20 @@ export function Hero() {
       <div className="mx-auto max-w-7xl px-6 pb-24 pt-16 sm:px-8 lg:px-12 lg:pb-28 lg:pt-20">
         <div className="mx-auto max-w-4xl text-center">
           <p className="mb-5 text-sm font-medium uppercase tracking-[0.22em] text-accent">
-            Parenting and Technology Institute
+            Upcoming Programme
           </p>
 
           <h1 className="font-serif text-[2.75rem] font-normal leading-[1.1] tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-[4.25rem]">
-            <span className="text-balance">
-              Helping Parents Navigate Technology, Children and Family Life
-            </span>
+            <span className="text-balance">{aiProgramme.title}</span>
           </h1>
+
+          <p className="mx-auto mt-6 text-sm font-medium uppercase tracking-[0.18em] text-muted-foreground">
+            {aiProgramme.startDate}
+          </p>
 
           <div className="mx-auto mt-6 max-w-2xl lg:mt-8">
             <p className="text-lg leading-relaxed text-muted-foreground lg:text-xl">
-              Expert-led parent education for schools, organisations and families — helping parents respond confidently to the challenges of raising children in a rapidly changing digital world.
+              {aiProgramme.description}
             </p>
           </div>
 
@@ -29,8 +32,8 @@ export function Hero() {
               asChild
               className="h-14 px-8 text-[15px] font-medium"
             >
-              <Link href="/programme">
-                Explore the Programme
+              <Link href={AI_PROGRAMME_PATH}>
+                Explore the programme
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>

@@ -3,11 +3,11 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Menu, X } from "lucide-react"
+import { Menu, X, ChevronDown, ChevronRight } from "lucide-react"
 import { useState, useEffect } from "react"
+import { programmeNavLinks } from "@/lib/programmes"
 
 const navLinks = [
-  { href: "/programme", label: "Programme" },
   { href: "/schools", label: "Schools" },
   { href: "/organisations", label: "Organisations" },
   { href: "/parents", label: "Parents" },
@@ -17,6 +17,7 @@ const navLinks = [
 export function HomeHeader() {
   const [mounted, setMounted] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [programmesMobileOpen, setProgrammesMobileOpen] = useState(false)
 
   useEffect(() => {
     setMounted(true)
@@ -70,6 +71,25 @@ export function HomeHeader() {
           </Link>
 
           <nav className="hidden items-center lg:flex">
+            <div className="group relative">
+              <button className="flex items-center gap-1.5 px-3 py-2 text-[15px] text-muted-foreground transition-colors hover:text-foreground xl:px-4">
+                Programmes
+                <ChevronDown className="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180" />
+              </button>
+              <div className="invisible absolute left-0 top-full pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100">
+                <div className="min-w-[260px] rounded-lg border border-border/60 bg-background p-2 shadow-xl shadow-foreground/5">
+                  {programmeNavLinks.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className="block rounded-md px-4 py-2.5 text-[15px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -111,6 +131,34 @@ export function HomeHeader() {
         }`}
       >
         <nav className="flex flex-col px-6 pt-8">
+          <div className="border-b border-border/40">
+            <button
+              onClick={() => setProgrammesMobileOpen(!programmesMobileOpen)}
+              className="flex w-full items-center justify-between py-4 text-[15px] font-medium text-foreground"
+            >
+              Programmes
+              <ChevronRight
+                className={`h-4 w-4 text-muted-foreground transition-transform ${
+                  programmesMobileOpen ? "rotate-90" : ""
+                }`}
+              />
+            </button>
+
+            {programmesMobileOpen && (
+              <div className="pb-4 pl-4">
+                {programmeNavLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="block py-2.5 text-[15px] text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
           {navLinks.map((link) => (
             <Link
               key={link.href}

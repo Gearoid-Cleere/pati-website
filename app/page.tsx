@@ -4,7 +4,7 @@ import { HomeHeader } from "@/components/home-header"
 import { Hero } from "@/components/hero"
 import { WhyThisMatters } from "@/components/why-this-matters"
 import { PathwayCards } from "@/components/pathway-cards"
-import { ProgrammeOverview } from "@/components/programme-overview"
+import { UpcomingProgramme } from "@/components/upcoming-programme"
 import { WhyPatiSection } from "@/components/why-pati-section"
 import { Testimonials } from "@/components/testimonials"
 import { FinalCta } from "@/components/final-cta"
@@ -23,7 +23,7 @@ export default function Home() {
 
         <PathwayCards />
 
-        <ProgrammeOverview />
+        <UpcomingProgramme />
 
         <section className="bg-background py-20 lg:py-24">
           <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
