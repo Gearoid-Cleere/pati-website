@@ -4,6 +4,7 @@ import {
   formatTeacherAccessEmail,
   formatTeacherOpsEmail,
 } from "@/lib/emails"
+import { applyRegistrationEmailOverride } from "@/lib/registration-email"
 import { teacherRegistrationSchema } from "@/lib/registration"
 
 export const runtime = "nodejs"
@@ -76,11 +77,17 @@ export async function POST(request: Request) {
     const opsEmail = formatTeacherOpsEmail(parsed.data)
     const operationsEmail = process.env.PATI_OPS_EMAIL
 
-    const accessResult = await resend.emails.send({
-      from,
+    const accessMessage = applyRegistrationEmailOverride({
       to: parsed.data.email,
       subject: accessEmail.subject,
       text: accessEmail.text,
+    })
+
+    const accessResult = await resend.emails.send({
+      from,
+      to: accessMessage.to,
+      subject: accessMessage.subject,
+      text: accessMessage.text,
     })
 
     if (accessResult.error) {
@@ -88,11 +95,17 @@ export async function POST(request: Request) {
     }
 
     if (operationsEmail) {
-      const opsResult = await resend.emails.send({
-        from,
+      const opsMessage = applyRegistrationEmailOverride({
         to: operationsEmail,
         subject: opsEmail.subject,
         text: opsEmail.text,
+      })
+
+      const opsResult = await resend.emails.send({
+        from,
+        to: opsMessage.to,
+        subject: opsMessage.subject,
+        text: opsMessage.text,
       })
 
       if (opsResult.error) {

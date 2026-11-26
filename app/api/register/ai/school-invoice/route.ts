@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import { Resend } from "resend"
 import { formatJanuarySchoolInvoiceRequestEmail } from "@/lib/emails"
+import { applyRegistrationEmailOverride } from "@/lib/registration-email"
 import { aiSchoolInvoiceRequestSchema } from "@/lib/registration"
 
 export const runtime = "nodejs"
@@ -80,11 +81,13 @@ export async function POST(request: Request) {
       purchaseOrderReference: parsed.data.purchaseOrderReference || "",
     })
 
+    const confirmation = applyRegistrationEmailOverride(messages.confirmation)
+
     const confirmationResult = await resend.emails.send({
       from,
-      to: messages.confirmation.to,
-      subject: messages.confirmation.subject,
-      text: messages.confirmation.text,
+      to: confirmation.to,
+      subject: confirmation.subject,
+      text: confirmation.text,
     })
 
     if (confirmationResult.error) {
@@ -93,11 +96,17 @@ export async function POST(request: Request) {
 
     const operationsEmail = process.env.PATI_OPS_EMAIL
     if (operationsEmail) {
-      const operationsResult = await resend.emails.send({
-        from,
+      const operations = applyRegistrationEmailOverride({
         to: operationsEmail,
         subject: messages.operations.subject,
         text: messages.operations.text,
+      })
+
+      const operationsResult = await resend.emails.send({
+        from,
+        to: operations.to,
+        subject: operations.subject,
+        text: operations.text,
       })
 
       if (operationsResult.error) {

@@ -1,6 +1,6 @@
 import assert from "node:assert/strict"
 import { describe, it } from "node:test"
-import type Stripe from "stripe"
+import Stripe from "stripe"
 import {
   EMAIL_SENT_VALUE,
   LEGACY_SCHOOL_PARENT_PAYMENT_LINK,
@@ -47,6 +47,8 @@ import {
   getPriceIdForJourney,
   unavailableOfferingMessage,
 } from "./stripe.ts"
+import { applyRegistrationEmailOverride } from "./registration-email.ts"
+import { handleStripeWebhook } from "./stripe-webhook.ts"
 
 function sessionFixture(
   overrides: Partial<Stripe.Checkout.Session> = {}
@@ -1163,6 +1165,198 @@ const PRICE_ENV_KEYS = [
   "STRIPE_PRICE_AI_SCHOOL_PARENT",
   "STRIPE_PRICE_AI_ORGANISATION_USER",
 ] as const
+
+describe("registration email override", () => {
+  const overrideAddress = "preview-tests@example.com"
+  const previousOverride = process.env.REGISTRATION_EMAIL_OVERRIDE_TO
+
+  function customerSession() {
+    return sessionFixture({
+      metadata: {
+        journey: "parent",
+        offering: OFFERING_TECH_SAVVY,
+        email: "parent@example.com",
+      },
+    })
+  }
+
+  function restoreOverride() {
+    if (previousOverride === undefined) {
+      delete process.env.REGISTRATION_EMAIL_OVERRIDE_TO
+    } else {
+      process.env.REGISTRATION_EMAIL_OVERRIDE_TO = previousOverride
+    }
+  }
+
+  it("redirects the customer registration email and names the original recipient", () => {
+    process.env.REGISTRATION_EMAIL_OVERRIDE_TO = overrideAddress
+    try {
+      const original = formatPurchaserEmail(customerSession())
+      assert.ok(original)
+      const delivered = applyRegistrationEmailOverride(original)
+
+      assert.equal(delivered.to, overrideAddress)
+      assert.notEqual(delivered.to, original.to)
+      assert.equal(delivered.subject, `[PREVIEW TEST] ${original.subject}`)
+      assert.match(delivered.text, /^This is a preview test email\./)
+      assert.match(delivered.text, new RegExp(`Intended recipient: ${original.to}`))
+      assert.equal(delivered.text.endsWith(original.text), true)
+    } finally {
+      restoreOverride()
+    }
+  })
+
+  it("redirects the operations registration email and names the original recipient", () => {
+    process.env.REGISTRATION_EMAIL_OVERRIDE_TO = overrideAddress
+    try {
+      const originalOps = formatOpsEmail(customerSession())
+      const original = {
+        to: "ops@example.com",
+        subject: originalOps.subject,
+        text: originalOps.text,
+      }
+      const delivered = applyRegistrationEmailOverride(original)
+
+      assert.equal(delivered.to, overrideAddress)
+      assert.notEqual(delivered.to, original.to)
+      assert.equal(delivered.subject, `[PREVIEW TEST] ${original.subject}`)
+      assert.match(delivered.text, /Intended recipient: ops@example.com/)
+      assert.equal(delivered.text.includes("parent@example.com"), true)
+      assert.equal(delivered.to.includes("parent@example.com"), false)
+    } finally {
+      restoreOverride()
+    }
+  })
+
+  it("leaves registration emails unchanged when the override is absent", () => {
+    delete process.env.REGISTRATION_EMAIL_OVERRIDE_TO
+    try {
+      const original = formatPurchaserEmail(customerSession())
+      assert.ok(original)
+      const delivered = applyRegistrationEmailOverride(original)
+
+      assert.equal(delivered, original)
+      assert.equal(delivered.to, "parent@example.com")
+      assert.equal(delivered.subject.startsWith("[PREVIEW TEST]"), false)
+      assert.equal(delivered.text.includes("preview test email"), false)
+    } finally {
+      restoreOverride()
+    }
+  })
+})
+
+describe("stripe webhook configuration", () => {
+  const secretKey = "sk_test_safety"
+  const webhookSecret = "whsec_safety"
+
+  function request(body: string, signature?: string) {
+    return new Request("https://pati.example/api/webhooks/stripe", {
+      method: "POST",
+      headers: signature ? { "stripe-signature": signature } : undefined,
+      body,
+    })
+  }
+
+  it("returns 503 and does not create a Stripe client when the secret key is missing", async () => {
+    let created = 0
+    let delivered = 0
+    const result = await handleStripeWebhook(request("{}"), {
+      secretKey: undefined,
+      webhookSecret,
+      createStripe: () => {
+        created += 1
+        return new Stripe(secretKey)
+      },
+      deliver: async () => {
+        delivered += 1
+        return { incomplete: false }
+      },
+    })
+
+    assert.equal(result.status, 503)
+    assert.deepEqual(result.body, { error: "Webhook is not configured." })
+    assert.equal(created, 0)
+    assert.equal(delivered, 0)
+    assert.equal(JSON.stringify(result.body).includes(secretKey), false)
+    assert.equal(JSON.stringify(result.body).includes(webhookSecret), false)
+  })
+
+  it("returns 503 and does not create a Stripe client when the webhook secret is missing", async () => {
+    let created = 0
+    let delivered = 0
+    const result = await handleStripeWebhook(request("{}", "t=1,v1=invalid"), {
+      secretKey,
+      webhookSecret: "  ",
+      createStripe: () => {
+        created += 1
+        return new Stripe(secretKey)
+      },
+      deliver: async () => {
+        delivered += 1
+        return { incomplete: false }
+      },
+    })
+
+    assert.equal(result.status, 503)
+    assert.deepEqual(result.body, { error: "Webhook is not configured." })
+    assert.equal(created, 0)
+    assert.equal(delivered, 0)
+  })
+
+  it("rejects an invalid webhook signature before processing the event", async () => {
+    let delivered = 0
+    const result = await handleStripeWebhook(request("{}", "t=1,v1=invalid"), {
+      secretKey,
+      webhookSecret,
+      createStripe: (key) => new Stripe(key),
+      deliver: async () => {
+        delivered += 1
+        return { incomplete: false }
+      },
+    })
+
+    assert.equal(result.status, 400)
+    assert.deepEqual(result.body, { error: "Invalid signature." })
+    assert.equal(delivered, 0)
+    assert.equal(JSON.stringify(result.body).includes(webhookSecret), false)
+  })
+
+  it("does not send duplicate emails for a repeated valid event", async () => {
+    const payload = JSON.stringify({
+      id: "evt_safety_duplicate",
+      object: "event",
+      type: "checkout.session.completed",
+      data: {
+        object: {
+          id: "cs_test_123",
+          object: "checkout.session",
+        },
+      },
+    })
+    const signature = await new Stripe(secretKey).webhooks.generateTestHeaderStringAsync({
+      payload,
+      secret: webhookSecret,
+    })
+    const { deps, opsKeys, purchaserKeys } = createDeps(sessionFixture())
+    const dependencies = {
+      secretKey,
+      webhookSecret,
+      createStripe: (key: string) => new Stripe(key),
+      deliver: (stripe: Stripe, sessionId: string) =>
+        deliverPaidRegistrationEmails(sessionId, deps),
+    }
+
+    const first = await handleStripeWebhook(request(payload, signature), dependencies)
+    const second = await handleStripeWebhook(request(payload, signature), dependencies)
+
+    assert.equal(first.status, 200)
+    assert.deepEqual(first.body, { received: true })
+    assert.equal(second.status, 200)
+    assert.deepEqual(second.body, { received: true })
+    assert.deepEqual(opsKeys, [opsIdempotencyKey("cs_test_123")])
+    assert.deepEqual(purchaserKeys, [purchaserIdempotencyKey("cs_test_123")])
+  })
+})
 
 function lineItem(priceId: string) {
   return [{ price: { id: priceId } } as Stripe.LineItem]

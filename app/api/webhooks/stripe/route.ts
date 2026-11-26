@@ -8,12 +8,12 @@ import {
 } from "@/lib/emails"
 import {
   deliverPaidRegistrationEmails,
-  isPaidEmailEvent,
   isRecognisedPaidJourney,
   resolveOpsEmail,
   type DeliveryDependencies,
 } from "@/lib/paid-registration-emails"
-import { getStripe } from "@/lib/stripe"
+import { applyRegistrationEmailOverride } from "@/lib/registration-email"
+import { handleStripeWebhook } from "@/lib/stripe-webhook"
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
@@ -52,13 +52,18 @@ export async function sendOpsNotification(
   }
 
   const { subject, text } = formatOpsEmail(session)
+  const message = applyRegistrationEmailOverride({
+    to: recipient,
+    subject,
+    text,
+  })
 
   const { error } = await resend.emails.send(
     {
       from: process.env.RESEND_FROM_EMAIL || "PATI <beth.t@example.com>",
-      to: recipient,
-      subject,
-      text,
+      to: message.to,
+      subject: message.subject,
+      text: message.text,
     },
     { idempotencyKey }
   )
@@ -88,12 +93,14 @@ export async function sendPurchaserEmail(
     return { skipped: true }
   }
 
+  const delivered = applyRegistrationEmailOverride(message)
+
   const { error } = await resend.emails.send(
     {
       from: process.env.RESEND_FROM_EMAIL || "PATI <beth.t@example.com>",
-      to: message.to,
-      subject: message.subject,
-      text: message.text,
+      to: delivered.to,
+      subject: delivered.subject,
+      text: delivered.text,
     },
     { idempotencyKey }
   )
@@ -121,53 +128,16 @@ export function createDeliveryDependencies(stripe: Stripe): DeliveryDependencies
 }
 
 export async function POST(request: Request) {
-  const stripe = getStripe()
-  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET
-  const signature = request.headers.get("stripe-signature")
+  const result = await handleStripeWebhook(request, {
+    secretKey: process.env.STRIPE_SECRET_KEY,
+    webhookSecret: process.env.STRIPE_WEBHOOK_SECRET,
+    createStripe: (secretKey) => new Stripe(secretKey),
+    deliver: (stripe, sessionId) =>
+      deliverPaidRegistrationEmails(
+        sessionId,
+        createDeliveryDependencies(stripe)
+      ),
+  })
 
-  if (!webhookSecret || !signature) {
-    return NextResponse.json(
-      { error: "Webhook is not configured." },
-      { status: 400 }
-    )
-  }
-
-  const body = await request.text()
-
-  let event: Stripe.Event
-
-  try {
-    event = stripe.webhooks.constructEvent(body, signature, webhookSecret)
-  } catch (error) {
-    console.error("Stripe webhook signature verification failed:", error)
-    return NextResponse.json({ error: "Invalid signature." }, { status: 400 })
-  }
-
-  if (!isPaidEmailEvent(event.type)) {
-    return NextResponse.json({ received: true })
-  }
-
-  const rawSession = event.data.object as Stripe.Checkout.Session
-
-  try {
-    const result = await deliverPaidRegistrationEmails(
-      rawSession.id,
-      createDeliveryDependencies(stripe)
-    )
-
-    if (result.incomplete) {
-      return NextResponse.json(
-        { error: "Email delivery incomplete." },
-        { status: 500 }
-      )
-    }
-  } catch (error) {
-    console.error("PATI paid registration email delivery failed:", error)
-    return NextResponse.json(
-      { error: "Email delivery incomplete." },
-      { status: 500 }
-    )
-  }
-
-  return NextResponse.json({ received: true })
+  return NextResponse.json(result.body, { status: result.status })
 }
