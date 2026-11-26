@@ -1,7 +1,11 @@
 import { NextResponse } from "next/server"
 import { Resend } from "resend"
 import Stripe from "stripe"
-import { formatOpsEmail, formatPurchaserEmail } from "@/lib/emails"
+import {
+  decideProgrammeAccess,
+  formatOpsEmail,
+  formatPurchaserEmail,
+} from "@/lib/emails"
 import {
   deliverPaidRegistrationEmails,
   isPaidEmailEvent,
@@ -76,8 +80,10 @@ export async function sendPurchaserEmail(
   }
 
   if (!message) {
-    console.warn(
-      "Skipping purchaser email: no recipient or unrecognised journey."
+    const decision = decideProgrammeAccess(session)
+    console.error(
+      "PATI programme-access email withheld.",
+      decision.action === "withhold" ? decision.reason : "No purchaser email was produced."
     )
     return { skipped: true }
   }

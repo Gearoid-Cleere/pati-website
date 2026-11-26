@@ -1,5 +1,14 @@
 import Stripe from "stripe"
-import { getSiteUrl } from "@/lib/stripe"
+import {
+  OFFERING_AGE_OF_AI,
+  OFFERING_ANNUAL_ACCESS,
+  OFFERING_TECH_SAVVY,
+  isRegistrationOfferingId,
+  isValidOfferingJourney,
+  readRegistrationOffering,
+} from "./programme-id.ts"
+import { aiProgramme } from "./programmes.ts"
+import { getSiteUrl } from "./stripe.ts"
 
 function metadata(session: Stripe.Checkout.Session) {
   return session.metadata || {}
@@ -35,6 +44,82 @@ function schoolParentRegistrationUrl() {
 
 function organisationUserRegistrationUrl() {
   return `${getSiteUrl().replace(/\/$/, "")}/register/organisation-user`
+}
+
+function aiSchoolParentRegistrationUrl() {
+  return `${getSiteUrl().replace(/\/$/, "")}/register/ai/school-parent`
+}
+
+function aiTeacherRegistrationUrl() {
+  return `${getSiteUrl().replace(/\/$/, "")}/register/ai/teacher`
+}
+
+function aiOrganisationUserRegistrationUrl() {
+  return `${getSiteUrl().replace(/\/$/, "")}/register/ai/organisation-user`
+}
+
+export const JANUARY_ACCESS_NOTICE =
+  "Thank you for registering for Parenting in the Age of AI, beginning Tuesday, 19 January 2027. The programme will be delivered live online over four Tuesday evenings. Your Zoom registration and access information will be sent separately before the programme begins."
+
+export type AccessDecision =
+  | {
+      action: "techSavvyParticipant"
+      journey: "parent" | "schoolParent" | "organisationUser"
+    }
+  | {
+      action: "ageOfAiParticipant"
+      journey: "parent" | "schoolParent" | "organisationUser"
+    }
+  | { action: "ageOfAiSchool"; journey: "school" }
+  | { action: "annualInstitution"; journey: "school" | "organisation" }
+  | { action: "withhold"; reason: string }
+
+export function decideProgrammeAccess(
+  session: Stripe.Checkout.Session
+): AccessDecision {
+  const details = metadata(session)
+  const offering = readRegistrationOffering(details)
+  const journey = details.journey
+
+  if (!isValidOfferingJourney(offering, journey)) {
+    const reason = !offering
+      ? "Missing or unconfirmed offering. No programme-access email was sent."
+      : !isRegistrationOfferingId(offering)
+        ? `Unknown offering "${offering}". No programme-access email was sent.`
+        : `Offering "${offering}" is not valid for journey "${journey || "missing"}". No programme-access email was sent.`
+
+    return { action: "withhold", reason }
+  }
+
+  if (offering === OFFERING_TECH_SAVVY) {
+    return {
+      action: "techSavvyParticipant",
+      journey: journey as "parent" | "schoolParent" | "organisationUser",
+    }
+  }
+
+  if (offering === OFFERING_AGE_OF_AI) {
+    if (journey === "school") {
+      return { action: "ageOfAiSchool", journey: "school" }
+    }
+
+    return {
+      action: "ageOfAiParticipant",
+      journey: journey as "parent" | "schoolParent" | "organisationUser",
+    }
+  }
+
+  if (offering === OFFERING_ANNUAL_ACCESS) {
+    return {
+      action: "annualInstitution",
+      journey: journey as "school" | "organisation",
+    }
+  }
+
+  return {
+    action: "withhold",
+    reason: `Unknown offering "${offering || "missing"}". No programme-access email was sent.`,
+  }
 }
 
 const PATI_WEEK_1_RECORDING_URL =
@@ -153,6 +238,63 @@ export function formatTeacherOpsEmail(data: {
   }
 }
 
+export const JANUARY_SCHOOL_INVOICE_ACKNOWLEDGEMENT =
+  "Thank you for requesting an invoice for your school’s €199.95 registration for Parenting in the Age of AI. PATI will issue the invoice separately. Your school’s registration will be confirmed once the payment process has been completed."
+
+export function formatJanuarySchoolInvoiceRequestEmail(data: {
+  schoolName: string
+  contactName: string
+  role: string
+  email: string
+  phone: string
+  county: string
+  estimatedParents: string
+  schoolRollNumber: string
+  invoicingOrganisation: string
+  invoiceEmail: string
+  purchaseOrderReference: string
+}) {
+  return {
+    confirmation: {
+      to: data.email,
+      subject: "Your Parenting in the Age of AI invoice request",
+      text: [
+        JANUARY_SCHOOL_INVOICE_ACKNOWLEDGEMENT,
+        "",
+        "Kind regards,",
+        "The PATI Team",
+        "Parenting and Technology Institute (PATI)",
+      ].join("\n"),
+    },
+    operations: {
+      subject: `January school invoice requested: ${data.schoolName}`,
+      text: [
+        "A school requested an invoice for Parenting in the Age of AI. No payment has been taken and no programme access has been granted.",
+        "",
+        `Offering: ${OFFERING_AGE_OF_AI}`,
+        "Journey: school",
+        "Amount: €199.95",
+        "Request type: invoice",
+        `School: ${data.schoolName}`,
+        `School roll number: ${data.schoolRollNumber}`,
+        `Contact: ${data.contactName}`,
+        `Role: ${data.role}`,
+        `Email: ${data.email}`,
+        `Phone: ${data.phone}`,
+        `County: ${data.county || "not provided"}`,
+        `Estimated parents: ${data.estimatedParents || "not provided"}`,
+        `ETB / invoicing organisation: ${data.invoicingOrganisation || "not provided"}`,
+        `Invoice email: ${data.invoiceEmail || "same as registration email"}`,
+        `Purchase order / reference: ${data.purchaseOrderReference || "not provided"}`,
+        "",
+        "PATI will issue the €199.95 invoice. After payment is confirmed manually, provide these January links:",
+        aiSchoolParentRegistrationUrl(),
+        aiTeacherRegistrationUrl(),
+      ].join("\n"),
+    },
+  }
+}
+
 export function formatSchoolInvoiceRequestEmail(data: {
   schoolName: string
   contactName: string
@@ -176,7 +318,7 @@ export function formatSchoolInvoiceRequestEmail(data: {
         "",
         "Your invoice request has been received. No payment is required at this stage.",
         "",
-        `PATI will send the invoice to ${invoiceRecipient}. Once the invoice process is complete, we will provide your school's parent and teacher registration information.`,
+        `PATI will send the invoice to ${invoiceRecipient}. Annual school registration is €499.95 and includes both Parenting the Tech-Savvy Child and Parenting in the Age of AI. Once the invoice process is complete, PATI will send your January school-parent and teacher access links. School-linked parents register individually, and eligible teachers receive free access.`,
         "",
         "PATI will be in touch shortly if any further information is needed.",
         "",
@@ -200,8 +342,9 @@ export function formatSchoolInvoiceRequestEmail(data: {
         `ETB / invoicing organisation: ${data.invoicingOrganisation || "not provided"}`,
         `Invoice email: ${data.invoiceEmail || "same as registration email"}`,
         `Purchase order / reference: ${data.purchaseOrderReference || "not provided"}`,
+        `Offering: ${OFFERING_ANNUAL_ACCESS}`,
         "",
-        "No payment has been taken. PATI should send the invoice and then provide the school's parent and teacher registration information.",
+        "No payment has been taken. PATI should send the invoice and then provide the January school-parent and teacher access links. Annual registration includes both programmes.",
       ].join("\n"),
     },
   }
@@ -228,7 +371,7 @@ export function formatOrganisationInvoiceRequestEmail(data: {
         "",
         "Your invoice request has been received. No payment is required at this stage.",
         "",
-        `PATI will send the invoice to ${data.invoiceEmail}. Once the invoice process is complete, we will provide your organisation's programme participation information.`,
+        `PATI will send the invoice to ${data.invoiceEmail}. Annual organisation registration is €999.95 and includes both Parenting the Tech-Savvy Child and Parenting in the Age of AI. Once the invoice process is complete, PATI will send your January participant link. Participating employees register individually.`,
         "",
         "PATI will be in touch shortly if any further information is needed.",
         "",
@@ -252,15 +395,30 @@ export function formatOrganisationInvoiceRequestEmail(data: {
         `Invoice email: ${data.invoiceEmail}`,
         `PO / reference: ${data.purchaseOrderReference || "not provided"}`,
         `Estimated participating employees / parents: ${data.estimatedParticipants}`,
+        `Offering: ${OFFERING_ANNUAL_ACCESS}`,
         "",
-        "No payment has been taken. PATI should send the invoice and then provide the organisation's programme participation information.",
+        "No payment has been taken. PATI should send the invoice and then provide the January participant link. Annual registration includes both programmes.",
       ].join("\n"),
     },
   }
 }
 
+function registrationName(details: Stripe.Metadata) {
+  return (
+    details.name ||
+    details.contactName ||
+    [details.firstName, details.lastName].filter(Boolean).join(" ") ||
+    "not provided"
+  )
+}
+
+function institutionName(details: Stripe.Metadata) {
+  return details.schoolName || details.organisationName || "not provided"
+}
+
 export function formatOpsEmail(session: Stripe.Checkout.Session) {
   const details = metadata(session)
+  const decision = decideProgrammeAccess(session)
   const journey = details.journey || "unknown"
   const name = details.name || details.contactName || ""
   const schoolName = details.schoolName || ""
@@ -287,17 +445,76 @@ export function formatOpsEmail(session: Stripe.Checkout.Session) {
       : `Organisation user paid: ${userName || "user"}`
   }
 
+  const offering = readRegistrationOffering(details)
   const lines = [
     "A PATI website registration payment was completed.",
     "",
+    `Offering: ${offering || "missing"}`,
     `Journey: ${journey}`,
-    `Stripe session: ${session.id}`,
-    `Customer email: ${customerEmail(session) || "not provided"}`,
+    `Name: ${registrationName(details)}`,
+    `Email: ${customerEmail(session) || details.email || "not provided"}`,
+    `School or organisation: ${institutionName(details)}`,
     `Amount: ${formatAmount(session)}`,
+    `Stripe session: ${session.id}`,
+    `Payment reference: ${
+      typeof session.payment_intent === "string" ? session.payment_intent : session.id
+    }`,
     `Payment status: ${session.payment_status}`,
-    "",
-    "Registration details:",
   ]
+
+  if (decision.action === "ageOfAiSchool") {
+    lines.push(
+      `School roll number: ${details.schoolRollNumber || "not provided"}`,
+      `County: ${details.county || "not provided"}`
+    )
+  }
+
+  if (details.offeringSource) {
+    lines.push(`Offering source: ${details.offeringSource}`)
+  }
+
+  if (details.submittedOffering) {
+    lines.push(`Submitted offering: ${details.submittedOffering}`)
+  }
+
+  if (!isRegistrationOfferingId(offering)) {
+    lines.push("Offering check: missing or unknown. No programme-access email was sent.")
+  }
+
+  if (decision.action === "withhold") {
+    lines.push(`Programme-access email: not sent. ${decision.reason}`)
+  } else if (decision.action === "ageOfAiParticipant") {
+    lines.push(
+      "Programme-access email: Parenting in the Age of AI confirmation. Autumn recordings were not included."
+    )
+  } else if (decision.action === "techSavvyParticipant") {
+    lines.push(
+      "Programme-access email: Parenting the Tech-Savvy Child recordings."
+    )
+  } else if (decision.action === "ageOfAiSchool") {
+    lines.push(
+      "Programme-access email: January school registration for Parenting in the Age of AI. Autumn recordings were not included.",
+      `January school-parent link: ${aiSchoolParentRegistrationUrl()}`,
+      `January teacher link: ${aiTeacherRegistrationUrl()}`
+    )
+  } else {
+    lines.push(
+      "Programme-access email: annual registration confirmation for Parenting the Tech-Savvy Child and Parenting in the Age of AI."
+    )
+    if (decision.journey === "school") {
+      lines.push(
+        `January school-parent link: ${aiSchoolParentRegistrationUrl()}`,
+        `January teacher link: ${aiTeacherRegistrationUrl()}`
+      )
+    }
+    if (decision.journey === "organisation") {
+      lines.push(
+        `January participant link: ${aiOrganisationUserRegistrationUrl()}`
+      )
+    }
+  }
+
+  lines.push("", "Registration details:")
 
   for (const [key, value] of Object.entries(details)) {
     if (value) {
@@ -305,10 +522,10 @@ export function formatOpsEmail(session: Stripe.Checkout.Session) {
     }
   }
 
-  if (journey === "school") {
+  if (journey === "school" && decision.action === "annualInstitution") {
     lines.push(
       "",
-      "School parent registration/payment link to send if needed:",
+      "Parenting the Tech-Savvy Child school-parent link:",
       schoolParentRegistrationUrl()
     )
   }
@@ -316,7 +533,7 @@ export function formatOpsEmail(session: Stripe.Checkout.Session) {
   if (journey === "organisation") {
     lines.push(
       "",
-      "Organisation user registration/payment link:",
+      "Parenting the Tech-Savvy Child organisation participant link:",
       organisationUserRegistrationUrl()
     )
   }
@@ -332,15 +549,221 @@ export function formatOpsEmail(session: Stripe.Checkout.Session) {
   }
 }
 
+function januaryParticipantEmail(
+  session: Stripe.Checkout.Session,
+  journey: "parent" | "schoolParent" | "organisationUser"
+) {
+  const details = metadata(session)
+  const to = customerEmail(session)
+  const schoolName = details.schoolName || "your school"
+  const organisationName = details.organisationName || "your organisation"
+  const lines = [
+    JANUARY_ACCESS_NOTICE,
+    "",
+    `Your payment of ${formatAmount(session)} has been received. Stripe will also send a separate payment receipt to this email address.`,
+  ]
+
+  if (journey === "schoolParent") {
+    const county = details.schoolCounty
+    lines.push(
+      "",
+      county
+        ? `You registered through ${schoolName} (${county}).`
+        : `You registered through ${schoolName}.`
+    )
+  }
+
+  if (journey === "organisationUser") {
+    lines.push("", `You registered through ${organisationName}.`)
+  }
+
+  lines.push(
+    "",
+    "Please keep this email for your records.",
+    "",
+    "Kind regards,",
+    "The PATI Team",
+    "Parenting and Technology Institute (PATI)"
+  )
+
+  return {
+    to,
+    subject: "Your Parenting in the Age of AI registration",
+    text: lines.join("\n"),
+  }
+}
+
+function januarySchoolEmail(session: Stripe.Checkout.Session) {
+  const details = metadata(session)
+  const schoolName = details.schoolName || "your school"
+  const sessions = aiProgramme.sessions.map(
+    (item) => `${item.when} — ${item.modules}`
+  )
+
+  return {
+    to: customerEmail(session),
+    subject: "Your Parenting in the Age of AI school registration",
+    text: [
+      `Thank you for registering ${schoolName} for Parenting in the Age of AI, beginning Tuesday, 19 January 2027.`,
+      "",
+      "Your €199.95 registration enables your school to offer the January programme to its parent community. Parents from your school can register individually for €14.95, and eligible teachers can participate free of charge.",
+      "",
+      "Parents register individually at:",
+      aiSchoolParentRegistrationUrl(),
+      "",
+      "Eligible teachers register free of charge at:",
+      aiTeacherRegistrationUrl(),
+      "",
+      "PATI will provide school communications materials for you to share with your parent community.",
+      "",
+      "The programme is delivered live online over four Tuesday evenings, at 7:00pm Ireland time (Europe/Dublin):",
+      "",
+      ...sessions,
+      "",
+      "Zoom access will be sent directly to registered participants.",
+      "",
+      `Your payment of ${formatAmount(session)} has been received. Stripe will also send a payment receipt to this email address.`,
+      "",
+      "Kind regards,",
+      "The PATI Team",
+      "Parenting and Technology Institute (PATI)",
+    ].join("\n"),
+  }
+}
+
+export function januarySchoolSuccessBody(email: string) {
+  return `Thank you. Your school is registered for Parenting in the Age of AI, beginning Tuesday, 19 January 2027. Your €199.95 registration enables your school to offer the January programme to its parent community. Parents from your school can register individually for €14.95, and eligible teachers can participate free of charge. We will email confirmation to ${email}.`
+}
+
+function annualSchoolEmail(session: Stripe.Checkout.Session) {
+  const details = metadata(session)
+  const schoolName = details.schoolName || "your school"
+
+  return {
+    to: customerEmail(session),
+    subject: "Your PATI annual school registration",
+    text: [
+      `Thank you for registering ${schoolName} with PATI.`,
+      "",
+      `Your annual school registration payment of ${formatAmount(session)} has been received. Stripe will also send a payment receipt to this email address.`,
+      "",
+      "This €499.95 registration is your school's annual registration with PATI. It includes both Parenting the Tech-Savvy Child and Parenting in the Age of AI.",
+      "",
+      "PATI will send your January school-parent registration link and your January teacher access link separately.",
+      "",
+      "School-linked parents register individually. Eligible teachers in your school receive free access.",
+      "",
+      "Kind regards,",
+      "The PATI Team",
+      "Parenting and Technology Institute (PATI)",
+    ].join("\n"),
+  }
+}
+
+function annualOrganisationEmail(session: Stripe.Checkout.Session) {
+  const details = metadata(session)
+  const organisationName = details.organisationName || "your organisation"
+
+  return {
+    to: customerEmail(session),
+    subject: "Your PATI annual organisation registration",
+    text: [
+      `Thank you for registering ${organisationName} with PATI.`,
+      "",
+      `Your annual organisation registration payment of ${formatAmount(session)} has been received. Stripe will also send a payment receipt to this email address.`,
+      "",
+      "This €999.95 registration is your organisation's annual registration with PATI. It includes both Parenting the Tech-Savvy Child and Parenting in the Age of AI.",
+      "",
+      "PATI will send your January participant link separately.",
+      "",
+      "Participating employees register individually.",
+      "",
+      "Kind regards,",
+      "The PATI Team",
+      "Parenting and Technology Institute (PATI)",
+    ].join("\n"),
+  }
+}
+
+export function formatJanuaryTeacherAccessEmail(data: {
+  firstName: string
+  schoolName: string
+}) {
+  return {
+    subject: "Your Parenting in the Age of AI registration",
+    text: [
+      JANUARY_ACCESS_NOTICE,
+      "",
+      `You are registered through ${data.schoolName}.`,
+      "",
+      "This registration is free for teachers and school staff. PATI will confirm that your school is participating before sending Zoom access.",
+      "",
+      "Kind regards,",
+      "The PATI Team",
+      "Parenting and Technology Institute (PATI)",
+    ].join("\n"),
+  }
+}
+
+export function formatJanuaryTeacherOpsEmail(data: {
+  firstName: string
+  lastName: string
+  email: string
+  schoolName: string
+  schoolRollNumber: string
+  county: string
+  role: string
+}) {
+  const name = `${data.firstName} ${data.lastName}`
+
+  return {
+    subject: `Free teacher registration (${OFFERING_AGE_OF_AI}): ${name}`,
+    text: [
+      "A free Parenting in the Age of AI teacher registration was submitted. Check that the school is participating before sending Zoom access.",
+      "",
+      `Offering: ${OFFERING_AGE_OF_AI}`,
+      "Journey: teacher",
+      `Name: ${name}`,
+      `Email: ${data.email}`,
+      `School or organisation: ${data.schoolName}`,
+      "Amount: none",
+      "Stripe session: none",
+      `School roll number: ${data.schoolRollNumber}`,
+      `County: ${data.county}`,
+      `Role: ${data.role}`,
+    ].join("\n"),
+  }
+}
+
 export function formatPurchaserEmail(session: Stripe.Checkout.Session) {
   const details = metadata(session)
-  const journey = details.journey
+  const decision = decideProgrammeAccess(session)
   const to = customerEmail(session)
 
-  if (!to || !journey) {
+  if (!to || decision.action === "withhold") {
     return null
   }
 
+  if (decision.action === "ageOfAiParticipant") {
+    return januaryParticipantEmail(session, decision.journey)
+  }
+
+  if (decision.action === "ageOfAiSchool") {
+    return januarySchoolEmail(session)
+  }
+
+  if (decision.action === "annualInstitution" && decision.journey === "school") {
+    return annualSchoolEmail(session)
+  }
+
+  if (
+    decision.action === "annualInstitution" &&
+    decision.journey === "organisation"
+  ) {
+    return annualOrganisationEmail(session)
+  }
+
+  const journey = details.journey
   const amount = formatAmount(session)
   const schoolName = details.schoolName || "your school"
   const organisationName = details.organisationName || "your organisation"
@@ -364,56 +787,6 @@ export function formatPurchaserEmail(session: Stripe.Checkout.Session) {
         "Kind regards,",
         "The PATI Team",
         "Parenting and Technology Institute (PATI)",
-      ].join("\n"),
-    }
-  }
-
-  if (journey === "school") {
-    const parentLink = schoolParentRegistrationUrl()
-
-    return {
-      to,
-      subject: "Your PATI school registration",
-      text: [
-        `Thank you for registering ${schoolName} with PATI.`,
-        "",
-        `Your school registration payment of ${amount} has been received. Stripe will also send a payment receipt to this email address.`,
-        "",
-        "This is the registration/payment link for parents associated with your registered school. Please forward this same link to your parents:",
-        "",
-        parentLink,
-        "",
-        "Parents use this common PATI link to register and pay €14.95 individually through Stripe. As part of registration they identify which school they are associated with, so PATI can match their payment to your school.",
-        "",
-        "PATI will be in touch with programme details in due course.",
-      ].join("\n"),
-    }
-  }
-
-  if (journey === "organisation") {
-    const organisationUserLink = organisationUserRegistrationUrl()
-
-    return {
-      to,
-      subject: "Your PATI organisation registration",
-      text: [
-        `Thank you for registering ${organisationName} with PATI.`,
-        "",
-        `Your organisation registration payment of ${amount} has been received. Stripe will also send a payment receipt to this email address.`,
-        "",
-        "EMPLOYEE AND PARENT REGISTRATION",
-        "",
-        "Please forward the registration/payment link below to employees and parents associated with your organisation who wish to participate in the PATI Parent Programme:",
-        "",
-        organisationUserLink,
-        "",
-        "Employees and parents use this common PATI link to register and pay €24.95 individually through Stripe.",
-        "",
-        "As part of registration, they enter the name of the organisation they are associated with so PATI can match their registration to your organisation.",
-        "",
-        "PATI will be in touch with programme details in due course.",
-        "",
-        "If you have any questions, please contact PATI.",
       ].join("\n"),
     }
   }

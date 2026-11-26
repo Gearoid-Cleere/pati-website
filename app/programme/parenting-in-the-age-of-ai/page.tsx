@@ -3,6 +3,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { AiProgrammeHero } from "@/components/ai-programme/hero"
 import { AiProgrammeModules } from "@/components/ai-programme/modules"
+import { AiProgrammeSchedule } from "@/components/ai-programme/schedule"
 import { AiProgrammeCta } from "@/components/ai-programme/cta"
 import { aiProgramme } from "@/lib/programmes"
 
@@ -18,6 +19,7 @@ export default function ParentingInTheAgeOfAiPage() {
       <main className="flex-1">
         <AiProgrammeHero />
         <AiProgrammeModules />
+        <AiProgrammeSchedule />
         <AiProgrammeCta />
       </main>
       <Footer />

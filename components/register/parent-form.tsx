@@ -5,8 +5,13 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useCheckoutSubmit } from "@/components/register/start-checkout"
+import { OFFERING_TECH_SAVVY, type ParticipantOfferingId } from "@/lib/programme-id"
 
-export function ParentForm() {
+export function ParentForm({
+  offering = OFFERING_TECH_SAVVY,
+}: {
+  offering?: ParticipantOfferingId
+}) {
   const { isSubmitting, error, submit } = useCheckoutSubmit()
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -16,6 +21,7 @@ export function ParentForm() {
 
     await submit({
       journey: "parent",
+      offering,
       name: String(data.get("name") || ""),
       email: String(data.get("email") || ""),
       phone: String(data.get("phone") || ""),

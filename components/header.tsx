@@ -20,9 +20,11 @@ const aboutLinks = [
   { href: "/research", label: "Research & Insights" },
 ]
 
-export function Header() {
+export function Header({ hideRegister = false }: { hideRegister?: boolean }) {
   const pathname = usePathname()
   const onAiProgrammePage = pathname === AI_PROGRAMME_PATH
+  const onJanuaryRegistration = pathname.startsWith("/register/ai")
+  const showAutumnRegister = !onAiProgrammePage && !onJanuaryRegistration && !hideRegister
   const [mounted, setMounted] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [whoWeHelpMobileOpen, setWhoWeHelpMobileOpen] = useState(false)
@@ -153,11 +155,11 @@ export function Header() {
               <Button asChild className="h-11 px-6 text-[15px]">
                 <a href="#modules">Explore the modules</a>
               </Button>
-            ) : (
+            ) : showAutumnRegister ? (
               <Button asChild className="h-11 px-6 text-[15px]">
                 <Link href="/register/parent">Register</Link>
               </Button>
-            )}
+            ) : null}
           </div>
 
           <button
@@ -269,21 +271,23 @@ export function Header() {
             Contact
           </Link>
 
-          <div className="pt-8">
-            {onAiProgrammePage ? (
-              <Button className="h-12 w-full text-[15px]" asChild>
-                <a href="#modules" onClick={() => setMobileOpen(false)}>
-                  Explore the modules
-                </a>
-              </Button>
-            ) : (
-              <Button className="h-12 w-full text-[15px]" asChild>
-                <Link href="/register/parent" onClick={() => setMobileOpen(false)}>
-                  Register
-                </Link>
-              </Button>
-            )}
-          </div>
+          {onAiProgrammePage || showAutumnRegister ? (
+            <div className="pt-8">
+              {onAiProgrammePage ? (
+                <Button className="h-12 w-full text-[15px]" asChild>
+                  <a href="#modules" onClick={() => setMobileOpen(false)}>
+                    Explore the modules
+                  </a>
+                </Button>
+              ) : (
+                <Button className="h-12 w-full text-[15px]" asChild>
+                  <Link href="/register/parent" onClick={() => setMobileOpen(false)}>
+                    Register
+                  </Link>
+                </Button>
+              )}
+            </div>
+          ) : null}
         </nav>
       </div>
     </>

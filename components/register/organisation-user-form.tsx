@@ -5,8 +5,13 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useCheckoutSubmit } from "@/components/register/start-checkout"
+import { OFFERING_TECH_SAVVY, type ParticipantOfferingId } from "@/lib/programme-id"
 
-export function OrganisationUserForm() {
+export function OrganisationUserForm({
+  offering = OFFERING_TECH_SAVVY,
+}: {
+  offering?: ParticipantOfferingId
+}) {
   const { isSubmitting, error, submit } = useCheckoutSubmit()
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -16,6 +21,7 @@ export function OrganisationUserForm() {
 
     await submit({
       journey: "organisationUser",
+      offering,
       firstName: String(data.get("firstName") || ""),
       lastName: String(data.get("lastName") || ""),
       email: String(data.get("email") || ""),

@@ -4,11 +4,13 @@ import { Footer } from "@/components/footer"
 export function RegisterShell({
   eyebrow,
   title,
+  price,
   description,
   children,
 }: {
   eyebrow?: string
   title: string
+  price?: string
   description: string
   children: React.ReactNode
 }) {
@@ -26,6 +28,9 @@ export function RegisterShell({
             <h1 className="font-serif text-3xl font-medium tracking-tight text-foreground sm:text-4xl">
               {title}
             </h1>
+            {price ? (
+              <p className="mt-4 font-serif text-2xl text-foreground">{price}</p>
+            ) : null}
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">
               {description}
             </p>

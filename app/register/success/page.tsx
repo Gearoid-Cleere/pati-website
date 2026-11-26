@@ -3,14 +3,36 @@ import Stripe from "stripe"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
+import { januarySchoolSuccessBody } from "@/lib/emails"
+import { OFFERING_AGE_OF_AI, readRegistrationOffering } from "@/lib/programme-id"
 import { getStripe } from "@/lib/stripe"
 
 function confirmationCopy(session: Stripe.Checkout.Session) {
   const journey = session.metadata?.journey
+  const offering = readRegistrationOffering(session.metadata)
   const email =
     session.customer_email ||
     session.metadata?.email ||
     "the email address provided"
+
+  if (offering === OFFERING_AGE_OF_AI && journey === "school") {
+    return {
+      title: "School registration received",
+      body: januarySchoolSuccessBody(email),
+    }
+  }
+
+  if (
+    offering === OFFERING_AGE_OF_AI &&
+    (journey === "parent" ||
+      journey === "schoolParent" ||
+      journey === "organisationUser")
+  ) {
+    return {
+      title: "Registration received",
+      body: `Thank you. You are registered for Parenting in the Age of AI, beginning Tuesday, 19 January 2027. The programme will be delivered live online over four Tuesday evenings. Your Zoom registration and access information will be sent separately before the programme begins. We will email confirmation to ${email}.`,
+    }
+  }
 
   if (journey === "school") {
     return {
@@ -78,7 +100,7 @@ export default async function RegisterSuccessPage({
 
   return (
     <div className="flex min-h-screen flex-col">
-      <Header />
+      <Header hideRegister={readRegistrationOffering(session?.metadata) === OFFERING_AGE_OF_AI} />
       <main className="flex-1 bg-background">
         <section className="px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
           <div className="mx-auto max-w-xl text-center">

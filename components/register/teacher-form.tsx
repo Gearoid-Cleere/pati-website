@@ -5,6 +5,11 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import {
+  OFFERING_AGE_OF_AI,
+  OFFERING_TECH_SAVVY,
+  type ParticipantOfferingId,
+} from "@/lib/programme-id"
 
 const roles = [
   "Principal",
@@ -14,7 +19,11 @@ const roles = [
   "Other School Staff",
 ] as const
 
-export function TeacherForm() {
+export function TeacherForm({
+  offering = OFFERING_TECH_SAVVY,
+}: {
+  offering?: ParticipantOfferingId
+}) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState("")
   const [submittedEmail, setSubmittedEmail] = useState("")
@@ -29,22 +38,30 @@ export function TeacherForm() {
     const email = String(data.get("email") || "")
 
     try {
-      const response = await fetch("/api/register/teacher", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          firstName: String(data.get("firstName") || ""),
-          lastName: String(data.get("lastName") || ""),
-          schoolName: String(data.get("schoolName") || ""),
-          schoolRollNumber: String(data.get("schoolRollNumber") || ""),
-          county: String(data.get("county") || ""),
-          email,
-          role: String(data.get("role") || ""),
-          staffConfirmation: data.get("staffConfirmation") === "on",
-          termsAccepted: data.get("termsAccepted") === "on",
-          website: String(data.get("website") || ""),
-        }),
-      })
+      const payload = {
+        firstName: String(data.get("firstName") || ""),
+        lastName: String(data.get("lastName") || ""),
+        schoolName: String(data.get("schoolName") || ""),
+        schoolRollNumber: String(data.get("schoolRollNumber") || ""),
+        county: String(data.get("county") || ""),
+        email,
+        role: String(data.get("role") || ""),
+        staffConfirmation: data.get("staffConfirmation") === "on",
+        termsAccepted: data.get("termsAccepted") === "on",
+        website: String(data.get("website") || ""),
+      }
+      const response = await fetch(
+        offering === OFFERING_AGE_OF_AI
+          ? "/api/register/ai/teacher"
+          : "/api/register/teacher",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(
+            offering === OFFERING_AGE_OF_AI ? { ...payload, offering } : payload
+          ),
+        }
+      )
       const result = (await response.json()) as { error?: string }
 
       if (!response.ok) {
@@ -71,7 +88,9 @@ export function TeacherForm() {
           Registration received
         </h2>
         <p className="leading-relaxed text-muted-foreground">
-          Your free teacher registration has been received. We’ve emailed your PATI Parent Programme access details to {submittedEmail}. Please check your inbox and spam/junk folder if you don’t see the message shortly.
+          {offering === OFFERING_AGE_OF_AI
+            ? `Your free registration for Parenting in the Age of AI has been received. We’ve emailed confirmation to ${submittedEmail}. Zoom access will be sent separately before the programme begins, after PATI checks that your school is participating.`
+            : `Your free teacher registration has been received. We’ve emailed your PATI Parent Programme access details to ${submittedEmail}. Please check your inbox and spam/junk folder if you don’t see the message shortly.`}
         </p>
       </div>
     )

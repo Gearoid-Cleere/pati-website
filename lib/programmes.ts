@@ -63,9 +63,27 @@ export const aiProgramme = {
     },
     {
       number: "08",
-      title: "Raising AI-Ready Children",
+      title: "Ready for an AI World",
       description:
         "Preparing children to thrive in a world shaped by artificial intelligence. Building confidence, resilience, creativity, emotional intelligence and the human skills that technology cannot replace.",
+    },
+  ],
+  sessions: [
+    {
+      when: "Tuesday, 19 January 2027 at 7:00pm Ireland time",
+      modules: "Understanding AI and AI and Parenting",
+    },
+    {
+      when: "Tuesday, 26 January 2027 at 7:00pm Ireland time",
+      modules: "AI and Education and AI Companions",
+    },
+    {
+      when: "Tuesday, 2 February 2027 at 7:00pm Ireland time",
+      modules: "Truth and Trust and Safety and Privacy",
+    },
+    {
+      when: "Tuesday, 9 February 2027 at 7:00pm Ireland time",
+      modules: "Future of Work and Ready for an AI World",
     },
   ],
 }

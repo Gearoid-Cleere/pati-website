@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { useCheckoutSubmit } from "@/components/register/start-checkout"
+import { OFFERING_ANNUAL_ACCESS } from "@/lib/programme-id"
 import { useState } from "react"
 
 export function OrganisationForm() {
@@ -73,6 +74,7 @@ export function OrganisationForm() {
 
     await submit({
       journey: "organisation",
+      offering: OFFERING_ANNUAL_ACCESS,
       organisationName: String(data.get("organisationName") || ""),
       contactName: String(data.get("contactName") || ""),
       role: String(data.get("role") || ""),
@@ -90,9 +92,10 @@ export function OrganisationForm() {
           Invoice request received
         </h2>
         <p className="leading-relaxed text-muted-foreground">
-          Thank you. We have emailed confirmation to {submittedInvoiceEmail}. PATI will send the
-          invoice and then provide your organisation&apos;s programme participation information. No
-          payment is required at this stage.
+          Thank you. We have emailed confirmation to {submittedInvoiceEmail}. Annual registration
+          includes both Parenting the Tech-Savvy Child and Parenting in the Age of AI. PATI will
+          send the invoice, and then your January participant link. No payment is required at this
+          stage.
         </p>
       </div>
     )

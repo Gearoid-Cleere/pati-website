@@ -6,8 +6,15 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useCheckoutSubmit } from "@/components/register/start-checkout"
+import { OFFERING_AGE_OF_AI, OFFERING_ANNUAL_ACCESS } from "@/lib/programme-id"
+import { INVOICE_REQUEST_TYPE, JANUARY_SCHOOL_INVOICE_AMOUNT } from "@/lib/registration"
 
-export function SchoolForm() {
+export function SchoolForm({
+  offering = OFFERING_ANNUAL_ACCESS,
+}: {
+  offering?: typeof OFFERING_ANNUAL_ACCESS | typeof OFFERING_AGE_OF_AI
+}) {
+  const januarySchool = offering === OFFERING_AGE_OF_AI
   const { isSubmitting, error, submit } = useCheckoutSubmit()
   const [showInvoiceFields, setShowInvoiceFields] = useState(false)
   const [isInvoiceSubmitting, setIsInvoiceSubmitting] = useState(false)
@@ -25,23 +32,38 @@ export function SchoolForm() {
       setInvoiceError("")
 
       try {
-        const response = await fetch("/api/register/school-invoice", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            schoolName: String(data.get("schoolName") || ""),
-            contactName: String(data.get("contactName") || ""),
-            role: String(data.get("role") || ""),
-            email: String(data.get("email") || ""),
-            phone: String(data.get("phone") || ""),
-            county: String(data.get("county") || ""),
-            estimatedParents: String(data.get("estimatedParents") || ""),
-            invoicingOrganisation: String(data.get("invoicingOrganisation") || ""),
-            invoiceEmail: String(data.get("invoiceEmail") || ""),
-            purchaseOrderReference: String(data.get("purchaseOrderReference") || ""),
-            termsAccepted: data.get("termsAccepted") === "on",
-          }),
-        })
+        const invoiceDetails = {
+          schoolName: String(data.get("schoolName") || ""),
+          contactName: String(data.get("contactName") || ""),
+          role: String(data.get("role") || ""),
+          email: String(data.get("email") || ""),
+          phone: String(data.get("phone") || ""),
+          county: String(data.get("county") || ""),
+          estimatedParents: String(data.get("estimatedParents") || ""),
+          invoicingOrganisation: String(data.get("invoicingOrganisation") || ""),
+          invoiceEmail: String(data.get("invoiceEmail") || ""),
+          purchaseOrderReference: String(data.get("purchaseOrderReference") || ""),
+          termsAccepted: data.get("termsAccepted") === "on",
+        }
+        const response = await fetch(
+          januarySchool ? "/api/register/ai/school-invoice" : "/api/register/school-invoice",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(
+              januarySchool
+                ? {
+                    ...invoiceDetails,
+                    schoolRollNumber: String(data.get("schoolRollNumber") || ""),
+                    offering: OFFERING_AGE_OF_AI,
+                    journey: "school",
+                    amount: JANUARY_SCHOOL_INVOICE_AMOUNT,
+                    requestType: INVOICE_REQUEST_TYPE,
+                  }
+                : invoiceDetails
+            ),
+          }
+        )
         const result = (await response.json()) as { error?: string }
 
         if (!response.ok) {
@@ -65,6 +87,7 @@ export function SchoolForm() {
 
     await submit({
       journey: "school",
+      offering,
       schoolName: String(data.get("schoolName") || ""),
       contactName: String(data.get("contactName") || ""),
       role: String(data.get("role") || ""),
@@ -72,6 +95,7 @@ export function SchoolForm() {
       phone: String(data.get("phone") || ""),
       county: String(data.get("county") || ""),
       estimatedParents: String(data.get("estimatedParents") || ""),
+      schoolRollNumber: String(data.get("schoolRollNumber") || ""),
       termsAccepted: data.get("termsAccepted") === "on",
     })
   }
@@ -83,7 +107,9 @@ export function SchoolForm() {
           Invoice request received
         </h2>
         <p className="leading-relaxed text-muted-foreground">
-          Thank you. We have emailed confirmation to {submittedInvoiceEmail}. PATI will send the invoice and then provide your school&apos;s parent and teacher registration information. No payment is required at this stage.
+          {januarySchool
+            ? `Thank you for requesting an invoice for your school’s €199.95 registration for Parenting in the Age of AI. PATI will issue the invoice separately. Your school’s registration will be confirmed once the payment process has been completed. We have emailed confirmation to ${submittedInvoiceEmail}.`
+            : `Thank you. We have emailed confirmation to ${submittedInvoiceEmail}. Annual registration includes both Parenting the Tech-Savvy Child and Parenting in the Age of AI. PATI will send the invoice, and then your January school-parent and teacher access links. No payment is required at this stage.`}
         </p>
       </div>
     )
@@ -115,6 +141,19 @@ export function SchoolForm() {
         <Label htmlFor="phone">Phone</Label>
         <Input id="phone" name="phone" type="tel" required maxLength={50} className="mt-1.5" autoComplete="tel" />
       </div>
+
+      {januarySchool ? (
+        <div>
+          <Label htmlFor="schoolRollNumber">School roll number</Label>
+          <Input
+            id="schoolRollNumber"
+            name="schoolRollNumber"
+            required
+            maxLength={50}
+            className="mt-1.5"
+          />
+        </div>
+      ) : null}
 
       <div>
         <Label htmlFor="county">
@@ -153,7 +192,11 @@ export function SchoolForm() {
       {error ? <p className="text-sm text-destructive">{error}</p> : null}
 
       <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
-        {isSubmitting ? "Continuing to payment..." : "Continue to payment"}
+        {isSubmitting
+          ? "Continuing to payment..."
+          : januarySchool
+            ? "Pay €199.95 by card"
+            : "Continue to payment"}
       </Button>
 
       <p className="text-center text-xs text-muted-foreground">

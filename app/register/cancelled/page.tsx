@@ -2,6 +2,7 @@ import Link from "next/link"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
+import { OFFERING_AGE_OF_AI, januaryRegistrationPaths } from "@/lib/programme-id"
 import { journeys, type Journey } from "@/lib/registration"
 import { getOrganisationUserRegistrationPath } from "@/lib/organisation-user-link"
 
@@ -15,21 +16,26 @@ const retryHrefs: Record<Exclude<Journey, "organisationUser">, string> = {
 export default async function RegisterCancelledPage({
   searchParams,
 }: {
-  searchParams: Promise<{ journey?: string; code?: string }>
+  searchParams: Promise<{ journey?: string; code?: string; offering?: string; programme?: string }>
 }) {
-  const { journey, code } = await searchParams
+  const { journey, code, offering, programme } = await searchParams
+  const registrationOffering = offering || programme
   const validJourney = journeys.includes(journey as Journey)
     ? (journey as Journey)
     : null
 
   const retryHref =
-    validJourney === "organisationUser"
-      ? code
-        ? getOrganisationUserRegistrationPath(code)
-        : "/register/organisation-user"
-      : validJourney
-        ? retryHrefs[validJourney]
-        : "/#access"
+    registrationOffering === OFFERING_AGE_OF_AI &&
+    validJourney &&
+    validJourney in januaryRegistrationPaths
+      ? januaryRegistrationPaths[validJourney as keyof typeof januaryRegistrationPaths]
+      : validJourney === "organisationUser"
+        ? code
+          ? getOrganisationUserRegistrationPath(code)
+          : "/register/organisation-user"
+        : validJourney
+          ? retryHrefs[validJourney]
+          : "/#access"
 
   return (
     <div className="flex min-h-screen flex-col">

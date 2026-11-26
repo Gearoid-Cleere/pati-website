@@ -1,4 +1,11 @@
 import type Stripe from "stripe"
+import {
+  OFFERING_AGE_OF_AI,
+  OFFERING_ANNUAL_ACCESS,
+  OFFERING_TECH_SAVVY,
+  type RegistrationOfferingId,
+} from "./programme-id.ts"
+import type { Journey } from "./registration.ts"
 
 /**
  * Paid-registration email delivery.
@@ -123,38 +130,198 @@ export function mergeSessionMetadata(
   return { ...next, ...patch }
 }
 
+type ResolvedRegistration = {
+  offering: RegistrationOfferingId
+  journey: Journey
+  source: string
+}
+
+type PriceCatalogEntry = ResolvedRegistration & { priceId: string }
+
+function catalogEntry(
+  priceId: string | undefined,
+  offering: RegistrationOfferingId,
+  journey: Journey,
+  source: string
+): PriceCatalogEntry | null {
+  if (!priceId) {
+    return null
+  }
+
+  return { priceId, offering, journey, source }
+}
+
+function knownPriceCatalog(): PriceCatalogEntry[] {
+  return [
+    catalogEntry(
+      process.env.STRIPE_PRICE_AI_PARENT,
+      OFFERING_AGE_OF_AI,
+      "parent",
+      "januaryParentPrice"
+    ),
+    catalogEntry(
+      process.env.STRIPE_PRICE_AI_SCHOOL_PARENT,
+      OFFERING_AGE_OF_AI,
+      "schoolParent",
+      "januarySchoolParentPrice"
+    ),
+    catalogEntry(
+      process.env.STRIPE_PRICE_AI_ORGANISATION_USER,
+      OFFERING_AGE_OF_AI,
+      "organisationUser",
+      "januaryOrganisationUserPrice"
+    ),
+    catalogEntry(
+      process.env.STRIPE_PRICE_AI_SCHOOL,
+      OFFERING_AGE_OF_AI,
+      "school",
+      "januarySchoolPrice"
+    ),
+    catalogEntry(
+      process.env.STRIPE_PRICE_PARENT,
+      OFFERING_TECH_SAVVY,
+      "parent",
+      "autumnParentPrice"
+    ),
+    catalogEntry(
+      process.env.STRIPE_PRICE_SCHOOL_PARENT,
+      OFFERING_TECH_SAVVY,
+      "schoolParent",
+      "autumnSchoolParentPrice"
+    ),
+    catalogEntry(
+      process.env.STRIPE_PRICE_ORGANISATION_USER,
+      OFFERING_TECH_SAVVY,
+      "organisationUser",
+      "autumnOrganisationUserPrice"
+    ),
+    catalogEntry(
+      process.env.STRIPE_PRICE_SCHOOL,
+      OFFERING_ANNUAL_ACCESS,
+      "school",
+      "annualSchoolPrice"
+    ),
+    catalogEntry(
+      process.env.STRIPE_PRICE_ORGANISATION,
+      OFFERING_ANNUAL_ACCESS,
+      "organisation",
+      "annualOrganisationPrice"
+    ),
+    catalogEntry(
+      LEGACY_SCHOOL_RENEWAL_PRICE,
+      OFFERING_ANNUAL_ACCESS,
+      "school",
+      "legacySchoolRenewalPrice"
+    ),
+  ].filter((entry): entry is PriceCatalogEntry => entry !== null)
+}
+
+function sameRegistration(left: ResolvedRegistration, right: ResolvedRegistration) {
+  return left.offering === right.offering && left.journey === right.journey
+}
+
+export function resolveRegistrationFromStripeIds(
+  priceIds: string[],
+  paymentLink: string | null | undefined
+): ResolvedRegistration | null {
+  const catalog = knownPriceCatalog()
+  const matches: ResolvedRegistration[] = []
+
+  for (const priceId of priceIds) {
+    const hits = catalog.filter((entry) => entry.priceId === priceId)
+
+    if (hits.length === 0) {
+      continue
+    }
+
+    const januaryHits = hits.filter((entry) => entry.offering === OFFERING_AGE_OF_AI)
+    const otherHits = hits.filter((entry) => entry.offering !== OFFERING_AGE_OF_AI)
+
+    if (januaryHits.length > 0 && otherHits.length > 0) {
+      return null
+    }
+
+    const chosen = januaryHits[0] || hits[0]
+    if (!matches.some((match) => sameRegistration(match, chosen))) {
+      matches.push(chosen)
+    }
+  }
+
+  const januaryMatches = matches.filter((match) => match.offering === OFFERING_AGE_OF_AI)
+
+  if (januaryMatches.length === 1) {
+    return januaryMatches[0]
+  }
+
+  if (januaryMatches.length > 1) {
+    return null
+  }
+
+  if (matches.length === 1) {
+    return matches[0]
+  }
+
+  if (matches.length > 1) {
+    return null
+  }
+
+  if (paymentLink === LEGACY_SCHOOL_PARENT_PAYMENT_LINK) {
+    return {
+      offering: OFFERING_TECH_SAVVY,
+      journey: "schoolParent",
+      source: "legacySchoolParentPaymentLink",
+    }
+  }
+
+  return null
+}
+
+function paymentLinkId(session: Stripe.Checkout.Session) {
+  if (typeof session.payment_link === "string") {
+    return session.payment_link
+  }
+
+  return session.payment_link?.id
+}
+
 export async function normaliseCheckoutSession(
   session: Stripe.Checkout.Session,
   listLineItems: DeliveryDependencies["listLineItems"]
 ): Promise<Stripe.Checkout.Session> {
   const lineItems = await listLineItems(session.id)
+  const priceIds = lineItems.flatMap((lineItem) =>
+    lineItem.price?.id ? [lineItem.price.id] : []
+  )
+  const resolved = resolveRegistrationFromStripeIds(priceIds, paymentLinkId(session))
+  const metadata: Record<string, string> = { ...(session.metadata || {}) }
+  const submittedOffering = metadata.offering || metadata.programme
 
-  if (lineItems.some((lineItem) => lineItem.price?.id === LEGACY_SCHOOL_RENEWAL_PRICE)) {
-    return {
-      ...session,
-      metadata: {
-        ...(session.metadata || {}),
-        journey: "school",
-      },
+  if (!resolved) {
+    if (submittedOffering) {
+      metadata.submittedOffering = submittedOffering
     }
+
+    delete metadata.offering
+    delete metadata.programme
+    metadata.offeringSource = "unconfirmedPrice"
+
+    return { ...session, metadata }
   }
 
-  const paymentLink =
-    typeof session.payment_link === "string"
-      ? session.payment_link
-      : session.payment_link?.id
-
-  if (paymentLink !== LEGACY_SCHOOL_PARENT_PAYMENT_LINK) {
-    return session
+  if (submittedOffering && submittedOffering !== resolved.offering) {
+    metadata.submittedOffering = submittedOffering
   }
 
-  return {
-    ...session,
-    metadata: {
-      ...(session.metadata || {}),
-      journey: "schoolParent",
-    },
+  if (metadata.journey && metadata.journey !== resolved.journey) {
+    metadata.submittedJourney = metadata.journey
   }
+
+  delete metadata.programme
+  metadata.journey = resolved.journey
+  metadata.offering = resolved.offering
+  metadata.offeringSource = resolved.source
+
+  return { ...session, metadata }
 }
 
 export type DeliveryResult = {

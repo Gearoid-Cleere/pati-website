@@ -1,4 +1,12 @@
 import { z } from "zod"
+import {
+  OFFERING_AGE_OF_AI,
+  isValidOfferingJourney,
+  registrationOfferings,
+} from "./programme-id.ts"
+
+export const JANUARY_SCHOOL_INVOICE_AMOUNT = "€199.95"
+export const INVOICE_REQUEST_TYPE = "invoice"
 
 export const journeys = [
   "parent",
@@ -11,9 +19,11 @@ export const journeys = [
 export type Journey = (typeof journeys)[number]
 
 const optionalText = z.string().trim().max(200).optional().or(z.literal(""))
+const offeringField = z.enum(registrationOfferings)
 
 export const parentCheckoutSchema = z.object({
   journey: z.literal("parent"),
+  offering: offeringField,
   name: z.string().trim().min(1).max(200),
   email: z.string().trim().email().max(200),
   phone: optionalText,
@@ -22,6 +32,7 @@ export const parentCheckoutSchema = z.object({
 
 export const schoolCheckoutSchema = z.object({
   journey: z.literal("school"),
+  offering: offeringField,
   schoolName: z.string().trim().min(1).max(200),
   contactName: z.string().trim().min(1).max(200),
   role: z.string().trim().min(1).max(200),
@@ -29,6 +40,7 @@ export const schoolCheckoutSchema = z.object({
   phone: z.string().trim().min(1).max(50),
   county: optionalText,
   estimatedParents: optionalText,
+  schoolRollNumber: optionalText,
   termsAccepted: z.literal(true),
 })
 
@@ -44,6 +56,14 @@ export const schoolInvoiceRequestSchema = z.object({
   invoiceEmail: z.string().trim().email().max(200).optional().or(z.literal("")),
   purchaseOrderReference: optionalText,
   termsAccepted: z.literal(true),
+})
+
+export const aiSchoolInvoiceRequestSchema = schoolInvoiceRequestSchema.extend({
+  schoolRollNumber: z.string().trim().min(1).max(50),
+  offering: z.literal(OFFERING_AGE_OF_AI),
+  journey: z.literal("school"),
+  amount: z.literal(JANUARY_SCHOOL_INVOICE_AMOUNT),
+  requestType: z.literal(INVOICE_REQUEST_TYPE),
 })
 
 export const organisationInvoiceRequestSchema = z.object({
@@ -62,6 +82,7 @@ export const organisationInvoiceRequestSchema = z.object({
 
 export const organisationCheckoutSchema = z.object({
   journey: z.literal("organisation"),
+  offering: offeringField,
   organisationName: z.string().trim().min(1).max(200),
   contactName: z.string().trim().min(1).max(200),
   role: z.string().trim().min(1).max(200),
@@ -73,6 +94,7 @@ export const organisationCheckoutSchema = z.object({
 
 export const schoolParentCheckoutSchema = z.object({
   journey: z.literal("schoolParent"),
+  offering: offeringField,
   name: z.string().trim().min(1).max(200),
   email: z.string().trim().email().max(200),
   phone: optionalText,
@@ -83,6 +105,7 @@ export const schoolParentCheckoutSchema = z.object({
 
 export const organisationUserCheckoutSchema = z.object({
   journey: z.literal("organisationUser"),
+  offering: offeringField,
   firstName: z.string().trim().min(1).max(200),
   lastName: z.string().trim().min(1).max(200),
   email: z.string().trim().email().max(200),
@@ -110,13 +133,35 @@ export const teacherRegistrationSchema = z.object({
 
 export type TeacherRegistration = z.infer<typeof teacherRegistrationSchema>
 
-export const checkoutRequestSchema = z.discriminatedUnion("journey", [
-  parentCheckoutSchema,
-  schoolCheckoutSchema,
-  organisationCheckoutSchema,
-  schoolParentCheckoutSchema,
-  organisationUserCheckoutSchema,
-])
+export const checkoutRequestSchema = z
+  .discriminatedUnion("journey", [
+    parentCheckoutSchema,
+    schoolCheckoutSchema,
+    organisationCheckoutSchema,
+    schoolParentCheckoutSchema,
+    organisationUserCheckoutSchema,
+  ])
+  .superRefine((data, context) => {
+    if (!isValidOfferingJourney(data.offering, data.journey)) {
+      context.addIssue({
+        code: "custom",
+        path: ["offering"],
+        message: "This registration cannot be completed online.",
+      })
+    }
+
+    if (
+      data.journey === "school" &&
+      data.offering === OFFERING_AGE_OF_AI &&
+      !data.schoolRollNumber?.trim()
+    ) {
+      context.addIssue({
+        code: "custom",
+        path: ["schoolRollNumber"],
+        message: "Enter the school roll number.",
+      })
+    }
+  })
 
 export type CheckoutRequest = z.infer<typeof checkoutRequestSchema>
 
