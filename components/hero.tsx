@@ -37,15 +37,6 @@ export function Hero() {
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
-
-            <Button
-              size="lg"
-              variant="outline"
-              asChild
-              className="h-14 px-8 text-[15px] font-medium"
-            >
-              <a href="#access">Choose How to Join</a>
-            </Button>
           </div>
         </div>
       </div>
