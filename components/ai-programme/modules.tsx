@@ -23,7 +23,7 @@ const icons = [
 
 export function AiProgrammeModules() {
   return (
-    <section className="bg-secondary/20 py-20 lg:py-24">
+    <section id="modules" className="scroll-mt-24 bg-secondary/20 py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
         <p className="mb-12 text-center font-serif text-xl font-medium tracking-tight text-foreground sm:text-2xl lg:mb-16">
           {aiProgramme.startDate}

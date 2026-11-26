@@ -26,6 +26,9 @@ export function FinalCta() {
         <h2 className="font-serif text-[1.9rem] font-normal tracking-tight text-foreground sm:text-3xl lg:text-4xl">
           Ready to Get Started?
         </h2>
+        <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+          These registration options currently provide access to Parenting the Tech-Savvy Child.
+        </p>
 
         <div className="mt-12 grid gap-4 sm:grid-cols-3 lg:mt-14">
           {routes.map((route) => (

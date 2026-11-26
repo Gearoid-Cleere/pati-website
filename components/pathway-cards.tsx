@@ -45,7 +45,7 @@ export function PathwayCards() {
   return (
     <section id="access" className="scroll-mt-24 bg-background py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
-        <div className="mx-auto mb-16 max-w-3xl text-center lg:mb-20">
+        <div className="mx-auto mb-10 max-w-3xl text-center lg:mb-12">
           <p className="mb-4 text-sm font-medium uppercase tracking-[0.22em] text-accent">
             How to Join
           </p>
@@ -53,6 +53,16 @@ export function PathwayCards() {
           <h2 className="font-serif text-[2rem] font-normal tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem]">
             Choose the pathway that fits you
           </h2>
+        </div>
+
+        <div className="mx-auto mb-16 max-w-3xl text-center lg:mb-20">
+          <p className="mb-4 text-sm font-medium uppercase tracking-[0.22em] text-accent">
+            Current programme access
+          </p>
+          <p className="text-lg leading-relaxed text-muted-foreground">
+            The registration options below currently provide access to Parenting the Tech-Savvy
+            Child. Registration details for Parenting in the Age of AI will be announced shortly.
+          </p>
         </div>
 
         <div className="grid gap-8 lg:grid-cols-3 lg:gap-10">

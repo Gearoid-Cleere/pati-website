@@ -1,5 +1,4 @@
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
 import { TECH_SAVVY_PROGRAMME_PATH, aiProgramme } from "@/lib/programmes"
 
 export function AiProgrammeCta() {
@@ -10,21 +9,17 @@ export function AiProgrammeCta() {
           {aiProgramme.startDate}
         </h2>
         <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-          Registration details for Parenting in the Age of AI will follow. Existing registration
-          pages remain for Parenting the Tech-Savvy Child.
+          Registration for Parenting in the Age of AI will open shortly. Access details for
+          parents, schools, organisations and teachers will be published here.
         </p>
-        <div className="mt-10">
-          <Button
-            size="lg"
-            variant="outline"
-            asChild
-            className="h-auto min-h-14 px-8 text-[15px] font-medium"
+        <p className="mt-10">
+          <Link
+            href={TECH_SAVVY_PROGRAMME_PATH}
+            className="text-[15px] font-medium text-foreground underline-offset-4 hover:underline"
           >
-            <Link href={TECH_SAVVY_PROGRAMME_PATH}>
-              View Parenting the Tech-Savvy Child
-            </Link>
-          </Button>
-        </div>
+            View Parenting the Tech-Savvy Child
+          </Link>
+        </p>
       </div>
     </section>
   )

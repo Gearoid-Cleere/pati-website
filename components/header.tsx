@@ -2,10 +2,11 @@
 
 import Image from "next/image"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Menu, X, ChevronDown, ChevronRight } from "lucide-react"
 import { useState, useEffect } from "react"
-import { programmeNavLinks } from "@/lib/programmes"
+import { AI_PROGRAMME_PATH, programmeNavLinks } from "@/lib/programmes"
 
 const whoWeHelpLinks = [
   { href: "/schools", label: "For Schools" },
@@ -20,6 +21,8 @@ const aboutLinks = [
 ]
 
 export function Header() {
+  const pathname = usePathname()
+  const onAiProgrammePage = pathname === AI_PROGRAMME_PATH
   const [mounted, setMounted] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [whoWeHelpMobileOpen, setWhoWeHelpMobileOpen] = useState(false)
@@ -146,9 +149,15 @@ export function Header() {
           </nav>
 
           <div className="hidden items-center gap-6 lg:flex">
-            <Button asChild className="h-11 px-6 text-[15px]">
-              <Link href="/register/parent">Register</Link>
-            </Button>
+            {onAiProgrammePage ? (
+              <Button asChild className="h-11 px-6 text-[15px]">
+                <a href="#modules">Explore the modules</a>
+              </Button>
+            ) : (
+              <Button asChild className="h-11 px-6 text-[15px]">
+                <Link href="/register/parent">Register</Link>
+              </Button>
+            )}
           </div>
 
           <button
@@ -261,11 +270,19 @@ export function Header() {
           </Link>
 
           <div className="pt-8">
-            <Button className="h-12 w-full text-[15px]" asChild>
-              <Link href="/register/parent" onClick={() => setMobileOpen(false)}>
-                Register
-              </Link>
-            </Button>
+            {onAiProgrammePage ? (
+              <Button className="h-12 w-full text-[15px]" asChild>
+                <a href="#modules" onClick={() => setMobileOpen(false)}>
+                  Explore the modules
+                </a>
+              </Button>
+            ) : (
+              <Button className="h-12 w-full text-[15px]" asChild>
+                <Link href="/register/parent" onClick={() => setMobileOpen(false)}>
+                  Register
+                </Link>
+              </Button>
+            )}
           </div>
         </nav>
       </div>
