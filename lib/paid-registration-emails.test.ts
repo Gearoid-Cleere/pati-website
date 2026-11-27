@@ -48,6 +48,10 @@ import {
   unavailableOfferingMessage,
 } from "./stripe.ts"
 import { applyRegistrationEmailOverride } from "./registration-email.ts"
+import {
+  confirmationCopy,
+  stripePaymentReceiptNote,
+} from "./registration-success.ts"
 import { handleStripeWebhook } from "./stripe-webhook.ts"
 
 function sessionFixture(
@@ -1022,6 +1026,83 @@ describe("programme access emails", () => {
       januarySchoolSuccessBody("school@example.com"),
       /enables your school to offer the January programme/
     )
+  })
+
+  it("shows annual school and organisation success copy without private registration links", () => {
+    const annualSchool = confirmationCopy(
+      sessionFixture({
+        customer_email: "school@example.com",
+        metadata: {
+          journey: "school",
+          offering: OFFERING_ANNUAL_ACCESS,
+          email: "school@example.com",
+        },
+      })
+    )
+    assert.equal(annualSchool.title, "Annual school registration received")
+    assert.equal(
+      annualSchool.body,
+      [
+        "Thank you. Your €499.95 annual school registration with PATI has been received. It includes Parenting the Tech-Savvy Child and Parenting in the Age of AI.",
+        "PATI will send the relevant school-parent and teacher registration links separately. Parents register individually for €14.95, and eligible teachers at your school can participate free of charge.",
+        "We will email confirmation to school@example.com.",
+      ].join("\n\n")
+    )
+    assert.equal(annualSchool.body.includes("same link"), false)
+    assert.equal(annualSchool.body.includes("/register/"), false)
+    assert.equal(/https?:\/\//.test(annualSchool.body), false)
+
+    const annualOrganisation = confirmationCopy(
+      sessionFixture({
+        customer_email: "org@example.com",
+        metadata: {
+          journey: "organisation",
+          offering: OFFERING_ANNUAL_ACCESS,
+          email: "org@example.com",
+        },
+      })
+    )
+    assert.equal(annualOrganisation.title, "Annual organisation registration received")
+    assert.equal(
+      annualOrganisation.body,
+      [
+        "Thank you. Your €999.95 annual organisation registration with PATI has been received. It includes Parenting the Tech-Savvy Child and Parenting in the Age of AI.",
+        "PATI will send the relevant participant registration link separately. Participants register individually for €24.95.",
+        "We will email confirmation to org@example.com.",
+      ].join("\n\n")
+    )
+    assert.equal(annualOrganisation.body.includes("/register/"), false)
+    assert.equal(/https?:\/\//.test(annualOrganisation.body), false)
+    assert.equal(
+      stripePaymentReceiptNote,
+      "Stripe will also send a payment receipt to the email used at checkout."
+    )
+
+    const januarySchool = confirmationCopy(
+      sessionFixture({
+        customer_email: "school@example.com",
+        metadata: {
+          journey: "school",
+          offering: OFFERING_AGE_OF_AI,
+          email: "school@example.com",
+        },
+      })
+    )
+    assert.equal(januarySchool.title, "School registration received")
+    assert.equal(januarySchool.body, januarySchoolSuccessBody("school@example.com"))
+
+    const techSavvyParent = confirmationCopy(
+      sessionFixture({
+        metadata: {
+          journey: "parent",
+          offering: OFFERING_TECH_SAVVY,
+          email: "parent@example.com",
+        },
+      })
+    )
+    assert.equal(techSavvyParent.title, "Registration received")
+    assert.equal(techSavvyParent.body.includes("annual"), false)
+    assert.equal(techSavvyParent.body.includes("Parenting in the Age of AI"), false)
   })
 
   it("names module 8 Ready for an AI World and keeps its description", () => {

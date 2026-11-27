@@ -3,80 +3,12 @@ import Stripe from "stripe"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
-import { januarySchoolSuccessBody } from "@/lib/emails"
 import { OFFERING_AGE_OF_AI, readRegistrationOffering } from "@/lib/programme-id"
+import {
+  confirmationCopy,
+  stripePaymentReceiptNote,
+} from "@/lib/registration-success"
 import { getStripe } from "@/lib/stripe"
-
-function confirmationCopy(session: Stripe.Checkout.Session) {
-  const journey = session.metadata?.journey
-  const offering = readRegistrationOffering(session.metadata)
-  const email =
-    session.customer_email ||
-    session.metadata?.email ||
-    "the email address provided"
-
-  if (offering === OFFERING_AGE_OF_AI && journey === "school") {
-    return {
-      title: "School registration received",
-      body: januarySchoolSuccessBody(email),
-    }
-  }
-
-  if (
-    offering === OFFERING_AGE_OF_AI &&
-    (journey === "parent" ||
-      journey === "schoolParent" ||
-      journey === "organisationUser")
-  ) {
-    return {
-      title: "Registration received",
-      body: `Thank you. You are registered for Parenting in the Age of AI, beginning Tuesday, 19 January 2027. The programme will be delivered live online over four Tuesday evenings. Your Zoom registration and access information will be sent separately before the programme begins. We will email confirmation to ${email}.`,
-    }
-  }
-
-  if (journey === "school") {
-    return {
-      title: "School registration received",
-      body: `Thank you. Your school registration payment has been received. You will receive an email at ${email} with the registration/payment link for parents associated with your registered school. You can forward that same link to your parents. Programme details will follow from PATI.`,
-    }
-  }
-
-  if (journey === "organisation") {
-    return {
-      title: "Organisation registration received",
-      body: `Thank you. Your organisation registration payment has been received. PATI will follow up at ${email} about employee and parent access.`,
-    }
-  }
-
-  if (journey === "schoolParent") {
-    const schoolName = session.metadata?.schoolName
-    const schoolLine = schoolName
-      ? ` You identified your school as ${schoolName}.`
-      : ""
-
-    return {
-      title: "Registration received",
-      body: `Thank you. Your payment has been received.${schoolLine} We will email programme details to ${email}.`,
-    }
-  }
-
-  if (journey === "organisationUser") {
-    const organisationName = session.metadata?.organisationName
-    const organisationLine = organisationName
-      ? ` You identified your organisation as ${organisationName}.`
-      : ""
-
-    return {
-      title: "Registration received",
-      body: `Thank you. Your payment has been received.${organisationLine} We will email programme details to ${email}.`,
-    }
-  }
-
-  return {
-    title: "Registration received",
-    body: `Thank you. Your payment has been received. We will email programme details to ${email}.`,
-  }
-}
 
 export default async function RegisterSuccessPage({
   searchParams,
@@ -109,11 +41,20 @@ export default async function RegisterSuccessPage({
                 <h1 className="font-serif text-3xl font-medium tracking-tight text-foreground sm:text-4xl">
                   {copy.title}
                 </h1>
-                <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-                  {copy.body}
-                </p>
+                {copy.body.split("\n\n").map((paragraph, index) => (
+                  <p
+                    key={index}
+                    className={
+                      index === 0
+                        ? "mt-6 text-base leading-relaxed text-muted-foreground"
+                        : "mt-4 text-base leading-relaxed text-muted-foreground"
+                    }
+                  >
+                    {paragraph}
+                  </p>
+                ))}
                 <p className="mt-4 text-sm text-muted-foreground">
-                  Stripe will also send a payment receipt to the email used at checkout.
+                  {stripePaymentReceiptNote}
                 </p>
               </>
             ) : (
