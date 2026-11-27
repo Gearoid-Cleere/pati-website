@@ -61,7 +61,14 @@ export function PathwayCards() {
           </p>
           <p className="text-lg leading-relaxed text-muted-foreground">
             The registration options below currently provide access to Parenting the Tech-Savvy
-            Child. Registration details for Parenting in the Age of AI will be announced shortly.
+            Child. Registration for Parenting in the Age of AI is now open.{" "}
+            <Link
+              href="/programme/parenting-in-the-age-of-ai"
+              className="font-medium text-foreground underline-offset-4 hover:underline"
+            >
+              Explore the programme
+            </Link>{" "}
+            to choose the appropriate registration option.
           </p>
         </div>
 

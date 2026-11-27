@@ -58,6 +58,10 @@ function aiOrganisationUserRegistrationUrl() {
   return `${getSiteUrl().replace(/\/$/, "")}/register/ai/organisation-user`
 }
 
+function aiProgrammePageUrl() {
+  return `${getSiteUrl().replace(/\/$/, "")}/programme/parenting-in-the-age-of-ai`
+}
+
 export const JANUARY_ACCESS_NOTICE =
   "Thank you for registering for Parenting in the Age of AI, beginning Tuesday, 19 January 2027. The programme will be delivered live online over four Tuesday evenings. Your Zoom registration and access information will be sent separately before the programme begins."
 
@@ -183,7 +187,7 @@ function patiNextProgrammeLines(): string[] {
   return [
     "COMING IN JANUARY 2027 – PARENTING IN THE AGE OF AI",
     "",
-    "Our next four-week programme begins Tuesday 19 January 2027. Further programme and registration details will follow.",
+    `Our next four-week programme, Parenting in the Age of AI, begins Tuesday, 19 January 2027. Registration is now open: ${aiProgrammePageUrl()}`,
   ]
 }
 
