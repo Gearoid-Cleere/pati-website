@@ -1,5 +1,7 @@
+import Link from "next/link"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import { Button } from "@/components/ui/button"
 
 export default function ResearchPage() {
   return (
@@ -20,6 +22,29 @@ export default function ResearchPage() {
             <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto">
               We develop research and insights that help parents, schools, and organisations respond to the realities of childhood in an increasingly digital environment.
             </p>
+          </div>
+        </section>
+
+        <section className="py-20">
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="rounded-2xl border border-border bg-background p-8 md:p-12">
+              <p className="mb-4 text-sm font-medium uppercase tracking-widest text-accent">
+                Research & Insights
+              </p>
+              <h2 className="font-serif text-3xl font-medium text-primary md:text-4xl">
+                Parenting, Technology and Childhood in Ireland
+              </h2>
+              <p className="mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
+                Explore findings from PATI’s 2026 Gap Analysis and Research Study, drawing on the experiences of parents, guardians and school communities across Ireland.
+              </p>
+              <div className="mt-8">
+                <Button size="lg" asChild className="h-12 px-8 text-[15px]">
+                  <Link href="/research/parenting-technology-childhood-ireland-2026">
+                    View the research
+                  </Link>
+                </Button>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -104,7 +129,7 @@ export default function ResearchPage() {
 
             <div className="border border-dashed border-border rounded-xl p-10">
               <p className="text-muted-foreground">
-                Our first report will be published following the completion of this independently funded research project.
+                The first interim findings report is now available. Further analysis and programme evaluation will inform subsequent PATI research publications.
               </p>
             </div>
           </div>

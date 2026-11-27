@@ -25,6 +25,27 @@ export default function Home() {
 
         <UpcomingProgramme />
 
+        <section className="border-y border-border/70 bg-background py-16 lg:py-20">
+          <div className="mx-auto max-w-3xl px-6 text-center sm:px-8">
+            <p className="mb-4 text-sm font-medium uppercase tracking-[0.22em] text-accent">
+              Research & Insights
+            </p>
+            <h2 className="font-serif text-[1.75rem] font-normal tracking-tight text-foreground sm:text-3xl">
+              Parenting, Technology and Childhood in Ireland
+            </h2>
+            <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+              Our 2026 study draws on responses from 1,182 parents and guardians and 56 school leadership and policy respondents, highlighting the practical support families and schools are seeking.
+            </p>
+            <div className="mt-8">
+              <Button size="lg" variant="outline" asChild className="h-12 px-8 text-[15px]">
+                <Link href="/research/parenting-technology-childhood-ireland-2026">
+                  Explore the research
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </section>
+
         <section className="bg-background py-20 lg:py-24">
           <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
             <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
